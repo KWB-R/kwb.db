@@ -1,0 +1,19 @@
+Package: kwb.db
+Maintainer: Hauke Sonnenberg <hauke.sonnenberg@kompetenz-wasser.de>
+Imports: kwb.utils, RODBC
+Suggests: kwb.datetime
+Author: Hauke Sonnenberg
+Version: 0.3.0
+License: GPL
+Title: Functions supporting data base access
+Description: This package contains some useful functions, especially for simplifying data transfer
+           between MS Access databases and R. With the functions of this package it is not needed
+           any more to open and close a database connection explicitely; this is done 'behind the
+           scenes' in the functions. Instead of a database connection the path to the database file
+           needs to be passed to the functions as an argument. The main functions are hsGetTable
+           and hsPutTable which transfer data from an MS Access database to a data frame in R and
+           save data from a data frame in R into a table in an MS Access database, respectively.
+           Take care when getting time series data from an MS Access database, see therefore
+           hsMdbTimeSeries. Use hsTables to get a list of tables that are available in a database
+           and hsFields to get a list of table fields that are contained in a database table.
+RoxygenNote: 6.0.1

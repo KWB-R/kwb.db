@@ -1,0 +1,3 @@
+The package will contain an example data base: RExKwbBase.mdb
+Copy this database from \\moby\miacso$\REvaluation\RData into this folder 
+before building the package.

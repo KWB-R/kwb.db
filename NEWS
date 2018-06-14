@@ -1,0 +1,7 @@
+Changes in kwb.db 0.1.1
+=========================
+* xmdb now points to example database in this package not in kwb.base
+
+Changes in kwb.db 0.1.0
+=========================
+* package created with functions that were originally in kwb.base

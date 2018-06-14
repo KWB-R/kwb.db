@@ -1,0 +1,3 @@
+The package will contain a Microsoft Access database for storing meta data: RMeta.mdb
+Copy this database from \\moby\miacso$\REvaluation\RData into this folder 
+before building the package.
