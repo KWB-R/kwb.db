@@ -26,7 +26,7 @@
 #' # SELECT * FROM t WHERE (FALSE) OR isNull(f1) OR 
 #' # isNull(f2) OR isNull(f3) OR ... OR isNull(f100)
 #' 
-hsSqlExOr <- function(x, bFunc) 
+hsSqlExOr <- function(x, bFunc = "")
 {
   sprintf("(%s)", paste(c("FALSE", x), collapse = sprintf(") OR %s(", bFunc)))
 }
