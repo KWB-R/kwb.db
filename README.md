@@ -17,7 +17,7 @@ Once you have the devtools package installed, you can install the package kwb.db
 # install.packages("devtools")
 
 # Install kwb.db (and dependent packages) from this GitHub repository
-devtools::install(github("kwb-r/kwb.db", dependencies = TRUE)
+devtools::install_github("kwb-r/kwb.db", dependencies = TRUE)
 ```
 
 Database Access in RODBC
