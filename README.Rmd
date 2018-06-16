@@ -55,14 +55,15 @@ connection explicitly; this is done behind the scenes in the functions. Instead
 of a database connection the path to the database file needs to be passed to the
 functions as an argument. 
 
-The main functions are [`hsGetTable()`](docs/reference/hsGetTable.html) and 
-[`hsPutTable()`](docs/reference/hsPutTable.html). They transfer data from a
-database to a data frame in R and save data from a data frame in R into a new
-table in a database, respectively.
+The main functions are
+[`hsGetTable()`](https://kwb-r.github.io/kwb.db/reference/hsGetTable.html) and 
+[`hsPutTable()`](https://kwb-r.github.io/kwb.db/reference/hsPutTable.html). 
+They transfer data from a database to a data frame in R and save data from a 
+data frame in R into a new table in a database, respectively.
 
-Use [`hsTables()`](docs/reference/hsTables.html) to get a list of tables that 
-are available in a database and [`hsFields()`](docs/reference/hsFields.html) to 
-get a list of table fields that are contained in a database table.
+Use [`hsTables()`](https://kwb-r.github.io/kwb.db/reference/hsTables.html) to 
+get a list of tables that are available in a database and [`hsFields()`](https://kwb-r.github.io/kwb.db/reference/hsFields.html) to get a
+list of table fields that are contained in a database table.
 
 A general workflow could look like this:
 
@@ -91,4 +92,5 @@ a request to the database is sent and the connection is closed again. Thus, the
 user does not have to care about open database connections. 
 
 Take care when getting time series data from an MS Access database, see 
-therefore [`hsMdbTimeSeries()`](docs/reference/hsMdbTimeSeries.html). 
+therefore 
+[`hsMdbTimeSeries()`](https://kwb-r.github.io/kwb.db/reference/hsMdbTimeSeries.html). 
