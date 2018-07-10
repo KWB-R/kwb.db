@@ -11,8 +11,10 @@ Description: This package contains some useful functions, especially for simplif
            Take care when getting time series data from an MS Access database, see therefore
            hsMdbTimeSeries. Use hsTables to get a list of tables that are available in a database
            and hsFields to get a list of table fields that are contained in a database table.
-Authors@R: c(person("Hauke", "Sonnenberg", , "hauke.sonnenberg@kompetenz-wasser.de", role = c("aut", "cre")),
-             person("Kompetenzzentrum Wasser Berlin gGmbH", role = c("cph")))
+Authors@R: c(
+    person("Hauke", "Sonnenberg", , "hauke.sonnenberg@kompetenz-wasser.de", 
+           role = c("aut", "cre"), comment = c(ORCID = "0000-0003-0647-7726")),
+    person("Kompetenzzentrum Wasser Berlin gGmbH", role = c("cph")))
 Imports: kwb.utils, RODBC
 Suggests: 
     kwb.datetime,
