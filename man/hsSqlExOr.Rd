@@ -4,7 +4,7 @@
 \alias{hsSqlExOr}
 \title{SQL Expression \dQuote{OR}}
 \usage{
-hsSqlExOr(x, bFunc)
+hsSqlExOr(x, bFunc = "")
 }
 \arguments{
 \item{x}{vector of strings, e.g. representing table field names.}
