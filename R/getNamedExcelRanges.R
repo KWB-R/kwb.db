@@ -13,7 +13,9 @@
 #'   range in the Excel \code{file} and each of which was read with 
 #'   \code{\link{hsGetTable}}.
 #'   
-get_namedExcelRanges <- function(
+#' @export
+#'   
+getNamedExcelRanges <- function(
   file, pattern = "^range", dbg = TRUE, stringsAsFactors = FALSE, ...
 )
 {
