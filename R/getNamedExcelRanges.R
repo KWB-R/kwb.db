@@ -33,7 +33,5 @@ getNamedExcelRanges <- function(
     )
   })
   
-  names(ranges) <- range_names
-  
-  lapply(ranges, kwb.utils::removeEmptyColumns, dbg = FALSE)
+  stats::setNames(ranges, range_names)
 }
