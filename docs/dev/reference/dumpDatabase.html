@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Generate SQL INSERT statement — sqlForInsert • kwb.db</title>
+<title>Export Database Tables to CSV Files — dumpDatabase • kwb.db</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -28,9 +28,10 @@
 
 
 
-<meta property="og:title" content="Generate SQL INSERT statement — sqlForInsert" />
+<meta property="og:title" content="Export Database Tables to CSV Files — dumpDatabase" />
 
-<meta property="og:description" content="Generate SQL INSERT statement" />
+<meta property="og:description" content="Exports all tables of a database of which the names match a given pattern to
+csv files." />
 <meta name="twitter:card" content="summary" />
 
 <meta name="robots" content="noindex">
@@ -96,48 +97,64 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Generate SQL INSERT statement</h1>
-    <small class="dont-index">Source: <a href='https://github.com/KWB-R/kwb.db/blob/master/R/sql_top_level.R'><code>R/sql_top_level.R</code></a></small>
-    <div class="hidden name"><code>sqlForInsert.Rd</code></div>
+    <h1>Export Database Tables to CSV Files</h1>
+    <small class="dont-index">Source: <a href='https://github.com/KWB-R/kwb.db/blob/master/R/main.R'><code>R/main.R</code></a></small>
+    <div class="hidden name"><code>dumpDatabase.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Generate SQL INSERT statement</p>
+    <p>Exports all tables of a database of which the names match a given pattern to
+csv files.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>sqlForInsert</span>(<span class='no'>tablename</span>, <span class='no'>fields</span>, <span class='no'>sqlSource</span>,
-  <span class='kw'>sourceAreValues</span> <span class='kw'>=</span> !<span class='fu'>grepl</span>(<span class='no'>sqlSource</span>, <span class='st'>"^SELECT"</span>), <span class='kw'>ignore</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+    <pre class="usage"><span class='fu'>dumpDatabase</span>(<span class='no'>db</span>, <span class='kw'>pattern</span> <span class='kw'>=</span> <span class='st'>"^tbl"</span>, <span class='kw'>target_dir</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>create_target_dir</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>sep</span> <span class='kw'>=</span> <span class='st'>","</span>, <span class='kw'>dec</span> <span class='kw'>=</span> <span class='st'>"."</span>,
+  <span class='kw'>qmethod</span> <span class='kw'>=</span> <span class='st'>"double"</span>, <span class='kw'>row.names</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>tablename</th>
-      <td><p>table name</p></td>
+      <th>db</th>
+      <td><p>full path to database or name of ODBC data source</p></td>
     </tr>
     <tr>
-      <th>fields</th>
-      <td><p>field names, separated by comma</p></td>
+      <th>pattern</th>
+      <td><p>pattern matching names of tables to be exported. Default:
+"^tbl", i.e. tables starting with "tbl"</p></td>
     </tr>
     <tr>
-      <th>sqlSource</th>
-      <td><p>value tupels of form (value1.1, value1.2, value1.3, ...)
-(value2.1, value2.2, value2.3, ...) ... or SQL SELECT statement providing
-these tupels</p></td>
+      <th>target_dir</th>
+      <td><p>target directory. By default a new directory is created in
+the same directory as mdb resides in. The new directory has the same name
+as the database file with dots substituted with underscores</p></td>
     </tr>
     <tr>
-      <th>sourceAreValues</th>
-      <td><p>if TRUE, <em>sqlSource</em> is expected to be an SQL
-query providing data to be inserted -&gt; no keyword VALUES in generated SQL
-code</p></td>
+      <th>create_target_dir</th>
+      <td><p>if <code>TRUE</code>, the target directory <code>tdir</code> is
+created if it does not exist.</p></td>
     </tr>
     <tr>
-      <th>ignore</th>
-      <td><p>if TRUE the keyword IGNORE is inserted between INSERT and INTO
-in the SQL statement -&gt; no error will be given if data to insert already
-exists</p></td>
+      <th>sep</th>
+      <td><p>passed to <code><a href='http://www.rdocumentation.org/packages/utils/topics/write.table'>write.table</a></code></p></td>
+    </tr>
+    <tr>
+      <th>dec</th>
+      <td><p>passed to <code><a href='http://www.rdocumentation.org/packages/utils/topics/write.table'>write.table</a></code></p></td>
+    </tr>
+    <tr>
+      <th>qmethod</th>
+      <td><p>passed to <code><a href='http://www.rdocumentation.org/packages/utils/topics/write.table'>write.table</a></code></p></td>
+    </tr>
+    <tr>
+      <th>row.names</th>
+      <td><p>passed to <code><a href='http://www.rdocumentation.org/packages/utils/topics/write.table'>write.table</a></code></p></td>
+    </tr>
+    <tr>
+      <th>&#8230;</th>
+      <td><p>further arguments passed to <code><a href='http://www.rdocumentation.org/packages/utils/topics/write.table'>write.table</a></code></p></td>
     </tr>
     </table>
     

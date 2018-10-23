@@ -5,8 +5,8 @@
 \title{Export Database Tables to CSV Files}
 \usage{
 dumpDatabase(db, pattern = "^tbl", target_dir = NULL,
-  create_target_dir = FALSE, sep = ",", dec = ".", qmethod = "double",
-  row.names = FALSE, ...)
+  create_target_dir = FALSE, sep = ",", dec = ".",
+  qmethod = "double", row.names = FALSE, ...)
 }
 \arguments{
 \item{db}{full path to database or name of ODBC data source}

@@ -4,8 +4,8 @@
 \alias{hsDumpMdb}
 \title{Export Database Tables to CSV Files}
 \usage{
-hsDumpMdb(mdb, ptrn = "^tbl", tdir = file.path(dirname(mdb), gsub("\\\\.",
-  "_", basename(mdb))), create_target_dir = FALSE)
+hsDumpMdb(mdb, ptrn = "^tbl", tdir = file.path(dirname(mdb),
+  gsub("\\\\.", "_", basename(mdb))), create_target_dir = FALSE)
 }
 \arguments{
 \item{mdb}{full path to database}

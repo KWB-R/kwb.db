@@ -30,8 +30,7 @@
 
 <meta property="og:title" content="Export Database Tables to CSV Files — hsDumpMdb" />
 
-<meta property="og:description" content="Exports all tables of a database of which the names match a given pattern to
-csv files." />
+<meta property="og:description" content="Deprecated. Please use dumpDatabase instead." />
 <meta name="twitter:card" content="summary" />
 
 <meta name="robots" content="noindex">
@@ -104,13 +103,12 @@ csv files." />
 
     <div class="ref-description">
     
-    <p>Exports all tables of a database of which the names match a given pattern to
-csv files.</p>
+    <p>Deprecated. Please use <code><a href='dumpDatabase.html'>dumpDatabase</a></code> instead.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>hsDumpMdb</span>(<span class='no'>mdb</span>, <span class='kw'>ptrn</span> <span class='kw'>=</span> <span class='st'>"^tbl"</span>, <span class='kw'>tdir</span> <span class='kw'>=</span> <span class='fu'>file.path</span>(<span class='fu'>dirname</span>(<span class='no'>mdb</span>), <span class='fu'>gsub</span>(<span class='st'>"\\."</span>,
-  <span class='st'>"_"</span>, <span class='fu'>basename</span>(<span class='no'>mdb</span>))))</pre>
+    <pre class="usage"><span class='fu'>hsDumpMdb</span>(<span class='no'>mdb</span>, <span class='kw'>ptrn</span> <span class='kw'>=</span> <span class='st'>"^tbl"</span>, <span class='kw'>tdir</span> <span class='kw'>=</span> <span class='fu'>file.path</span>(<span class='fu'>dirname</span>(<span class='no'>mdb</span>),
+  <span class='fu'>gsub</span>(<span class='st'>"\\."</span>, <span class='st'>"_"</span>, <span class='fu'>basename</span>(<span class='no'>mdb</span>))), <span class='kw'>create_target_dir</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -129,6 +127,11 @@ i.e. tables starting with "tbl"</p></td>
       <td><p>target directory. By default a new directory is created in the
 same directory as mdb resides in. The new directory has the same name as
 the database file with dots substituted with underscores</p></td>
+    </tr>
+    <tr>
+      <th>create_target_dir</th>
+      <td><p>if <code>TRUE</code>, the target directory <code>tdir</code>
+is created if it does not exist.</p></td>
     </tr>
     </table>
     

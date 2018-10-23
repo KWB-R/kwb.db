@@ -4,8 +4,8 @@
 \alias{hsPutTable}
 \title{Save Data Frame to Database Table}
 \usage{
-hsPutTable(mdb, myData, tbl = "tblTmp", types = NULL, overwrite = FALSE,
-  DBMSencoding = "", dbg = TRUE)
+hsPutTable(mdb, myData, tbl = "tblTmp", types = NULL,
+  overwrite = FALSE, DBMSencoding = "", dbg = TRUE)
 }
 \arguments{
 \item{mdb}{full path to MS Access database file (*.mdb)}

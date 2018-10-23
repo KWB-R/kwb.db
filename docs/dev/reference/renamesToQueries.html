@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Generate SQL INSERT statement — sqlForInsert • kwb.db</title>
+<title>List of Renamings to SQL Queries — renamesToQueries • kwb.db</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -28,9 +28,10 @@
 
 
 
-<meta property="og:title" content="Generate SQL INSERT statement — sqlForInsert" />
+<meta property="og:title" content="List of Renamings to SQL Queries — renamesToQueries" />
 
-<meta property="og:description" content="Generate SQL INSERT statement" />
+<meta property="og:description" content="Convert a list of renamings to a list of SQL queries each of which can be
+used to select and rename the given fields from a database." />
 <meta name="twitter:card" content="summary" />
 
 <meta name="robots" content="noindex">
@@ -96,50 +97,33 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Generate SQL INSERT statement</h1>
-    <small class="dont-index">Source: <a href='https://github.com/KWB-R/kwb.db/blob/master/R/sql_top_level.R'><code>R/sql_top_level.R</code></a></small>
-    <div class="hidden name"><code>sqlForInsert.Rd</code></div>
+    <h1>List of Renamings to SQL Queries</h1>
+    <small class="dont-index">Source: <a href='https://github.com/KWB-R/kwb.db/blob/master/R/convert.R'><code>R/convert.R</code></a></small>
+    <div class="hidden name"><code>renamesToQueries.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Generate SQL INSERT statement</p>
+    <p>Convert a list of renamings to a list of SQL queries each of which can be
+used to select and rename the given fields from a database.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>sqlForInsert</span>(<span class='no'>tablename</span>, <span class='no'>fields</span>, <span class='no'>sqlSource</span>,
-  <span class='kw'>sourceAreValues</span> <span class='kw'>=</span> !<span class='fu'>grepl</span>(<span class='no'>sqlSource</span>, <span class='st'>"^SELECT"</span>), <span class='kw'>ignore</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+    <pre class="usage"><span class='fu'>renamesToQueries</span>(<span class='no'>renamesList</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>tablename</th>
-      <td><p>table name</p></td>
-    </tr>
-    <tr>
-      <th>fields</th>
-      <td><p>field names, separated by comma</p></td>
-    </tr>
-    <tr>
-      <th>sqlSource</th>
-      <td><p>value tupels of form (value1.1, value1.2, value1.3, ...)
-(value2.1, value2.2, value2.3, ...) ... or SQL SELECT statement providing
-these tupels</p></td>
-    </tr>
-    <tr>
-      <th>sourceAreValues</th>
-      <td><p>if TRUE, <em>sqlSource</em> is expected to be an SQL
-query providing data to be inserted -&gt; no keyword VALUES in generated SQL
-code</p></td>
-    </tr>
-    <tr>
-      <th>ignore</th>
-      <td><p>if TRUE the keyword IGNORE is inserted between INSERT and INTO
-in the SQL statement -&gt; no error will be given if data to insert already
-exists</p></td>
+      <th>renamesList</th>
+      <td><p>list of renaming lists. A renaming list is a list of 
+<code>key = value</code> pairs defining renamings from the keys to the values.</p></td>
     </tr>
     </table>
+    
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>list of character each of which represents an SQL query</p>
     
 
   </div>
@@ -147,7 +131,9 @@ exists</p></td>
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-                </ul>
+      
+      <li><a href="#value">Value</a></li>
+          </ul>
 
   </div>
 </div>

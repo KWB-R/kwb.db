@@ -4,8 +4,8 @@
 \alias{sqlForSelect}
 \title{Generate SQL SELECT statement#'}
 \usage{
-sqlForSelect(tablename, fields = "*", whereClause = "TRUE", groupBy = "",
-  orderBy = "", sqlDialect = getCurrentSqlDialect())
+sqlForSelect(tablename, fields = "*", whereClause = "TRUE",
+  groupBy = "", orderBy = "", sqlDialect = getCurrentSqlDialect())
 }
 \arguments{
 \item{tablename}{table name}

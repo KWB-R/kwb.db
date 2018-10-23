@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Generate SQL INSERT statement — sqlForInsert • kwb.db</title>
+<title>Merge SQL Queries to One Query That Performs a Full Left Join — sqlFullLeftJoin • kwb.db</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -28,9 +28,9 @@
 
 
 
-<meta property="og:title" content="Generate SQL INSERT statement — sqlForInsert" />
+<meta property="og:title" content="Merge SQL Queries to One Query That Performs a Full Left Join — sqlFullLeftJoin" />
 
-<meta property="og:description" content="Generate SQL INSERT statement" />
+<meta property="og:description" content="Merge SQL Queries to One Query That Performs a Full Left Join" />
 <meta name="twitter:card" content="summary" />
 
 <meta name="robots" content="noindex">
@@ -96,58 +96,63 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Generate SQL INSERT statement</h1>
-    <small class="dont-index">Source: <a href='https://github.com/KWB-R/kwb.db/blob/master/R/sql_top_level.R'><code>R/sql_top_level.R</code></a></small>
-    <div class="hidden name"><code>sqlForInsert.Rd</code></div>
+    <h1>Merge SQL Queries to One Query That Performs a Full Left Join</h1>
+    <small class="dont-index">Source: <a href='https://github.com/KWB-R/kwb.db/blob/master/R/sql_join.R'><code>R/sql_join.R</code></a></small>
+    <div class="hidden name"><code>sqlFullLeftJoin.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Generate SQL INSERT statement</p>
+    <p>Merge SQL Queries to One Query That Performs a Full Left Join</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>sqlForInsert</span>(<span class='no'>tablename</span>, <span class='no'>fields</span>, <span class='no'>sqlSource</span>,
-  <span class='kw'>sourceAreValues</span> <span class='kw'>=</span> !<span class='fu'>grepl</span>(<span class='no'>sqlSource</span>, <span class='st'>"^SELECT"</span>), <span class='kw'>ignore</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+    <pre class="usage"><span class='fu'>sqlFullLeftJoin</span>(<span class='no'>sqls</span>, <span class='no'>key</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>tablename</th>
-      <td><p>table name</p></td>
+      <th>sqls</th>
+      <td><p>list of SQL queries each of which is expected to contain an
+attribute <code>alias</code> giving the alias name for the query</p></td>
     </tr>
     <tr>
-      <th>fields</th>
-      <td><p>field names, separated by comma</p></td>
-    </tr>
-    <tr>
-      <th>sqlSource</th>
-      <td><p>value tupels of form (value1.1, value1.2, value1.3, ...)
-(value2.1, value2.2, value2.3, ...) ... or SQL SELECT statement providing
-these tupels</p></td>
-    </tr>
-    <tr>
-      <th>sourceAreValues</th>
-      <td><p>if TRUE, <em>sqlSource</em> is expected to be an SQL
-query providing data to be inserted -&gt; no keyword VALUES in generated SQL
-code</p></td>
-    </tr>
-    <tr>
-      <th>ignore</th>
-      <td><p>if TRUE the keyword IGNORE is inserted between INSERT and INTO
-in the SQL statement -&gt; no error will be given if data to insert already
-exists</p></td>
+      <th>key</th>
+      <td><p>name of the primary key field, being selected in each SQL query
+contained in <code>sqls</code></p></td>
     </tr>
     </table>
     
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
+    <p>vector of character of length one representing the result of "left
+  join"-ing all sub-queries given in <code>sqls</code></p>
+    
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='no'>sql</span> <span class='kw'>&lt;-</span> <span class='fu'>sqlFullLeftJoin</span>(<span class='kw'>key</span> <span class='kw'>=</span> <span class='st'>"id"</span>, <span class='fu'>list</span>(
+  <span class='fu'>structure</span>(<span class='st'>"SELECT id, field_1 from table_1"</span>, <span class='kw'>alias</span> <span class='kw'>=</span> <span class='st'>"t1"</span>),
+  <span class='fu'>structure</span>(<span class='st'>"SELECT id, field_2, field_3 from table_2"</span>, <span class='kw'>alias</span> <span class='kw'>=</span> <span class='st'>"t2"</span>),
+  <span class='fu'>structure</span>(<span class='st'>"SELECT id, field_4 from table_3"</span>, <span class='kw'>alias</span> <span class='kw'>=</span> <span class='st'>"t3"</span>)
+))
+
+<span class='fu'>cat</span>(<span class='no'>sql</span>)</div><div class='output co'>#&gt; ( SELECT id, field_1 from table_1 AS t1 
+#&gt;  LEFT JOIN SELECT id, field_2, field_3 from table_2 AS t2 
+#&gt;  ON ( t1.id = t2.id ) )  
+#&gt;  LEFT JOIN SELECT id, field_4 from table_3 AS t3 
+#&gt;  ON ( t1.id = t3.id )</div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-                </ul>
+      
+      <li><a href="#value">Value</a></li>
+      
+      <li><a href="#examples">Examples</a></li>
+    </ul>
 
   </div>
 </div>

@@ -1,3 +1,28 @@
+# renamesToQueries -------------------------------------------------------------
+
+#' List of Renamings to SQL Queries
+#' 
+#' Convert a list of renamings to a list of SQL queries each of which can be
+#' used to select and rename the given fields from a database. 
+#' 
+#' @param renamesList list of renaming lists. A renaming list is a list of 
+#'   \code{key = value} pairs defining renamings from the keys to the values.
+#' 
+#' @return list of character each of which represents an SQL query
+#' 
+renamesToQueries <- function(renamesList)
+{
+  stopifnot(is.list(renamesList))
+  
+  lapply(seq_along(renamesList), function(i) {
+    
+    structure(alias = LETTERS[i], kwb.db::sqlForSelect(
+      tablename = names(renamesList)[i],
+      fields = kwb.db::renamesToFieldList(renamesList[[i]])
+    ))
+  })
+}
+
 # renamesToFieldList -----------------------------------------------------------
 
 #' List of Renamings to Field Selection String
