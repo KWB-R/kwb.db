@@ -8,8 +8,10 @@
 <title>Functions supporting data base access • kwb.db</title>
 <!-- jquery --><script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/cerulean/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script><!-- Font Awesome icons --><link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
-<script src="jquery.sticky-kit.min.js"></script><script src="pkgdown.js"></script><meta property="og:title" content="Functions supporting data base access">
+<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
+<script src="pkgdown.js"></script><!-- docsearch --><script src="docsearch.js"></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css">
+<link href="docsearch.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script><meta property="og:title" content="Functions supporting data base access">
 <meta property="og:description" content="This package contains some useful functions, especially for simplifying data transfer
            between MS Access databases and R. With the functions of this package it is not needed
            any more to open and close a database connection explicitely; this is done 'behind the
@@ -62,7 +64,13 @@
   </a>
 </li>
       </ul>
+<form class="navbar-form navbar-right" role="search">
+        <div class="form-group">
+          <input type="search" class="form-control" name="search-input" id="search-input" placeholder="Search..." aria-label="Search for..." autocomplete="off">
 </div>
+      </form>
+      
+    </div>
 <!--/.nav-collapse -->
   </div>
 <!--/.container -->
@@ -86,11 +94,11 @@
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
 <p>Once you have the devtools package installed, you can install the package kwb.db like this:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># If required, install the devtools package...</span>
-<span class="co"># install.packages("devtools")</span>
-
-<span class="co"># Install kwb.db (and dependent packages) from this GitHub repository</span>
-devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install">install</a></span>(<span class="kw">github</span>(<span class="st">"kwb-r/kwb.db"</span>, <span class="dt">dependencies =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="co"># If required, install the devtools package...</span></a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="co"># install.packages("devtools")</span></a>
+<a class="sourceLine" id="cb1-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb1-4" data-line-number="4"><span class="co"># Install kwb.db (and dependent packages) from this GitHub repository</span></a>
+<a class="sourceLine" id="cb1-5" data-line-number="5">devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/reexports">install_github</a></span>(<span class="st">"kwb-r/kwb.db"</span>, <span class="dt">dependencies =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 </div>
 <div id="database-access-in-rodbc" class="section level2">
 <h2 class="hasAnchor">
@@ -104,23 +112,23 @@ devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocument
 <p>The main functions are <a href="https://kwb-r.github.io/kwb.db/reference/hsGetTable.html"><code><a href="reference/hsGetTable.html">hsGetTable()</a></code></a> and <a href="https://kwb-r.github.io/kwb.db/reference/hsPutTable.html"><code><a href="reference/hsPutTable.html">hsPutTable()</a></code></a>. They transfer data from a database to a data frame in R and save data from a data frame in R into a new table in a database, respectively.</p>
 <p>Use <a href="https://kwb-r.github.io/kwb.db/reference/hsTables.html"><code><a href="reference/hsTables.html">hsTables()</a></code></a> to get a list of tables that are available in a database and <a href="https://kwb-r.github.io/kwb.db/reference/hsFields.html"><code><a href="reference/hsFields.html">hsFields()</a></code></a> to get a list of table fields that are contained in a database table.</p>
 <p>A general workflow could look like this:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Define the path to a MS Access datbase file</span>
-mdb &lt;-<span class="st"> "/path/to/your/database.mdb"</span>
-
-<span class="co"># Have a look at what tables are contained in the database</span>
-(tables &lt;-<span class="st"> </span>kwb.db<span class="op">::</span><span class="kw">hsTables</span>(mdb))
-
-<span class="co"># For each table, get the vector of available fields (= columns)</span>
-<span class="kw">lapply</span>(tables, kwb.db<span class="op">::</span>hsFields, <span class="dt">mdb =</span> mdb)
-
-<span class="co"># Get the content of the first table</span>
-data &lt;-<span class="st"> </span>kwb.db<span class="op">::</span><span class="kw">hsGetTable</span>(mdb, tables[<span class="dv">1</span>])
-
-<span class="co"># Do some modifiactions or create somehow else a new data frame</span>
-data_new &lt;-<span class="st"> </span><span class="kw">do_some_fancy_stuff</span>(data)
-
-<span class="co"># Save the new data frame as a new "fancy_table" in the database</span>
-kwb.db<span class="op">::</span><span class="kw">hsPutTable</span>(mdb, data_new, <span class="st">"fancy_table"</span>)</code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="co"># Define the path to a MS Access datbase file</span></a>
+<a class="sourceLine" id="cb2-2" data-line-number="2">mdb &lt;-<span class="st"> "/path/to/your/database.mdb"</span></a>
+<a class="sourceLine" id="cb2-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb2-4" data-line-number="4"><span class="co"># Have a look at what tables are contained in the database</span></a>
+<a class="sourceLine" id="cb2-5" data-line-number="5">(tables &lt;-<span class="st"> </span>kwb.db<span class="op">::</span><span class="kw">hsTables</span>(mdb))</a>
+<a class="sourceLine" id="cb2-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb2-7" data-line-number="7"><span class="co"># For each table, get the vector of available fields (= columns)</span></a>
+<a class="sourceLine" id="cb2-8" data-line-number="8"><span class="kw">lapply</span>(tables, kwb.db<span class="op">::</span>hsFields, <span class="dt">mdb =</span> mdb)</a>
+<a class="sourceLine" id="cb2-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb2-10" data-line-number="10"><span class="co"># Get the content of the first table</span></a>
+<a class="sourceLine" id="cb2-11" data-line-number="11">data &lt;-<span class="st"> </span>kwb.db<span class="op">::</span><span class="kw">hsGetTable</span>(mdb, tables[<span class="dv">1</span>])</a>
+<a class="sourceLine" id="cb2-12" data-line-number="12"></a>
+<a class="sourceLine" id="cb2-13" data-line-number="13"><span class="co"># Do some modifiactions or create somehow else a new data frame</span></a>
+<a class="sourceLine" id="cb2-14" data-line-number="14">data_new &lt;-<span class="st"> </span><span class="kw">do_some_fancy_stuff</span>(data)</a>
+<a class="sourceLine" id="cb2-15" data-line-number="15"></a>
+<a class="sourceLine" id="cb2-16" data-line-number="16"><span class="co"># Save the new data frame as a new "fancy_table" in the database</span></a>
+<a class="sourceLine" id="cb2-17" data-line-number="17">kwb.db<span class="op">::</span><span class="kw">hsPutTable</span>(mdb, data_new, <span class="st">"fancy_table"</span>)</a></code></pre></div>
 <p>In each of the <code>kwb.db::</code>-function calls above a database connection is opened, a request to the database is sent and the connection is closed again. Thus, the user does not have to care about open database connections.</p>
 <p>Take care when getting time series data from an MS Access database, see therefore <a href="https://kwb-r.github.io/kwb.db/reference/hsMdbTimeSeries.html"><code><a href="reference/hsMdbTimeSeries.html">hsMdbTimeSeries()</a></code></a>.</p>
 </div>
@@ -177,6 +185,20 @@ kwb.db<span class="op">::</span><span class="kw">hsPutTable</span>(mdb, data_new
 </div>
 
   
-
-  </body>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script><script>
+  docsearch({
+    
+    
+    apiKey: 'a2909cc57c21696b653e1258dfa00c5c',
+    indexName: 'kwb_db',
+    inputSelector: 'input#search-input.form-control',
+    transformData: function(hits) {
+      return hits.map(function (hit) {
+        hit.url = updateHitURL(hit);
+        return hit;
+      });
+    }
+  });
+</script>
+</body>
 </html>

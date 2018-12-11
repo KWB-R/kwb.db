@@ -21,11 +21,19 @@
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
+<!-- sticky kit -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
-<script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
 
+
+<!-- docsearch -->
+<script src="../docsearch.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
+<link href="../docsearch.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
 
 
 <meta property="og:title" content="Export Database Tables to CSV Files — hsDumpMdb" />
@@ -33,6 +41,7 @@
 <meta property="og:description" content="Exports all tables of a database of which the names match a given pattern to
 csv files." />
 <meta name="twitter:card" content="summary" />
+
 
 
 <!-- mathjax -->
@@ -85,6 +94,12 @@ csv files." />
 </li>
       </ul>
       
+      <form class="navbar-form navbar-right" role="search">
+        <div class="form-group">
+          <input type="search" class="form-control" name="search-input" id="search-input" placeholder="Search..." aria-label="Search for..." autocomplete="off">
+        </div>
+      </form>
+      
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
@@ -107,8 +122,8 @@ csv files.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>hsDumpMdb</span>(<span class='no'>mdb</span>, <span class='kw'>ptrn</span> <span class='kw'>=</span> <span class='st'>"^tbl"</span>, <span class='kw'>tdir</span> <span class='kw'>=</span> <span class='fu'>file.path</span>(<span class='fu'>dirname</span>(<span class='no'>mdb</span>), <span class='fu'>gsub</span>(<span class='st'>"\\."</span>,
-  <span class='st'>"_"</span>, <span class='fu'>basename</span>(<span class='no'>mdb</span>))))</pre>
+    <pre class="usage"><span class='fu'>hsDumpMdb</span>(<span class='no'>mdb</span>, <span class='kw'>ptrn</span> <span class='kw'>=</span> <span class='st'>"^tbl"</span>, <span class='kw'>tdir</span> <span class='kw'>=</span> <span class='fu'>file.path</span>(<span class='fu'>dirname</span>(<span class='no'>mdb</span>),
+  <span class='fu'>gsub</span>(<span class='st'>"\\."</span>, <span class='st'>"_"</span>, <span class='fu'>basename</span>(<span class='no'>mdb</span>))))</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -154,6 +169,23 @@ the database file with dots substituted with underscores</p></td>
    </div>
 
   
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+<script>
+  docsearch({
+    
+    
+    apiKey: 'a2909cc57c21696b653e1258dfa00c5c',
+    indexName: 'kwb_db',
+    inputSelector: 'input#search-input.form-control',
+    transformData: function(hits) {
+      return hits.map(function (hit) {
+        hit.url = updateHitURL(hit);
+        return hit;
+      });
+    }
+  });
+</script>
+
 
   </body>
 </html>
