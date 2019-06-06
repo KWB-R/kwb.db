@@ -5,13 +5,6 @@ is64BitR <- function()
   .Machine$sizeof.pointer == 8
 }
 
-# isOdbcDataSource -------------------------------------------------------------
-
-isOdbcDataSource <- function(db)
-{
-  db %in% names(RODBC::odbcDataSources())
-}
-
 # isAccess2007File -------------------------------------------------------------
 
 isAccess2007File <- function(filepath)
@@ -73,4 +66,36 @@ isExcel2003File <- function(filepath)
 isExcelFile <- function(filepath)
 {
   isExcel2003File(filepath) || isExcel2007File(filepath)
+}
+
+# isMySQL ----------------------------------------------------------------------
+
+#' Is the Given Database of Type MySQL?
+#' 
+#' @param db database file (*.mdb, *.accdb, *.xls, *.xlsx) or name of ODBC
+#'   database
+#' @param \dots arguments passed to \code{\link{hsOpenDb}}, e.g.
+#'   \emph{use2007Driver}
+#' 
+#' @return TRUE if \emph{db} is a MySQL database, else FALSE
+#' 
+isMySQL <- function(db, ...)
+{
+  sqlDialect <- getCurrentSqlDialect(warn = FALSE)
+  
+  connection <- hsOpenDb(db, ...)
+  
+  on.exit({
+    hsCloseDb(connection)
+    setCurrentSqlDialect(sqlDialect)
+  })
+  
+  attr(connection, "isMySQL")
+}
+
+# isOdbcDataSource -------------------------------------------------------------
+
+isOdbcDataSource <- function(db)
+{
+  db %in% names(RODBC::odbcDataSources())
 }
