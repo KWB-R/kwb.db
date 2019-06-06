@@ -10,6 +10,7 @@
 #' 
 hsOpenMdb <- function(mdb, dbg = FALSE)
 {
+  kwb.utils::warningDeprecated("kwb.db::hsOpenMdb", "kwb.db::hsOpenDb")
   hsOpenDb(mdb, dbg)
 }
 
@@ -126,20 +127,20 @@ openAdequateConnectionOrStop <- function(
     dbg, "in openAdequateConnectionOrStop: use2007Driver =", use2007Driver, "\n"
   )
   
-  is.mdb <- isAccessFile(db)
-  is.xls <- isExcelFile(db)
+  is_mdb <- isAccessFile(db)
+  is_xls <- isExcelFile(db)
   
-  if ((is.mdb || is.xls) &&! file.exists(db)) {
+  if ((is_mdb || is_xls) &&! file.exists(db)) {
     
     stop("No such file: '", db, "'! Please check the path!", call. = FALSE)
   }
   
-  if (is.mdb) {
+  if (is_mdb) {
     
     con <- odbcConnectionAccess(
       db, use2007Driver = use2007Driver, DBMSencoding = DBMSencoding, ...)
     
-  } else if (is.xls) {
+  } else if (is_xls) {
     
     con <- odbcConnectionExcel(
       db, use2007Driver = use2007Driver, DBMSencoding = DBMSencoding, ...)
