@@ -191,7 +191,7 @@ odbcConnectionAccess <- function(db, use2007Driver = NULL, ...)
     socket <- .GlobalEnv$.r2r_socket
     
     if (is.null(socket)) {
-      socket <- odbc32::start_server()
+      socket <- odbc32::start_server(invisible = TRUE)
     }
     
     odbc32::odbcConnectAccess2007(db, socket = socket)
@@ -265,6 +265,7 @@ hsCloseDb <- function(con)
     
     if (! is.null(socket)) {
       odbc32::stop_server(socket = socket)  
+      rm(".r2r_socket", envir = .GlobalEnv)
     }
     
   } else {
