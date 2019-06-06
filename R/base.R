@@ -22,7 +22,8 @@
 #' @return In case of success the name of the created table is returned.
 #' 
 #' @seealso \code{\link{hsSqlQuery}, \link{hsGetTable}}
-#' 
+#' @importFrom kwb.utils hsSafeName
+#' @export
 #' @examples
 #' \dontrun{
 #' ## Create a data.frame
@@ -156,7 +157,8 @@ hsPutTable <- function(
 #' 
 #' @seealso \code{\link{hsSqlQuery}, \link{hsPutTable}, hsGetTimeSeries,
 #'   hsMdbTimeSeries}
-#'
+#' @importFrom kwb.utils hsQuoteChr
+#' @export
 #' @examples
 #' \dontrun{ 
 #' ## Get all datasets from tbl_Hyd in example database where
@@ -301,7 +303,8 @@ hsGetTable <- function(
 #'   RODBC package.
 #'   
 #' @seealso \code{\link{hsFields}}
-#' 
+#' @importFrom kwb.utils catIf
+#' @export
 #' @examples
 #' \dontrun{
 #' ## Get names of tables in the example database
@@ -384,7 +387,7 @@ hsTables <- function(
 #'   the database fields in detail, otherwise.
 #' 
 #' @seealso \code{\link{hsTables}}
-#' 
+#' @export
 #' @examples
 #' \dontrun{ 
 #' ## List the fields of table "tbl_Hyd" in the example database

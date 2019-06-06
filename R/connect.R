@@ -7,6 +7,7 @@
 #' @param mdb full path to MS Access database file.
 #' @param dbg if TRUE and if the connection could be established details of the
 #'   connection are shown.
+#' @importFrom kwb.utils warningDeprecated
 #' 
 hsOpenMdb <- function(mdb, dbg = FALSE)
 {
@@ -37,7 +38,7 @@ hsOpenMdb <- function(mdb, dbg = FALSE)
 #'   returned. On failure nothing is returned and program execution stops.
 #'   
 #' @seealso \code{\link{hsCloseDb}}
-#' 
+#' @importFrom kwb.utils catIf printIf
 #' @examples
 #' \dontrun{ 
 #' ## Open a connection to the example database
@@ -118,6 +119,7 @@ hsOpenDb <- function(
 #'   You may want to use: "UTF-8"
 #' @param \dots further arguments passed to \code{odbcConnectionAccess}, 
 #'   \code{odbcConnectionExcel} or \code{\link[RODBC]{odbcConnect}}
+#' @importFrom kwb.utils catIf
 #' 
 openAdequateConnectionOrStop <- function(
   db, use2007Driver = NULL, dbg = FALSE, DBMSencoding = "", ...

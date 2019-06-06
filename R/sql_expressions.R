@@ -12,7 +12,7 @@
 #'   element of \emph{x}.
 #'   
 #' @seealso \code{\link{hsSqlExAnd}}
-#' 
+#' @export
 #' @examples 
 #' ## Build SQL query finding records in table t in which at least
 #' ## one of the table fields f1 to f100 is NULL.
@@ -45,7 +45,7 @@ hsSqlExOr <- function(x, bFunc = "")
 #'   element of \emph{x}.
 #'   
 #' @seealso \code{\link{hsSqlExOr}}
-#'   
+#' @export 
 #' @examples 
 #' ## Build SQL query finding records in table t in which all
 #' ## of the table fields f1 to f100 are NULL.
@@ -176,7 +176,7 @@ sqlDateExpression <- function(dateObject, sqlDialect, dbg = FALSE)
 #' @return Returns SQL code for grouping timestamps by years, months or days
 #'   
 #' @seealso \code{\link{hsSqlExTimeCond}}
-#' 
+#' @export
 #' @examples 
 #' ## Show SQL query that gets the number of datasets per 
 #' ## day ("d") considering the condition "Q > 0"
@@ -233,7 +233,7 @@ hsSqlExTimeGroup <- function(tbl, tsField, interval, cond = "TRUE")
 #'   the time stamp.
 #' 
 #' @seealso \code{\link{hsGetTimeSeries}}
-#' 
+#' @export
 #' @examples 
 #' hsSqlExTsFields("myTimestamp", c(6:11))
 #'   

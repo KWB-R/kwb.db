@@ -24,15 +24,17 @@ Authors@R:
              comment = "0000-0003-0647-7726"),
       person(given = "Kompetenzzentrum Wasser Berlin gGmbH",
              role = "cph"))
-Imports: kwb.utils, RODBC
-Suggests: 
+Imports: RODBC
+Depends:
     kwb.datetime,
+    kwb.utils
+Suggests: 
     testthat
 Remotes: 
    github::kwb-r/kwb.datetime,
    github::kwb-r/kwb.utils
 Encoding: UTF-8
 License: MIT + file LICENSE
-RoxygenNote: 6.1.0
+RoxygenNote: 6.1.1
 URL: https://github.com/KWB-R/kwb.db
 BugReports: https://github.com/KWB-R/kwb.db/issues

@@ -10,6 +10,7 @@
 #' @param groupBy GROUP BY-clause, Default: "" (no grouping)
 #' @param orderBy ORDER BY-clause, Default: "" (no sorting of results)
 #' @param sqlDialect one of \code{c("mysql", "msaccess")}
+#' @export
 #' 
 sqlForSelect <- function(
   tablename, fields = "*", whereClause = "TRUE", groupBy = "", orderBy = "",

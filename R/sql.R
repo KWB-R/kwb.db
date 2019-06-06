@@ -42,6 +42,7 @@ keyValuesToSqlAssignment <- function(keyValues)
 #' @param keyvalues list of \code{key = value pairs}
 #' 
 #' @return list with elements \emph{fieldList} and \emph{valueList}
+#' @importFrom kwb.utils commaCollapsed
 #' 
 keyValuesToSqlAssignment2 <- function(keyvalues)
 {
@@ -74,7 +75,7 @@ keyValuesToSqlFilter <- function(keyValues, like = FALSE)
 #' @param filter logical. If \code{TRUE} the target is an SQL filter expression,
 #'   otherwise an SQL SET expression.
 #' @param like passed to \code{\link{keyValueToSql}}
-#' 
+#' @export
 #' @examples
 #' keyValues <- list(name = "Peter", birth = as.POSIXct("1999-09-09"))
 #' 
@@ -119,7 +120,8 @@ keyValuesToSql <- function(keyValues, filter, like = filter)
 #'   an SQL assignment expression
 #'   
 #' @return (vector of) character representing an SQL expression
-#' 
+#' @importFrom kwb.utils commaCollapsed
+#' @export
 #' @examples
 #' cat(kwb.db:::keyValueToSql("age", 1))
 #' cat(kwb.db:::keyValueToSql("name", "peter"))
@@ -167,6 +169,8 @@ valueToSqlOperator <- function(x, like, filter)
 
 # singleValueToSql -------------------------------------------------------------
 
+#' @importFrom kwb.utils hsQuoteChr
+#' 
 singleValueToSql <- function(x)
 {
   stopifnot(length(x) < 2)
@@ -209,7 +213,8 @@ singleValueToSql <- function(x)
 #' 
 #' @return vector of character strings each of which represents one row in
 #'   \code{newData}
-#' 
+#' @importFrom kwb.utils commaCollapsed
+#' @export
 #' @examples
 #' x <- data.frame(
 #'   name = c("Peter", "Paul"), 
@@ -252,7 +257,7 @@ dataFrameToSqlTuples <- function(newData)
 #' 
 #' @return vector of character strings each of which represents one assignment
 #'   in \code{x}
-#' 
+#' @export
 #' @examples
 #' x <- list(name = "Peter", birthday = as.POSIXct("1981-12-13"))
 #' 

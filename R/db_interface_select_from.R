@@ -55,6 +55,8 @@ argumentsToSqlParts <- function(
 
 # .argumentsToFieldNames -------------------------------------------------------
 
+#' @importFrom kwb.utils isNullOrEmpty hsTrim
+#' 
 .argumentsToFieldNames <- function(mainArgument, arguments, argumentPrefix)
 {
   #arguments <- list(...)
@@ -98,6 +100,8 @@ argumentsToSqlParts <- function(
 
 # .argumentsToConditions -------------------------------------------------------
 
+#' @importFrom kwb.utils hsTrim
+#' 
 .argumentsToConditions <- function(mainArgument, arguments, argumentPrefix)
 {
   fieldNames <- .stripPrefix(names(arguments), argumentPrefix)
@@ -169,6 +173,8 @@ argumentsToSqlParts <- function(
 
 # .toCondition -----------------------------------------------------------------
 
+#' @importFrom kwb.utils commaCollapsed hsQuoteChr
+#' 
 .toCondition <- function(fieldName, value)
 {
   if (mode(value) == "numeric") {
@@ -217,6 +223,8 @@ argumentsToSqlParts <- function(
 
 # .looksLikeFullExpression -----------------------------------------------------
 
+#' @importFrom kwb.utils hsTrim
+#' 
 .looksLikeFullExpression <- function(x)
 {
   grepl(
@@ -242,6 +250,8 @@ argumentsToSqlParts <- function(
 
 # .toSafeIndices ---------------------------------------------------------------
 
+#' @importFrom kwb.utils inRange
+#' 
 .toSafeIndices <- function(mainArgument, argumentPrefix, maxIndex)
 {
   indices <- round(mainArgument)

@@ -62,6 +62,7 @@ isExcel2003File <- function(filepath)
 #'   or .xlsx extension
 #' 
 #' @return (vector of) logical. 
+#' @export
 #' 
 isExcelFile <- function(filepath)
 {
