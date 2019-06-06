@@ -674,6 +674,7 @@ hsMdbTimeSeries <- function(
 #'
 #' @seealso \code{\link{hsClearTable}}
 #' @importFrom kwb.utils catIf
+#' @importFrom RODBC sqlDrop
 #' @export
 #'  
 hsDropTable <- function(mdb, tbl, isPtrn = FALSE, dbg = TRUE)
@@ -815,6 +816,7 @@ selectFromDb <- function(
 #'   
 #' @seealso \code{\link{hsPutTable}, \link{hsGetTable}}
 #' @importFrom kwb.utils catIf
+#' @importFrom RODBC sqlQuery
 #' @export
 #' @examples
 #' \dontrun{

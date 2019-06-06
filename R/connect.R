@@ -120,6 +120,7 @@ hsOpenDb <- function(
 #' @param \dots further arguments passed to \code{odbcConnectionAccess}, 
 #'   \code{odbcConnectionExcel} or \code{\link[RODBC]{odbcConnect}}
 #' @importFrom kwb.utils catIf
+#' @importFrom RODBC odbcConnect odbcDataSources
 #' 
 openAdequateConnectionOrStop <- function(
   db, use2007Driver = NULL, dbg = FALSE, DBMSencoding = "", ...
@@ -140,17 +141,18 @@ openAdequateConnectionOrStop <- function(
   if (is_mdb) {
     
     con <- odbcConnectionAccess(
-      db, use2007Driver = use2007Driver, DBMSencoding = DBMSencoding, ...)
+      db, use2007Driver = use2007Driver, DBMSencoding = DBMSencoding, ...
+    )
     
   } else if (is_xls) {
     
     con <- odbcConnectionExcel(
-      db, use2007Driver = use2007Driver, DBMSencoding = DBMSencoding, ...)
+      db, use2007Driver = use2007Driver, DBMSencoding = DBMSencoding, ...
+    )
     
   } else if (isOdbcDataSource(db)) {
     
-    con <- RODBC::odbcConnect(
-      db, DBMSencoding = DBMSencoding, ...)
+    con <- RODBC::odbcConnect(db, DBMSencoding = DBMSencoding, ...)
     
   } else {
     
@@ -167,6 +169,8 @@ openAdequateConnectionOrStop <- function(
 
 # odbcConnectionAccess ---------------------------------------------------------
 
+#' @importFrom RODBC odbcConnectAccess2007 odbcConnectAccess
+#' 
 odbcConnectionAccess <- function(db, use2007Driver = NULL, ...)
 {
   if (is.null(use2007Driver)) {
@@ -186,6 +190,8 @@ odbcConnectionAccess <- function(db, use2007Driver = NULL, ...)
 
 # odbcConnectionExcel ----------------------------------------------------------
 
+#' @importFrom RODBC odbcConnectExcel2007 odbcConnectExcel
+#' 
 odbcConnectionExcel <- function(db, use2007Driver = NULL, ...)
 {
   if (is.null(use2007Driver)) {
@@ -227,6 +233,7 @@ hsCloseMdb <- function(con)
 #'   \link{hsOpenDb}/\code{odbcConnect}
 #' 
 #' @seealso \code{\link{hsOpenDb}}
+#' @importFrom RODBC odbcClose
 #' 
 hsCloseDb <- function(con)
 {

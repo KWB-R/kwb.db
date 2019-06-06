@@ -23,6 +23,7 @@
 #' 
 #' @seealso \code{\link{hsSqlQuery}, \link{hsGetTable}}
 #' @importFrom kwb.utils hsSafeName
+#' @importFrom RODBC sqlSave
 #' @export
 #' @examples
 #' \dontrun{
@@ -304,6 +305,7 @@ hsGetTable <- function(
 #'   
 #' @seealso \code{\link{hsFields}}
 #' @importFrom kwb.utils catIf
+#' @importFrom RODBC sqlTables 
 #' @export
 #' @examples
 #' \dontrun{
@@ -387,6 +389,7 @@ hsTables <- function(
 #'   the database fields in detail, otherwise.
 #' 
 #' @seealso \code{\link{hsTables}}
+#' @importFrom RODBC sqlColumns
 #' @export
 #' @examples
 #' \dontrun{ 

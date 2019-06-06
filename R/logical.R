@@ -96,6 +96,8 @@ isMySQL <- function(db, ...)
 
 # isOdbcDataSource -------------------------------------------------------------
 
+#' @importFrom RODBC odbcDataSources
+#' 
 isOdbcDataSource <- function(db)
 {
   db %in% names(RODBC::odbcDataSources())
