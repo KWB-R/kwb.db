@@ -93,7 +93,7 @@ hsOpenDb <- function(
   )
   
   ## Return if connection failed
-  if (con == -1) {
+  if (! is64BitR() && con == -1) {
     
     stop("Could not connect to database: ", src)
   }
@@ -101,7 +101,13 @@ hsOpenDb <- function(
   ## in debug mode, print connection
   kwb.utils::printIf(dbg, con, "Connection")
   
-  setCurrentSqlDialect(ifelse(attr(con, "isMySQL"), "mysql", "msaccess"))
+  is_mysql <- if (! is64BitR()) {
+    attr(con, "isMySQL")
+  } else {
+    message("Do not know how to check if this is a MySQL connection")
+  }
+  
+  setCurrentSqlDialect(ifelse(is_mysql, "mysql", "msaccess"))
   
   con
 }
@@ -138,38 +144,30 @@ openAdequateConnectionOrStop <- function(
     stop("No such file: '", db, "'! Please check the path!", call. = FALSE)
   }
   
-  if (is_mdb) {
-    
-    con <- odbcConnectionAccess(
-      db, use2007Driver = use2007Driver, DBMSencoding = DBMSencoding, ...
-    )
-    
-  } else if (is_xls) {
-    
-    con <- odbcConnectionExcel(
-      db, use2007Driver = use2007Driver, DBMSencoding = DBMSencoding, ...
-    )
-    
-  } else if (isOdbcDataSource(db)) {
-    
-    con <- RODBC::odbcConnect(db, DBMSencoding = DBMSencoding, ...)
-    
-  } else {
-    
-    odbcSources <- names(RODBC::odbcDataSources())
-    
-    stop(
-      "src must be a file name with extension .mdb, .accdb, .xls, .xlsx ",
-      "or the name of an existing ODBC data source. ",
-      "Available ODBC data sources are:\n * ",
-      paste(odbcSources, collapse = ",\n * ")
-    )
-  }
+  if (is_mdb) return(odbcConnectionAccess(
+    db, use2007Driver = use2007Driver, DBMSencoding = DBMSencoding, ...
+  ))
+  
+  if (is_xls) return(odbcConnectionExcel(
+    db, use2007Driver = use2007Driver, DBMSencoding = DBMSencoding, ...
+  ))
+  
+  if (isOdbcDataSource(db)) return(RODBC::odbcConnect(
+    db, DBMSencoding = DBMSencoding, ...
+  ))
+  
+  stop(
+    "src must be a file name with extension .mdb, .accdb, .xls, .xlsx ",
+    "or the name of an existing ODBC data source. ",
+    "Available ODBC data sources are:\n * ",
+    paste(names(RODBC::odbcDataSources()), collapse = ",\n * ")
+  )
 }
 
 # odbcConnectionAccess ---------------------------------------------------------
 
 #' @importFrom RODBC odbcConnectAccess2007 odbcConnectAccess
+#' @importFrom odbc32 odbcConnectAccess2007
 #' 
 odbcConnectionAccess <- function(db, use2007Driver = NULL, ...)
 {
@@ -178,13 +176,33 @@ odbcConnectionAccess <- function(db, use2007Driver = NULL, ...)
     use2007Driver <- isAccess2007File(db)
   }
   
-  if (use2007Driver) {
+  # Select the appropriate package
+  pkg <- ifelse(is64BitR(), "odbc32", "RODBC")
+  
+  # Select the appropriate function name
+  name <- ifelse(use2007Driver, "odbcConnectAccess2007", "odbcConnectAccess")
+
+  if (is64BitR()) {
+
+    if (! use2007Driver) stop(
+      "Cannot connect to ", db, " with 64 Bit-Version of R!", call. = FALSE
+    )
+
+    socket <- .GlobalEnv$.r2r_socket
     
-    RODBC::odbcConnectAccess2007(db, ...)
+    if (is.null(socket)) {
+      socket <- odbc32::start_server()
+    }
+    
+    odbc32::odbcConnectAccess2007(db, socket = socket)
     
   } else {
     
-    RODBC::odbcConnectAccess(db, ...)
+    if (use2007Driver){
+      RODBC::odbcConnectAccess2007(db, ...)
+    } else {
+      RODBC::odbcConnectAccess(db, ...)
+    }
   }
 }
 
@@ -234,11 +252,25 @@ hsCloseMdb <- function(con)
 #' 
 #' @seealso \code{\link{hsOpenDb}}
 #' @importFrom RODBC odbcClose
+#' @importFrom odbc32 odbcClose
 #' 
 hsCloseDb <- function(con)
 {
   ## Close database connection
-  RODBC::odbcClose(con)
-  
+  if (is64BitR()) {
+    
+    odbc32::odbcClose(con)
+    
+    socket <- .GlobalEnv$.r2r_socket
+    
+    if (! is.null(socket)) {
+      odbc32::stop_server(socket = socket)  
+    }
+    
+  } else {
+    
+    RODBC::odbcClose(con)  
+  }
+
   #options("kwb.db.current.sql.dialect" = NULL)
 }

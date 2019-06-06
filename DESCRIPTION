@@ -27,6 +27,7 @@ Authors@R:
 Depends:
     kwb.datetime,
     kwb.utils,
+    odbc32,
     RODBC
 Suggests: 
     testthat
