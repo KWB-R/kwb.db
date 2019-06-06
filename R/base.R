@@ -347,19 +347,20 @@ hsTables <- function(
     setCurrentSqlDialect(sqlDialect)
   })
   
-  tblList <- RODBC::sqlTables(con)
-  
-  if (excludeSystemTables)
-    
-    tblList <- tblList[tblList$TABLE_TYPE != "SYSTEM TABLE", ]
-  
-  if (namesOnly) {
-    
-    return(tblList$TABLE_NAME)
-    
+  tblList <- if (is64BitR()) {
+    odbc32::sqlTables(con)
   } else {
-    
-    return(tblList)
+    RODBC::sqlTables(con)
+  }
+  
+  if (excludeSystemTables) {
+    tblList <- tblList[tblList$TABLE_TYPE != "SYSTEM TABLE", ]
+  }
+
+  if (namesOnly) {
+    tblList$TABLE_NAME
+  } else {
+    tblList
   }
 }
 
