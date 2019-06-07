@@ -77,19 +77,35 @@ isExcelFile <- function(filepath)
 #'   database
 #' @param \dots arguments passed to \code{\link{hsOpenDb}}, e.g.
 #'   \emph{use2007Driver}
-#' 
+#' @param con connection object as returned by \code{\link{hsOpenDb}}, if 
+#'   already available. Default: \code{NULL}
 #' @return TRUE if \emph{db} is a MySQL database, else FALSE
 #' 
-isMySQL <- function(db, ...)
+isMySQL <- function(db, ..., con = NULL)
 {
+  # If a connection is given and if it has an attribute "isMySQL", return the
+  # value of that attribute
+  if (! is.null(con) && ! is.null(is_mysql <- attr(con, "isMySQL"))) {
+    return(is_mysql)
+  }
+
+  # Otherwise try to check by extension
+  if (isExcelFile(db) || isAccessFile(db)) {
+    return(FALSE)
+  }
+  
   sqlDialect <- getCurrentSqlDialect(warn = FALSE)
   
-  connection <- hsOpenDb(db, ...)
+  connection <- try(hsOpenDb(db, ...))
   
   on.exit({
     hsCloseDb(connection)
     setCurrentSqlDialect(sqlDialect)
   })
+  
+  if (inherits(connection, "try-error")) clean_stop(sprintf(
+    "Cannot open '%s' to check if this is a MySQL database!", db
+  ))
   
   attr(connection, "isMySQL")
 }
