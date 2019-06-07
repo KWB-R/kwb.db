@@ -424,14 +424,14 @@ hsFields <- function(
   
   if (missing(tbl)) {
     
-    stop("No table name given. ", msg)
+    clean_stop("No table name given. ", msg)
   }
   
   pattern <- paste("^", tbl, "$", sep = "")
   
   if (length(grep(pattern, tbls, ignore.case = ignore.case)) != 1) {
     
-    stop(sprintf('Table "%s" not found in %s. ', tbl, mdb), msg)
+    clean_stop(sprintf('Table "%s" not found in %s. ', tbl, mdb), msg)
   }
   
   sqlDialect <- getCurrentSqlDialect(warn = FALSE)
@@ -448,7 +448,11 @@ hsFields <- function(
     tbl <- sub("\\$$", "", tbl)
   }
   
-  fieldInfo <- RODBC::sqlColumns(con, tbl)
+  fieldInfo <- if (kwb.db:::is64BitR()) {
+    clean_stop("Sorry. There is no equivalent to sqlColumns() in odbc32!")
+  } else {
+    RODBC::sqlColumns(con, tbl)
+  }
   
   if (namesOnly) {
     
