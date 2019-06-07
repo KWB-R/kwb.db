@@ -682,11 +682,8 @@ hsDropTable <- function(mdb, tbl, isPtrn = FALSE, dbg = TRUE)
   existingTables <- hsTables(mdb, namesOnly = TRUE)
 
   tbls <- if (isPtrn) {
-    
     grep(tbl, existingTables, value = TRUE)
-    
   } else {
-    
     tbl
   }
 
@@ -698,12 +695,15 @@ hsDropTable <- function(mdb, tbl, isPtrn = FALSE, dbg = TRUE)
 
     if (tbl %in% existingTables) {
       
-      kwb.utils::catIf(dbg, sprintf("Dropping table '%s'... ", tbl))
-      RODBC::sqlDrop(con, tbl)
-      kwb.utils::catIf(dbg, "ok.\n")
-      
+      kwb.utils::catAndRun(dbg = dbg, sprintf("Dropping table '%s'", tbl), {
+        RODBC::sqlDrop(con, tbl)  
+      })
+
     } else {
-      cat("Table '", tbl, "' does not exist in database. No need to drop.\n")
+      
+      cat(sprintf(
+        "Table '%s' does not exist in database. No need to drop.\n", tbl
+      ))
     }
   }
 }
@@ -817,6 +817,7 @@ selectFromDb <- function(
 #' @seealso \code{\link{hsPutTable}, \link{hsGetTable}}
 #' @importFrom kwb.utils catIf
 #' @importFrom RODBC sqlQuery
+#' @importFrom odbc32 sqlQuery
 #' @export
 #' @examples
 #' \dontrun{
@@ -861,15 +862,24 @@ hsSqlQuery <- function(
   
   ## Send SQL query
   kwb.utils::catIf(dbg, sprintf("\nRunning SQL: %s\n\n", sql))
-  res <- RODBC::sqlQuery(con, sql, ...)
+  
+  res <- if (is64BitR()) {
+    odbc32::sqlQuery(con, sql, ...)
+  } else {
+    RODBC::sqlQuery(con, sql, ...)
+  }
   
   # Did an error occur?
   if ((class(res) == "character") && (length(res) > 0)) {
+    
     msg <- paste(res, collapse = "\n")
+    
     if (stopOnError) {
+      
       stop(msg)
-    }
-    else {
+      
+    } else {
+      
       warning(msg)
       return (NULL)
     }

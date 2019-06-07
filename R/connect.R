@@ -11,7 +11,8 @@
 #' 
 hsOpenMdb <- function(mdb, dbg = FALSE)
 {
-  kwb.utils::warningDeprecated("kwb.db::hsOpenMdb", "kwb.db::hsOpenDb")
+  kwb.utils::warningDeprecated("kwb.db:::hsOpenMdb", "kwb.db:::hsOpenDb")
+  
   hsOpenDb(mdb, dbg)
 }
 
@@ -76,16 +77,14 @@ hsOpenDb <- function(
 {
   kwb.utils::catIf(dbg, "in hsOpenDb: use2007Driver =", use2007Driver, "\n")
   
-  if (missing(src) || length(src) == 0) {
-    
-    stop("No source file (*.mdb, *.accdb, *.xls or *.xlsx) ",
-         "or name of ODBC data source given.")
-  }
+  if (missing(src) || length(src) == 0) stop(
+    "No source file (*.mdb, *.accdb, *.xls or *.xlsx) or name of ODBC data ", 
+    "source given."
+  )
   
-  if (mode(src) != "character" || length(src) > 1) {
-    
-    stop("src must be a character vector of length one.")
-  }
+  if (mode(src) != "character" || length(src) > 1) stop(
+    "src must be a character vector of length one."
+  )
   
   ## Open database connection
   con <- openAdequateConnectionOrStop(
@@ -93,20 +92,15 @@ hsOpenDb <- function(
   )
   
   ## Return if connection failed
-  if (! is64BitR() && con == -1) {
-    
-    stop("Could not connect to database: ", src)
-  }
-  
+  if (! is64BitR() && con == -1) stop(
+    "Could not connect to database: ", src
+  )
+
   ## in debug mode, print connection
   kwb.utils::printIf(dbg, con, "Connection")
   
-  is_mysql <- if (! is64BitR()) {
-    attr(con, "isMySQL")
-  } else {
-    message("Do not know how to check if this is a MySQL connection")
-  }
-  
+  is_mysql <- isMySQL(src, con = con)
+
   setCurrentSqlDialect(ifelse(is_mysql, "mysql", "msaccess"))
   
   con
@@ -139,11 +133,10 @@ openAdequateConnectionOrStop <- function(
   is_mdb <- isAccessFile(db)
   is_xls <- isExcelFile(db)
   
-  if ((is_mdb || is_xls) &&! file.exists(db)) {
-    
-    stop("No such file: '", db, "'! Please check the path!", call. = FALSE)
-  }
-  
+  if ((is_mdb || is_xls) &&! file.exists(db)) clean_stop(
+    "No such file: '", db, "'! Please check the path!"
+  )
+
   if (is_mdb) return(odbcConnectionAccess(
     db, use2007Driver = use2007Driver, DBMSencoding = DBMSencoding, ...
   ))
@@ -156,7 +149,7 @@ openAdequateConnectionOrStop <- function(
     db, DBMSencoding = DBMSencoding, ...
   ))
   
-  stop(
+  clean_stop(
     "src must be a file name with extension .mdb, .accdb, .xls, .xlsx ",
     "or the name of an existing ODBC data source. ",
     "Available ODBC data sources are:\n * ",
@@ -166,65 +159,78 @@ openAdequateConnectionOrStop <- function(
 
 # odbcConnectionAccess ---------------------------------------------------------
 
-#' @importFrom RODBC odbcConnectAccess2007 odbcConnectAccess
-#' @importFrom odbc32 odbcConnectAccess2007
+#' @importFrom kwb.utils defaultIfNULL
 #' 
 odbcConnectionAccess <- function(db, use2007Driver = NULL, ...)
 {
-  if (is.null(use2007Driver)) {
-    
-    use2007Driver <- isAccess2007File(db)
-  }
-  
-  # Select the appropriate package
-  pkg <- ifelse(is64BitR(), "odbc32", "RODBC")
-  
-  # Select the appropriate function name
-  name <- ifelse(use2007Driver, "odbcConnectAccess2007", "odbcConnectAccess")
+  use2007Driver <- kwb.utils::defaultIfNULL(use2007Driver, isAccess2007File(db))
 
   if (is64BitR()) {
-
-    if (! use2007Driver) stop(
-      "Cannot connect to ", db, " with 64 Bit-Version of R!", call. = FALSE
-    )
-
-    socket <- .GlobalEnv$.r2r_socket
-    
-    if (is.null(socket)) {
-      socket <- odbc32::start_server(invisible = TRUE)
-    }
-    
-    odbc32::odbcConnectAccess2007(db, socket = socket)
-    
+    odbcConnectionAccess64(db, use2007Driver)
   } else {
-    
-    if (use2007Driver){
-      RODBC::odbcConnectAccess2007(db, ...)
-    } else {
-      RODBC::odbcConnectAccess(db, ...)
-    }
+    odbcConnectionAccess32(db, use2007Driver, ...)
   }
 }
 
 # odbcConnectionExcel ----------------------------------------------------------
 
-#' @importFrom RODBC odbcConnectExcel2007 odbcConnectExcel
+#' @importFrom kwb.utils defaultIfNULL
 #' 
 odbcConnectionExcel <- function(db, use2007Driver = NULL, ...)
 {
-  if (is.null(use2007Driver)) {
-    
-    use2007Driver <- isExcel2007File(db)
+  use2007Driver <- kwb.utils::defaultIfNULL(use2007Driver, isExcel2007File(db))
+
+  if (is64BitR()) {
+    clean_stop("odbcConnectionExcel() is not implemented for 64 Bit!")
+  } else {
+    odbcConnectionExcel32(db, use2007Driver, ...)
+  }
+}
+
+# odbcConnectionAccess32 -------------------------------------------------------
+
+#' @importFrom RODBC odbcConnectAccess2007 odbcConnectAccess
+#' 
+odbcConnectionAccess32 <- function(db, use2007Driver, ...)
+{
+  FUN <- if (use2007Driver){
+    RODBC::odbcConnectAccess2007
+  } else {
+    RODBC::odbcConnectAccess
   }
   
-  if (use2007Driver) {
-    
-    RODBC::odbcConnectExcel2007(db, ...)
-    
+  FUN(db, ...)
+}
+
+# odbcConnectionExcel32 --------------------------------------------------------
+
+#' @importFrom RODBC odbcConnectExcel2007 odbcConnectExcel
+#' 
+odbcConnectionExcel32 <- function(db, use2007Driver, ...)
+{
+  FUN <- if (use2007Driver) {
+    RODBC::odbcConnectExcel2007
   } else {
-    
-    RODBC::odbcConnectExcel(db, ...)
+    RODBC::odbcConnectExcel
   }
+  
+  FUN(db, ...)  
+}
+
+# odbcConnectionAccess64 -------------------------------------------------------
+
+#' @importFrom odbc32 odbcConnectAccess2007
+#' 
+odbcConnectionAccess64 <- function(db, use2007Driver)
+{
+  if (! use2007Driver) clean_stop(
+    "Cannot connect to ", db, " with 64 Bit-Version of R!"
+  )
+  
+  odbc32::odbcConnectAccess2007(db, socket = kwb.utils::defaultIfNULL(
+    x = .GlobalEnv$.r2r_socket, 
+    default = odbc32::start_server(invisible = TRUE)
+  ))
 }
 
 # hsCloseMdb -------------------------------------------------------------------
@@ -238,6 +244,7 @@ odbcConnectionExcel <- function(db, use2007Driver = NULL, ...)
 #' 
 hsCloseMdb <- function(con)
 {
+  kwb.utils::warningDeprecated("kwb.db:::hsCloseMdb", "kwb.db:::hsCloseDb")
   hsCloseDb(con)
 }
 
