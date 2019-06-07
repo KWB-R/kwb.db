@@ -98,32 +98,33 @@ hsPutTable <- function(
     }
   }
   
-  if (dbg) {
-    cat("Given/generated field types:\n")
-    print(types)
-    cat(sprintf("Writing data to table '%s' in '%s'\n", tblSafe, mdb))
-  }
+  kwb.utils::printIf(
+    dbg && ! is.null(types), types, "Given/generated field types"
+  )
   
-  ## Save the data to the database table
-  if (is.null(types)) {
-    
-    res <- RODBC::sqlSave(con, myData, tblSafe, rownames = FALSE, verbose = dbg)
-    
+  # Provide arguments to sqlSave()
+  arguments <- list(con, myData, tblSafe, rownames = FALSE, verbose = dbg)
+  
+  if (! is.null(types)) {
+    arguments <- c(arguments, list(varTypes = types))
+  }
+
+  # Select the appropriate function
+  FUN <- if (is64BitR()) {
+    RODBC::sqlSave
   } else {
-    
-    if (dbg) {
-      
-      print(names(types))
-    }
-    
-    res <- RODBC::sqlSave(
-      con, myData, tblSafe, varTypes = types, rownames = FALSE, verbose = dbg
-    )
+    odbc32::sqlSave
   }
   
+  # Call the function that saves the data to the database table
+  result <- kwb.utils::catAndRun(
+    dbg = dbg, 
+    messageText = sprintf("Writing data to table '%s' in '%s'\n", tblSafe, mdb),
+    expr = do.call(FUN, arguments)
+  )
+
   # Did an error occur?
-  if (res != 1) {
-    
+  if (result != 1) {
     stop("sqlSave returned with error.\n")
   }
   
