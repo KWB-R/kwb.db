@@ -1,16 +1,18 @@
 Package: kwb.db
 Version: 0.3.0.9000
 Title: Functions supporting data base access
-Description: This package contains some useful functions, especially for simplifying data transfer
-           between MS Access databases and R. With the functions of this package it is not needed
-           any more to open and close a database connection explicitely; this is done 'behind the
-           scenes' in the functions. Instead of a database connection the path to the database file
-           needs to be passed to the functions as an argument. The main functions are hsGetTable
-           and hsPutTable which transfer data from an MS Access database to a data frame in R and
-           save data from a data frame in R into a table in an MS Access database, respectively.
-           Take care when getting time series data from an MS Access database, see therefore
-           hsMdbTimeSeries. Use hsTables to get a list of tables that are available in a database
-           and hsFields to get a list of table fields that are contained in a database table.
+Description: This package contains some useful functions, especially for 
+    simplifying data transfer between MS Access databases and R. With the 
+    functions of this package it is not needed any more to open and close a 
+    database connection explicitely; this is done 'behind the scenes' in the 
+    functions. Instead of a database connection the path to the database file
+    needs to be passed to the functions as an argument. The main functions are 
+    hsGetTable and hsPutTable which transfer data from an MS Access database to 
+    a data frame in R and save data from a data frame in R into a table in an MS 
+    Access database, respectively. Take care when getting time series data from 
+    an MS Access database, see therefore hsMdbTimeSeries. Use hsTables to get a 
+    list of tables that are available in a database and hsFields to get a list 
+    of table fields that are contained in a database table.
 Authors@R: 
     c(person(given = "Hauke",
              family = "Sonnenberg",
@@ -33,7 +35,8 @@ Suggests:
     testthat
 Remotes: 
    github::kwb-r/kwb.datetime,
-   github::kwb-r/kwb.utils
+   github::kwb-r/kwb.utils,
+   github::vh-d/odbc32
 Encoding: UTF-8
 License: MIT + file LICENSE
 RoxygenNote: 6.1.1
