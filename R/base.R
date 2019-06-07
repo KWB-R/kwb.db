@@ -84,16 +84,17 @@ hsPutTable <- function(
   
   if (is.null(types)) {
     
-    if (dbg) {
-      cat("No field types given.\n")
-    }
-    
-    if (! attr(con, "isMySQL")) {
+    kwb.utils::catIf(dbg, "No field types given.\n")
+
+    if (! isMySQL(mdb, con = con)) {
+      
       for (colname in colnames(myData)) {
+        
         className <- class(myData[[colname]])[1]
         dbClassName <- .hsJetType(className)
         types <- c(types, dbClassName)
       }
+      
       names(types) <- colnames(myData)
     }
   }
@@ -111,9 +112,9 @@ hsPutTable <- function(
 
   # Select the appropriate function
   FUN <- if (is64BitR()) {
-    RODBC::sqlSave
-  } else {
     odbc32::sqlSave
+  } else {
+    RODBC::sqlSave
   }
   
   # Call the function that saves the data to the database table
