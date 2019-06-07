@@ -219,8 +219,6 @@ odbcConnectionExcel32 <- function(db, use2007Driver, ...)
 
 # odbcConnectionAccess64 -------------------------------------------------------
 
-#' @importFrom odbc32 odbcConnectAccess2007
-#' 
 odbcConnectionAccess64 <- function(db, use2007Driver)
 {
   if (! use2007Driver) clean_stop(
@@ -241,6 +239,7 @@ odbcConnectionAccess64 <- function(db, use2007Driver)
 #' 
 #' @param con Open database connection as returned by
 #'   \link{hsOpenMdb}/odbcConnect
+#' @export
 #' 
 hsCloseMdb <- function(con)
 {
@@ -258,8 +257,6 @@ hsCloseMdb <- function(con)
 #'   \link{hsOpenDb}/\code{odbcConnect}
 #' 
 #' @seealso \code{\link{hsOpenDb}}
-#' @importFrom RODBC odbcClose
-#' @importFrom odbc32 odbcClose
 #' 
 hsCloseDb <- function(con)
 {

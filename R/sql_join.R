@@ -115,6 +115,7 @@ sqlLeftJoinExpression <- function(left, right, condition)
 #' @param right right part of JOIN (e.g. table name)
 #' @param condition condition
 #' @param type one of c("LEFT", "RIGHT", "INNER")
+#' @export
 #' 
 sqlJoinExpression <- function(left, right, condition, type = "INNER")
 {

@@ -29,6 +29,7 @@
 #' List of Key = Value Pairs to SQL Assignment
 #' 
 #' @param keyValues list of \code{key = value} pairs
+#' @export
 #' 
 keyValuesToSqlAssignment <- function(keyValues)
 {
@@ -43,6 +44,7 @@ keyValuesToSqlAssignment <- function(keyValues)
 #' 
 #' @return list with elements \emph{fieldList} and \emph{valueList}
 #' @importFrom kwb.utils commaCollapsed
+#' @export
 #' 
 keyValuesToSqlAssignment2 <- function(keyvalues)
 {

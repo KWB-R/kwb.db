@@ -80,6 +80,7 @@ isExcelFile <- function(filepath)
 #' @param con connection object as returned by \code{\link{hsOpenDb}}, if 
 #'   already available. Default: \code{NULL}
 #' @return TRUE if \emph{db} is a MySQL database, else FALSE
+#' @export
 #' 
 isMySQL <- function(db, ..., con = NULL)
 {

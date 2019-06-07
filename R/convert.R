@@ -9,6 +9,7 @@
 #'   \code{key = value} pairs defining renamings from the keys to the values.
 #' 
 #' @return list of character each of which represents an SQL query
+#' @export
 #' 
 renamesToQueries <- function(renamesList)
 {

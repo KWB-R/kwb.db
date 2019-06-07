@@ -3,6 +3,7 @@
 #' Set Current Database
 #' 
 #' @param db full path to MS Access database or ODBC database name
+#' @export
 #' 
 setCurrentDb <- function(db)
 {
@@ -18,6 +19,7 @@ setCurrentDb <- function(db)
 #' 
 #' @param dbg if TRUE, a message obout setting the current database is printed
 #' @importFrom kwb.utils catIf
+#' @export
 #' 
 currentDb <- function(dbg = TRUE)
 {
@@ -182,6 +184,7 @@ dumpDatabase <- function(
 #' @param idField name of ID field, default: name of first table field
 #' @param dbg if TRUE, debug messages are shown
 #' @param use2007Driver passed to \code{\link{isMySQL}}
+#' @export
 #' 
 lookupRecord <- function(
   db, tableName, keyAssignments, idField = hsFields(db, tableName)[1], 
@@ -234,6 +237,7 @@ lookupRecord <- function(
 #' @param idField name of ID field, default: name of first table field
 #' @param dbg if TRUE, debug messages are shown
 #' @importFrom kwb.utils hsQuoteChr
+#' @export
 #' 
 hsLookupOrAddRecord <- function (
   mdb, tbl, keyAssigns, fieldAssigns = NULL, idField = hsFields(mdb, tbl)[1],
@@ -333,6 +337,7 @@ hsTsField <- function(src, tbl, namesOnly = TRUE, all = FALSE)
 #' @param tbl Name of table in which key fields are to be defined.
 #' @param keyFields (Vector of) key field name(s)
 #' @param dbg if TRUE, debug messages are shown
+#' @export
 #' 
 hsSetPrimaryKey <- function(mdb, tbl, keyFields, dbg = FALSE)
 {
@@ -375,6 +380,7 @@ hsSetPrimaryKey <- function(mdb, tbl, keyFields, dbg = FALSE)
 #' @param ref.field name of foreign key field in ref.tbl
 #' @param key.name optional. Name to be given to the foreign key
 #' @param dbg passed to \code{\link{hsSqlQuery}}
+#' @export
 #' 
 hsSetForeignKey <- function(
   mdb, tbl, field, ref.tbl, ref.field, 
@@ -722,6 +728,7 @@ hsDropTable <- function(mdb, tbl, isPtrn = FALSE, dbg = TRUE)
 #' @param \dots additional arguments passed to hsSqlQuery, e.g. "errors=TRUE"
 #' 
 #' @seealso \code{\link{hsDropTable}}
+#' @export
 #' 
 hsClearTable <- function(mdb, tbl, cond = TRUE, ...)
 {
@@ -816,8 +823,6 @@ selectFromDb <- function(
 #'   
 #' @seealso \code{\link{hsPutTable}, \link{hsGetTable}}
 #' @importFrom kwb.utils catIf
-#' @importFrom RODBC sqlQuery
-#' @importFrom odbc32 sqlQuery
 #' @export
 #' @examples
 #' \dontrun{
@@ -935,6 +940,8 @@ connectionStringAccess <- function(
 #' Path to example database
 #' 
 #' Returns full path to MS Access example database
+#' 
+#' @export
 #' 
 xmdb <- function()
 {
