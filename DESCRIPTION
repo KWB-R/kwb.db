@@ -24,7 +24,7 @@ Authors@R:
              comment = "0000-0003-0647-7726"),
       person(given = "Kompetenzzentrum Wasser Berlin gGmbH",
              role = "cph"))
-Depends:
+Imports:
     kwb.datetime,
     kwb.utils,
     odbc32,
