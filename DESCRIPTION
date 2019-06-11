@@ -36,7 +36,7 @@ Suggests:
 Remotes: 
    github::kwb-r/kwb.datetime,
    github::kwb-r/kwb.utils,
-   github::vh-d/odbc32
+   github::hsonne/odbc32
 Encoding: UTF-8
 License: MIT + file LICENSE
 RoxygenNote: 6.1.1
