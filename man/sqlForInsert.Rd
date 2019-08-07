@@ -4,8 +4,8 @@
 \alias{sqlForInsert}
 \title{Generate SQL INSERT statement}
 \usage{
-sqlForInsert(tablename, fields, sqlSource, sourceAreValues = !grepl(sqlSource,
-  "^SELECT"), ignore = FALSE)
+sqlForInsert(tablename, fields, sqlSource,
+  sourceAreValues = !grepl(sqlSource, "^SELECT"), ignore = FALSE)
 }
 \arguments{
 \item{tablename}{table name}

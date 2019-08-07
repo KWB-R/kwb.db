@@ -5,8 +5,8 @@
 \title{Get Time Series With Timestamp Info}
 \usage{
 hsGetTimeSeries(mdb, tbl, tsField = hsTsField(mdb, tbl), fields = "*",
-  minDate = NULL, maxDate = NULL, xTsFields = c(1:11), inclLast = TRUE,
-  sqlFilter = "TRUE", dbg = FALSE)
+  minDate = NULL, maxDate = NULL, xTsFields = c(1:11),
+  inclLast = TRUE, sqlFilter = "TRUE", dbg = FALSE)
 }
 \arguments{
 \item{mdb}{Full path to MS Access database file (*.mdb)}

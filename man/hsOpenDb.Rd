@@ -4,7 +4,8 @@
 \alias{hsOpenDb}
 \title{Open Connection to MS Access or Excel}
 \usage{
-hsOpenDb(src, use2007Driver = NULL, dbg = FALSE, DBMSencoding = "", ...)
+hsOpenDb(src, use2007Driver = NULL, dbg = FALSE, DBMSencoding = "",
+  ...)
 }
 \arguments{
 \item{src}{full path to MS Access database file (extension \dQuote{.mdb} or 

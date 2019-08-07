@@ -29,6 +29,12 @@
 <script src="../pkgdown.js"></script>
 
 
+<!-- docsearch -->
+<script src="../docsearch.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
+<link href="../docsearch.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+
 
 <meta property="og:title" content="R-code for Functions to Access Database Tables — rcode_DatabaseInterface" />
 
@@ -87,6 +93,12 @@
 </li>
       </ul>
       
+      <form class="navbar-form navbar-right" role="search">
+        <div class="form-group">
+          <input type="search" class="form-control" name="search-input" id="search-input" placeholder="Search..." aria-label="Search for..." autocomplete="off">
+        </div>
+      </form>
+      
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
@@ -108,9 +120,9 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>rcode_DatabaseInterface</span>(<span class='kw'>db</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>dbSchema</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>tableNamePattern</span> <span class='kw'>=</span> <span class='st'>""</span>,
-  <span class='kw'>functionPrefix</span> <span class='kw'>=</span> <span class='st'>"db_"</span>, <span class='kw'>pattern</span> <span class='kw'>=</span> <span class='st'>"^"</span>, <span class='kw'>dbg</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>sql.dbg</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>create.create.functions</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+    <pre class="usage"><span class='fu'>rcode_DatabaseInterface</span>(<span class='kw'>db</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>dbSchema</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>tableNamePattern</span> <span class='kw'>=</span> <span class='st'>""</span>, <span class='kw'>functionPrefix</span> <span class='kw'>=</span> <span class='st'>"db_"</span>, <span class='kw'>pattern</span> <span class='kw'>=</span> <span class='st'>"^"</span>,
+  <span class='kw'>dbg</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>sql.dbg</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>create.create.functions</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -181,6 +193,23 @@ the database tables are created</p></td>
    </div>
 
   
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+<script>
+  docsearch({
+    
+    
+    apiKey: 'a2909cc57c21696b653e1258dfa00c5c',
+    indexName: 'kwb_db',
+    inputSelector: 'input#search-input.form-control',
+    transformData: function(hits) {
+      return hits.map(function (hit) {
+        hit.url = updateHitURL(hit);
+        return hit;
+      });
+    }
+  });
+</script>
+
 
   </body>
 </html>

@@ -4,8 +4,8 @@
 \alias{hsDumpMdb}
 \title{Export Database Tables to CSV Files}
 \usage{
-hsDumpMdb(mdb, ptrn = "^tbl", tdir = file.path(dirname(mdb), gsub("\\\\.",
-  "_", basename(mdb))))
+hsDumpMdb(mdb, ptrn = "^tbl", tdir = file.path(dirname(mdb),
+  gsub("\\\\.", "_", basename(mdb))), create_target_dir = FALSE)
 }
 \arguments{
 \item{mdb}{full path to database}
@@ -16,8 +16,10 @@ i.e. tables starting with "tbl"}
 \item{tdir}{target directory. By default a new directory is created in the
 same directory as mdb resides in. The new directory has the same name as
 the database file with dots substituted with underscores}
+
+\item{create_target_dir}{if \code{TRUE}, the target directory \code{tdir}
+is created if it does not exist.}
 }
 \description{
-Exports all tables of a database of which the names match a given pattern to
-csv files.
+Deprecated. Please use \code{\link{dumpDatabase}} instead.
 }

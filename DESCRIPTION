@@ -1,5 +1,5 @@
 Package: kwb.db
-Version: 0.3.0
+Version: 0.3.0.9000
 Title: Functions supporting data base access
 Description: This package contains some useful functions, especially for simplifying data transfer
            between MS Access databases and R. With the functions of this package it is not needed
@@ -11,8 +11,19 @@ Description: This package contains some useful functions, especially for simplif
            Take care when getting time series data from an MS Access database, see therefore
            hsMdbTimeSeries. Use hsTables to get a list of tables that are available in a database
            and hsFields to get a list of table fields that are contained in a database table.
-Authors@R: c(person("Hauke", "Sonnenberg", , "hauke.sonnenberg@kompetenz-wasser.de", role = c("aut", "cre")),
-             person("Kompetenzzentrum Wasser Berlin gGmbH", role = c("cph")))
+Authors@R: 
+    c(person(given = "Hauke",
+             family = "Sonnenberg",
+             role = c("aut", "cre"),
+             email = "hauke.sonnenberg@kompetenz-wasser.de",
+             comment = c(ORCID = "0000-0001-9134-2871")),
+      person(given = "Michael",
+             family = "Rustler",
+             role = "ctb",
+             email = "michael.rustler@kompetenz-wasser.de",
+             comment = "0000-0003-0647-7726"),
+      person(given = "Kompetenzzentrum Wasser Berlin gGmbH",
+             role = "cph"))
 Imports: kwb.utils, RODBC
 Suggests: 
     kwb.datetime,
@@ -20,7 +31,8 @@ Suggests:
 Remotes: 
    github::kwb-r/kwb.datetime,
    github::kwb-r/kwb.utils
+Encoding: UTF-8
 License: MIT + file LICENSE
-RoxygenNote: 6.0.1
+RoxygenNote: 6.1.0
 URL: https://github.com/KWB-R/kwb.db
 BugReports: https://github.com/KWB-R/kwb.db/issues
