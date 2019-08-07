@@ -186,6 +186,7 @@ sqlForInsertDataFrame <- function(tablename, dataFrame, ignore = FALSE, ...)
     fields = kwb.utils::commaCollapsed(names(dataFrame)),
     sqlSource = kwb.utils::commaCollapsed(dataFrameToSqlTuples(dataFrame)),
     sourceAreValues = TRUE,
+    ignore = ignore,
     ...
   )
 }
