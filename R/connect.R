@@ -40,6 +40,7 @@ hsOpenMdb <- function(mdb, dbg = FALSE)
 #'   
 #' @seealso \code{\link{hsCloseDb}}
 #' @importFrom kwb.utils catIf printIf
+#' @export
 #' @examples
 #' \dontrun{ 
 #' ## Open a connection to the example database

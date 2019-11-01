@@ -81,7 +81,7 @@ hsSqlExAnd <- function(x, bFunc)
 #' @param sqlDialect one of \code{c("mysql", "msaccess")}
 #' @param dbg if \code{TRUE}, debug messages are shown
 #' @return Condition string in MS Jet SQL syntax to be used in WHERE clause
-#' 
+#' @export
 #' @seealso \code{\link{hsJetDate}}
 #' 
 #' @examples
