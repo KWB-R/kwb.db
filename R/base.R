@@ -448,7 +448,7 @@ hsFields <- function(
     tbl <- sub("\\$$", "", tbl)
   }
   
-  fieldInfo <- if (kwb.db:::is64BitR()) {
+  fieldInfo <- if (is64BitR()) {
     clean_stop("Sorry. There is no equivalent to sqlColumns() in odbc32!")
   } else {
     RODBC::sqlColumns(con, tbl)
