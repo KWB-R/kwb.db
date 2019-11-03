@@ -9,7 +9,7 @@
 #'   
 #' @return vector of character of length one representing the result of "left
 #'   join"-ing all sub-queries given in \code{sqls}
-#' 
+#' @export
 #' @examples 
 #' sql <- sqlFullLeftJoin(key = "id", list(
 #'   structure("SELECT id, field_1 from table_1", alias = "t1"),
@@ -31,7 +31,7 @@ sqlFullLeftJoin <- function(sqls, key)
     
     condition <- sprintf("%s.%s = %s.%s", left_alias, key, right_alias, key)
     
-    full_sql <- kwb.db::sqlLeftJoinExpression(full_sql, sql, condition)
+    full_sql <- sqlLeftJoinExpression(full_sql, sql, condition)
   }
   
   full_sql
@@ -100,6 +100,7 @@ sqlLeftJoinBody <- function(
 #' @param left left part of JOIN (e.g. table name)
 #' @param right right part of JOIN (e.g. table name)
 #' @param condition condition
+#' @export
 #' 
 sqlLeftJoinExpression <- function(left, right, condition)
 {
@@ -114,6 +115,7 @@ sqlLeftJoinExpression <- function(left, right, condition)
 #' @param right right part of JOIN (e.g. table name)
 #' @param condition condition
 #' @param type one of c("LEFT", "RIGHT", "INNER")
+#' @export
 #' 
 sqlJoinExpression <- function(left, right, condition, type = "INNER")
 {

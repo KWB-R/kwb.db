@@ -38,6 +38,7 @@
 #'   interface functions
 #' @param sql.dbg if TRUE, SQL strings used to access the database are shown
 #'   when calling the interface functions
+#' @export
 #' 
 createRDatabaseInterface <- function
 (
@@ -473,6 +474,7 @@ getFilteredRecords <- function(db, tableName, keyValues, fields, like, ...)
 #' @param run if TRUE (default) the SQL SELECT statement is run otherwise
 #'   returned as character string
 #' @param \dots further arguments passed to \code{\link{hsSqlQuery}}
+#' @export
 #' 
 selectFromTable <- function(db, tableName, arguments, run = TRUE, ...)
 {

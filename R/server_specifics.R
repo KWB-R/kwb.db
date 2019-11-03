@@ -67,7 +67,9 @@
 #' @param datetime Date (and time) information in forms of Date object or POSIX
 #'   object or string.
 #' @param dbg if TRUE, debug messages are shown
-#' 
+#' @importFrom kwb.utils catIf
+#' @importFrom kwb.datetime hsToPosix
+#'  
 hsJetDate <- function(datetime, dbg = FALSE)
 {
   dFormat <- "%m/%d/%Y %H:%M:%S" # This is a date in MS Jet SQL syntax

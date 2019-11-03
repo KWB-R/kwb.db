@@ -9,6 +9,7 @@
 #'   \code{key = value} pairs defining renamings from the keys to the values.
 #' 
 #' @return list of character each of which represents an SQL query
+#' @export
 #' 
 renamesToQueries <- function(renamesList)
 {
@@ -16,9 +17,9 @@ renamesToQueries <- function(renamesList)
   
   lapply(seq_along(renamesList), function(i) {
     
-    structure(alias = LETTERS[i], kwb.db::sqlForSelect(
+    structure(alias = LETTERS[i], sqlForSelect(
       tablename = names(renamesList)[i],
-      fields = kwb.db::renamesToFieldList(renamesList[[i]])
+      fields = renamesToFieldList(renamesList[[i]])
     ))
   })
 }
@@ -28,7 +29,7 @@ renamesToQueries <- function(renamesList)
 #' List of Renamings to Field Selection String
 #' 
 #' Convert a list of renamings to a field selection string that can be used as
-#' \code{fields} argument in a call to \code{kwb.db::hsGetTable}
+#' \code{fields} argument in a call to \code{\link[kwb.db]{hsGetTable}}
 #' 
 #' @param renames list of key = value pairs defining renamings from the keys to
 #'   the values
@@ -36,6 +37,7 @@ renamesToQueries <- function(renamesList)
 #'   will be enclosed in square brackets: \code{[source] AS <target>}
 #' @param target.in.brackets if \code{TRUE} (default) the target names will be
 #'   enclosed in square brackets: \code{<source> AS [target]}
+#' @export
 #' 
 renamesToFieldList <- function(
   renames, source.in.brackets = TRUE, target.in.brackets = TRUE
