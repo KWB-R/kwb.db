@@ -110,18 +110,12 @@ hsPutTable <- function(
     arguments <- c(arguments, list(varTypes = types))
   }
 
-  # Select the appropriate function
-  FUN <- if (is64BitR()) {
-    odbc32::sqlSave
-  } else {
-    RODBC::sqlSave
-  }
-  
-  # Call the function that saves the data to the database table
+  # Call the function that saves the data to the database table.
+  # Select the appropriate function by means of get_odbc_function()
   result <- kwb.utils::catAndRun(
     dbg = dbg, 
     messageText = sprintf("Writing data to table '%s' in '%s'\n", tblSafe, mdb),
-    expr = do.call(FUN, arguments)
+    expr = do.call(get_odbc_function("sqlSave"), arguments)
   )
 
   # Did an error occur?
@@ -349,12 +343,8 @@ hsTables <- function(
     setCurrentSqlDialect(sqlDialect)
   })
   
-  tblList <- if (is64BitR()) {
-    odbc32::sqlTables(con)
-  } else {
-    RODBC::sqlTables(con)
-  }
-  
+  tblList <- (get_odbc_function("sqlTables"))(con)
+
   if (excludeSystemTables) {
     tblList <- tblList[tblList$TABLE_TYPE != "SYSTEM TABLE", ]
   }

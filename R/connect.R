@@ -122,6 +122,7 @@ hsOpenDb <- function(
 #'   \code{odbcConnectionExcel} or \code{\link[RODBC]{odbcConnect}}
 #' @importFrom kwb.utils catIf
 #' @importFrom RODBC odbcConnect odbcDataSources
+#' @importFrom odbc32 odbcConnect odbcDataSources
 #' 
 openAdequateConnectionOrStop <- function(
   db, use2007Driver = NULL, dbg = FALSE, DBMSencoding = "", ...
@@ -134,7 +135,7 @@ openAdequateConnectionOrStop <- function(
   is_mdb <- isAccessFile(db)
   is_xls <- isExcelFile(db)
   
-  if ((is_mdb || is_xls) &&! file.exists(db)) clean_stop(
+  if ((is_mdb || is_xls) && ! file.exists(db)) clean_stop(
     "No such file: '", db, "'! Please check the path!"
   )
 
@@ -222,14 +223,19 @@ odbcConnectionExcel32 <- function(db, use2007Driver, ...)
 
 odbcConnectionAccess64 <- function(db, use2007Driver)
 {
-  if (! use2007Driver) clean_stop(
-    "Cannot connect to ", db, " with 64 Bit-Version of R!"
-  )
-  
-  odbc32::odbcConnectAccess2007(db, socket = kwb.utils::defaultIfNULL(
+  socket <- kwb.utils::defaultIfNULL(
     x = .GlobalEnv$.r2r_socket, 
     default = odbc32::start_server(invisible = TRUE)
-  ))
+  )
+  
+  if (use2007Driver) {
+    
+    odbc32::odbcConnectAccess2007(db, socket = socket)
+    
+  } else {
+    
+    odbc32::odbcConnectAccess(db, socket = socket)
+  }
 }
 
 # hsCloseMdb -------------------------------------------------------------------
@@ -261,22 +267,16 @@ hsCloseMdb <- function(con)
 #' 
 hsCloseDb <- function(con)
 {
-  ## Close database connection
-  if (is64BitR()) {
+  # Close database connection
+  (get_odbc_function("odbcClose"))(con)
+  
+  # Stop the 32 Bit R server if it is running
+  if (is64BitR() && ! is.null(socket <- .GlobalEnv$.r2r_socket)) {
     
-    odbc32::odbcClose(con)
+    odbc32::stop_server(socket = socket)  
     
-    socket <- .GlobalEnv$.r2r_socket
-    
-    if (! is.null(socket)) {
-      odbc32::stop_server(socket = socket)  
-      rm(".r2r_socket", envir = .GlobalEnv)
-    }
-    
-  } else {
-    
-    RODBC::odbcClose(con)  
+    rm(".r2r_socket", envir = .GlobalEnv)
   }
-
+  
   #options("kwb.db.current.sql.dialect" = NULL)
 }

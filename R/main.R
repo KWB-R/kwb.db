@@ -681,6 +681,8 @@ hsMdbTimeSeries <- function(
 #' @seealso \code{\link{hsClearTable}}
 #' @importFrom kwb.utils catIf
 #' @importFrom RODBC sqlDrop
+#' @importFrom odbc32 sqlDrop
+
 #' @export
 #'  
 hsDropTable <- function(mdb, tbl, isPtrn = FALSE, dbg = TRUE)
@@ -702,7 +704,8 @@ hsDropTable <- function(mdb, tbl, isPtrn = FALSE, dbg = TRUE)
     if (tbl %in% existingTables) {
       
       kwb.utils::catAndRun(dbg = dbg, sprintf("Dropping table '%s'", tbl), {
-        RODBC::sqlDrop(con, tbl)  
+
+        (get_odbc_function("sqlDrop"))(con, tbl)
       })
 
     } else {
@@ -868,11 +871,7 @@ hsSqlQuery <- function(
   ## Send SQL query
   kwb.utils::catIf(dbg, sprintf("\nRunning SQL: %s\n\n", sql))
   
-  res <- if (is64BitR()) {
-    odbc32::sqlQuery(con, sql, ...)
-  } else {
-    RODBC::sqlQuery(con, sql, ...)
-  }
+  res <- (get_odbc_function("sqlQuery"))(con, sql, ...)
   
   # Did an error occur?
   if ((class(res) == "character") && (length(res) > 0)) {

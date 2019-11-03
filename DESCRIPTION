@@ -27,12 +27,12 @@ Authors@R:
       person(given = "Kompetenzzentrum Wasser Berlin gGmbH",
              role = "cph"))
 Imports:
-    kwb.datetime,
-    kwb.utils,
-    odbc32,
-    RODBC
+    kwb.datetime (>= 0.4.0),
+    kwb.utils (>= 0.4.4),
+    odbc32 (>= 0.2.7),
+    RODBC (>= 1.3.16)
 Suggests: 
-    testthat
+    testthat (>= 2.2.1)
 Remotes: 
    github::kwb-r/kwb.datetime,
    github::kwb-r/kwb.utils,

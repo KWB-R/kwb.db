@@ -25,16 +25,14 @@
   
   is_64_bit <- (.Machine$sizeof.pointer == 8)
   
-  tblList <- RODBC::sqlTables(con)
-  tblList <- odbc32::sqlTables(con)
-  
+  tblList <- (kwb.db:::get_odbc_function("sqlTables"))(con)
+
   if (excludeSystemTables) 
     tblList <- tblList[tblList$TABLE_TYPE != "SYSTEM TABLE", 
                        ]
   if (namesOnly) {
     return(tblList$TABLE_NAME)
-  }
-  else {
+  } else {
     return(tblList)
   }
 #}
