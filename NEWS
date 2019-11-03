@@ -1,13 +1,21 @@
+Changes in kwb.db 0.4.0 (2019-11-03)
+====================================
+* Use the package odbc32 by Vaclav Hausenblas in order to use Window's 32 bit
+  ODBC driver from within a 64 bit R session.
+* Decrease the number of exported functions. 
+  TODO: Check if some functions need to be exported again as they may be used
+  in some scripts that were/are used at KWB.
+
 2019-06-07
-- give a warning when using deprecated functions hsOpenMdb(), hsCloseMdb()
+* give a warning when using deprecated functions hsOpenMdb(), hsCloseMdb()
 
 2019-06-06
-- support 64 Bit in odbcConnectionAccess()
+* support 64 Bit in odbcConnectionAccess()
 
 Changes in kwb.db 0.1.1
-=========================
+=======================
 * xmdb now points to example database in this package not in kwb.base
 
 Changes in kwb.db 0.1.0
-=========================
+=======================
 * package created with functions that were originally in kwb.base
