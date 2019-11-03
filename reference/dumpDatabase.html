@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>SQL Expression &#8220;OR&#8221; — hsSqlExOr • kwb.db</title>
+<title>Export Database Tables to CSV Files — dumpDatabase • kwb.db</title>
 
 
 <!-- jquery -->
@@ -41,11 +41,9 @@
 
 
 
-<meta property="og:title" content="SQL Expression &#8220;OR&#8221; — hsSqlExOr" />
-<meta property="og:description" content="Creates a boolean expression of the form  bFunc(x1) OR bFunc(x2) OR 
-... OR bFunc(xn). This function can be used to create SQL queries where many
-table fields have to be checked in the same way for some criterion (see
-example)." />
+<meta property="og:title" content="Export Database Tables to CSV Files — dumpDatabase" />
+<meta property="og:description" content="Exports all tables of a database of which the names match a given pattern to
+csv files." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -120,58 +118,71 @@ example)." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>SQL Expression &#8220;OR&#8221;</h1>
-    <small class="dont-index">Source: <a href='https://github.com/KWB-R/kwb.db/blob/master/R/sql_expressions.R'><code>R/sql_expressions.R</code></a></small>
-    <div class="hidden name"><code>hsSqlExOr.Rd</code></div>
+    <h1>Export Database Tables to CSV Files</h1>
+    <small class="dont-index">Source: <a href='https://github.com/KWB-R/kwb.db/blob/master/R/main.R'><code>R/main.R</code></a></small>
+    <div class="hidden name"><code>dumpDatabase.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Creates a boolean expression of the form <br /> <code>bFunc(x1) OR bFunc(x2) OR 
-... OR bFunc(xn)</code>. This function can be used to create SQL queries where many
-table fields have to be checked in the same way for some criterion (see
-example).</p>
+    <p>Exports all tables of a database of which the names match a given pattern to
+csv files.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>hsSqlExOr</span>(<span class='no'>x</span>, <span class='kw'>bFunc</span> <span class='kw'>=</span> <span class='st'>""</span>)</pre>
+    <pre class="usage"><span class='fu'>dumpDatabase</span>(<span class='no'>db</span>, <span class='kw'>pattern</span> <span class='kw'>=</span> <span class='st'>"^tbl"</span>, <span class='kw'>target_dir</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>create_target_dir</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>sep</span> <span class='kw'>=</span> <span class='st'>","</span>, <span class='kw'>dec</span> <span class='kw'>=</span> <span class='st'>"."</span>,
+  <span class='kw'>qmethod</span> <span class='kw'>=</span> <span class='st'>"double"</span>, <span class='kw'>row.names</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='no'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>x</th>
-      <td><p>vector of strings, e.g. representing table field names.</p></td>
+      <th>db</th>
+      <td><p>full path to database or name of ODBC data source</p></td>
     </tr>
     <tr>
-      <th>bFunc</th>
-      <td><p>name of a boolean function to be &#8220;applied&#8221; to each
-element of <em>x</em>.</p></td>
+      <th>pattern</th>
+      <td><p>pattern matching names of tables to be exported. Default:
+"^tbl", i.e. tables starting with "tbl"</p></td>
+    </tr>
+    <tr>
+      <th>target_dir</th>
+      <td><p>target directory. By default a new directory is created in
+the same directory as mdb resides in. The new directory has the same name
+as the database file with dots substituted with underscores</p></td>
+    </tr>
+    <tr>
+      <th>create_target_dir</th>
+      <td><p>if <code>TRUE</code>, the target directory <code>tdir</code> is
+created if it does not exist.</p></td>
+    </tr>
+    <tr>
+      <th>sep</th>
+      <td><p>passed to <code><a href='https://rdrr.io/r/utils/write.table.html'>write.table</a></code></p></td>
+    </tr>
+    <tr>
+      <th>dec</th>
+      <td><p>passed to <code><a href='https://rdrr.io/r/utils/write.table.html'>write.table</a></code></p></td>
+    </tr>
+    <tr>
+      <th>qmethod</th>
+      <td><p>passed to <code><a href='https://rdrr.io/r/utils/write.table.html'>write.table</a></code></p></td>
+    </tr>
+    <tr>
+      <th>row.names</th>
+      <td><p>passed to <code><a href='https://rdrr.io/r/utils/write.table.html'>write.table</a></code></p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>further arguments passed to <code><a href='https://rdrr.io/r/utils/write.table.html'>write.table</a></code></p></td>
     </tr>
     </table>
 
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p><code><a href='hsSqlExAnd.html'>hsSqlExAnd</a></code></p></div>
-
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'>## Build SQL query finding records in table t in which at least</span>
-<span class='co'>## one of the table fields f1 to f100 is NULL.</span>
-<span class='no'>sql</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/sprintf.html'>sprintf</a></span>(<span class='st'>"SELECT * FROM t WHERE %s"</span>,
-               <span class='fu'>hsSqlExOr</span>(<span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span>(<span class='st'>"f"</span>, <span class='fl'>1</span>:<span class='fl'>100</span>, <span class='kw'>sep</span> <span class='kw'>=</span> <span class='st'>""</span>), <span class='st'>"isNull"</span>))
-
-<span class='co'>## Show the SQL string</span>
-<span class='no'>sql</span></div><div class='output co'>#&gt; [1] "SELECT * FROM t WHERE (FALSE) OR isNull(f1) OR isNull(f2) OR isNull(f3) OR isNull(f4) OR isNull(f5) OR isNull(f6) OR isNull(f7) OR isNull(f8) OR isNull(f9) OR isNull(f10) OR isNull(f11) OR isNull(f12) OR isNull(f13) OR isNull(f14) OR isNull(f15) OR isNull(f16) OR isNull(f17) OR isNull(f18) OR isNull(f19) OR isNull(f20) OR isNull(f21) OR isNull(f22) OR isNull(f23) OR isNull(f24) OR isNull(f25) OR isNull(f26) OR isNull(f27) OR isNull(f28) OR isNull(f29) OR isNull(f30) OR isNull(f31) OR isNull(f32) OR isNull(f33) OR isNull(f34) OR isNull(f35) OR isNull(f36) OR isNull(f37) OR isNull(f38) OR isNull(f39) OR isNull(f40) OR isNull(f41) OR isNull(f42) OR isNull(f43) OR isNull(f44) OR isNull(f45) OR isNull(f46) OR isNull(f47) OR isNull(f48) OR isNull(f49) OR isNull(f50) OR isNull(f51) OR isNull(f52) OR isNull(f53) OR isNull(f54) OR isNull(f55) OR isNull(f56) OR isNull(f57) OR isNull(f58) OR isNull(f59) OR isNull(f60) OR isNull(f61) OR isNull(f62) OR isNull(f63) OR isNull(f64) OR isNull(f65) OR isNull(f66) OR isNull(f67) OR isNull(f68) OR isNull(f69) OR isNull(f70) OR isNull(f71) OR isNull(f72) OR isNull(f73) OR isNull(f74) OR isNull(f75) OR isNull(f76) OR isNull(f77) OR isNull(f78) OR isNull(f79) OR isNull(f80) OR isNull(f81) OR isNull(f82) OR isNull(f83) OR isNull(f84) OR isNull(f85) OR isNull(f86) OR isNull(f87) OR isNull(f88) OR isNull(f89) OR isNull(f90) OR isNull(f91) OR isNull(f92) OR isNull(f93) OR isNull(f94) OR isNull(f95) OR isNull(f96) OR isNull(f97) OR isNull(f98) OR isNull(f99) OR isNull(f100)"</div><div class='input'>  
-## Output (middle part omitted):
-# SELECT * FROM t WHERE (FALSE) OR isNull(f1) OR 
-# isNull(f2) OR isNull(f3) OR ... OR isNull(f100)
-
-</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#see-also">See also</a></li>
-      <li><a href="#examples">Examples</a></li>
     </ul>
 
   </div>
