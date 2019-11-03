@@ -45,10 +45,14 @@ export(sqlJoinExpression)
 export(sqlLeftJoinExpression)
 export(xmdb)
 importFrom(RODBC,odbcConnect)
-importFrom(RODBC,odbcConnectAccess)
-importFrom(RODBC,odbcConnectAccess2007)
-importFrom(RODBC,odbcConnectExcel)
-importFrom(RODBC,odbcConnectExcel2007)
+
+if(tools:::.OStype() == "windows") {
+  importFrom(RODBC,odbcConnectAccess)
+  importFrom(RODBC,odbcConnectAccess2007)
+  importFrom(RODBC,odbcConnectExcel)
+  importFrom(RODBC,odbcConnectExcel2007)
+}
+
 importFrom(RODBC,odbcDataSources)
 importFrom(RODBC,sqlColumns)
 importFrom(RODBC,sqlDrop)
