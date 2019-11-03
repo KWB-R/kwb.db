@@ -10,7 +10,6 @@
 #' @param groupBy GROUP BY-clause, Default: "" (no grouping)
 #' @param orderBy ORDER BY-clause, Default: "" (no sorting of results)
 #' @param sqlDialect one of \code{c("mysql", "msaccess")}
-#' @export
 #' 
 sqlForSelect <- function(
   tablename, fields = "*", whereClause = "TRUE", groupBy = "", orderBy = "",
@@ -74,7 +73,6 @@ sqlForSelectByKey <- function(
 #' @param table.source name of source table
 #' @param table.target name of target table
 #' @param uniqueFields names of unique fields
-#' @export
 #' 
 sqlForInsertIgnoreInMsAccess <- function(
   db, table.source, table.target, uniqueFields = NA
@@ -132,7 +130,6 @@ sqlForInsertIgnoreInMsAccess <- function(
 #' @param ignore if TRUE the keyword IGNORE is inserted between INSERT and INTO
 #'   in the SQL statement -> no error will be given if data to insert already
 #'   exists
-#' @export
 #' 
 sqlForInsert <- function(
   tablename, fields, sqlSource, sourceAreValues = ! grepl(sqlSource, "^SELECT"),
@@ -158,7 +155,6 @@ sqlForInsert <- function(
 #' @param target.table name of target table
 #' @param source.table name of source table or SQL providing source data
 #' @param fields vector of character with field names
-#' @export
 #' 
 sqlForInsertFromSelect <- function(target.table, source.table, fields)
 {
@@ -182,7 +178,6 @@ sqlForInsertFromSelect <- function(target.table, source.table, fields)
 #'   in the SQL statement -> no error will be given if data to insert already
 #'   exists
 #' @param \dots further arguments passed to \code{\link{sqlForInsert}}
-#' @export
 #' 
 sqlForInsertDataFrame <- function(tablename, dataFrame, ignore = FALSE, ...)
 {
@@ -191,6 +186,7 @@ sqlForInsertDataFrame <- function(tablename, dataFrame, ignore = FALSE, ...)
     fields = kwb.utils::commaCollapsed(names(dataFrame)),
     sqlSource = kwb.utils::commaCollapsed(dataFrameToSqlTuples(dataFrame)),
     sourceAreValues = TRUE,
+    ignore = ignore,
     ...
   )
 }
