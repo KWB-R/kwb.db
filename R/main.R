@@ -3,6 +3,7 @@
 #' Set Current Database
 #' 
 #' @param db full path to MS Access database or ODBC database name
+#' @export
 #' 
 setCurrentDb <- function(db)
 {
@@ -17,6 +18,8 @@ setCurrentDb <- function(db)
 #' \code{\link{setCurrentDb}})
 #' 
 #' @param dbg if TRUE, a message obout setting the current database is printed
+#' @importFrom kwb.utils catIf
+#' @export
 #' 
 currentDb <- function(dbg = TRUE)
 {
@@ -90,7 +93,8 @@ readSqlCommandsFromFile <- function(sqlScript)
 #'   the database file with dots substituted with underscores
 #' @param create_target_dir if \code{TRUE}, the target directory \code{tdir}
 #'   is created if it does not exist.
-#'   
+#' @importFrom kwb.utils warningDeprecated
+#' 
 hsDumpMdb <- function(
   mdb, ptrn = "^tbl", 
   tdir = file.path(dirname(mdb), gsub("\\.", "_", basename(mdb))),
@@ -125,6 +129,8 @@ hsDumpMdb <- function(
 #' @param qmethod passed to \code{\link[utils]{write.table}}
 #' @param row.names passed to \code{\link[utils]{write.table}}
 #' @param \dots further arguments passed to \code{\link[utils]{write.table}}
+#' @importFrom kwb.utils createDirectory safePath
+#' @importFrom utils write.table
 #' 
 dumpDatabase <- function(
   db, pattern = "^tbl", target_dir = NULL, create_target_dir = FALSE,
@@ -178,6 +184,7 @@ dumpDatabase <- function(
 #' @param idField name of ID field, default: name of first table field
 #' @param dbg if TRUE, debug messages are shown
 #' @param use2007Driver passed to \code{\link{isMySQL}}
+#' @export
 #' 
 lookupRecord <- function(
   db, tableName, keyAssignments, idField = hsFields(db, tableName)[1], 
@@ -229,6 +236,8 @@ lookupRecord <- function(
 #'   list(field1 = "value1", field2 = "value2").
 #' @param idField name of ID field, default: name of first table field
 #' @param dbg if TRUE, debug messages are shown
+#' @importFrom kwb.utils hsQuoteChr
+#' @export
 #' 
 hsLookupOrAddRecord <- function (
   mdb, tbl, keyAssigns, fieldAssigns = NULL, idField = hsFields(mdb, tbl)[1],
@@ -328,6 +337,7 @@ hsTsField <- function(src, tbl, namesOnly = TRUE, all = FALSE)
 #' @param tbl Name of table in which key fields are to be defined.
 #' @param keyFields (Vector of) key field name(s)
 #' @param dbg if TRUE, debug messages are shown
+#' @export
 #' 
 hsSetPrimaryKey <- function(mdb, tbl, keyFields, dbg = FALSE)
 {
@@ -370,6 +380,7 @@ hsSetPrimaryKey <- function(mdb, tbl, keyFields, dbg = FALSE)
 #' @param ref.field name of foreign key field in ref.tbl
 #' @param key.name optional. Name to be given to the foreign key
 #' @param dbg passed to \code{\link{hsSqlQuery}}
+#' @export
 #' 
 hsSetForeignKey <- function(
   mdb, tbl, field, ref.tbl, ref.field, 
@@ -435,7 +446,10 @@ hsSetForeignKey <- function(
 #'   
 #' @seealso \code{\link{hsMdbTimeSeries}, \link{hsGetTable},
 #'   \link{hsSqlExTsFields}}
-#'   
+#' @importFrom kwb.utils catIf
+#' @importFrom kwb.datetime hsToPosix
+#' 
+#' @export
 #' @examples
 #' \dontrun{
 #' ## Get flow time series of 24 of July 2011 from tbl_Hyd in example database
@@ -562,7 +576,9 @@ hsGetTimeSeries <- function(
 #'   zone) and value columns as selected in <strFieldList>
 #'   
 #' @seealso \code{\link{hsGetTimeSeries}, \link{hsGetTable}}
-#' 
+#' @importFrom kwb.utils printIf
+#' @importFrom utils head
+#' @export
 #' @examples
 #' \dontrun{
 #' ## Get flow time series of 24 of August 2011 from tbl_Hyd in example database
@@ -661,19 +677,21 @@ hsMdbTimeSeries <- function(
 #' @param isPtrn if TRUE, \emph{tbl} is interpreted as a regular expression
 #'   matching the names of the tables to be deleted.
 #' @param dbg if TRUE, debug messages are shown
-#'  
+#'
 #' @seealso \code{\link{hsClearTable}}
-#' 
+#' @importFrom kwb.utils catIf
+#' @importFrom RODBC sqlDrop
+#' @importFrom odbc32 sqlDrop
+
+#' @export
+#'  
 hsDropTable <- function(mdb, tbl, isPtrn = FALSE, dbg = TRUE)
 {
   existingTables <- hsTables(mdb, namesOnly = TRUE)
 
   tbls <- if (isPtrn) {
-    
     grep(tbl, existingTables, value = TRUE)
-    
   } else {
-    
     tbl
   }
 
@@ -685,12 +703,16 @@ hsDropTable <- function(mdb, tbl, isPtrn = FALSE, dbg = TRUE)
 
     if (tbl %in% existingTables) {
       
-      kwb.utils::catIf(dbg, sprintf("Dropping table '%s'... ", tbl))
-      RODBC::sqlDrop(con, tbl)
-      kwb.utils::catIf(dbg, "ok.\n")
-      
+      kwb.utils::catAndRun(dbg = dbg, sprintf("Dropping table '%s'", tbl), {
+
+        (get_odbc_function("sqlDrop"))(con, tbl)
+      })
+
     } else {
-      cat("Table '", tbl, "' does not exist in database. No need to drop.\n")
+      
+      cat(sprintf(
+        "Table '%s' does not exist in database. No need to drop.\n", tbl
+      ))
     }
   }
 }
@@ -709,6 +731,7 @@ hsDropTable <- function(mdb, tbl, isPtrn = FALSE, dbg = TRUE)
 #' @param \dots additional arguments passed to hsSqlQuery, e.g. "errors=TRUE"
 #' 
 #' @seealso \code{\link{hsDropTable}}
+#' @export
 #' 
 hsClearTable <- function(mdb, tbl, cond = TRUE, ...)
 {
@@ -802,7 +825,8 @@ selectFromDb <- function(
 #'   anything.
 #'   
 #' @seealso \code{\link{hsPutTable}, \link{hsGetTable}}
-#' 
+#' @importFrom kwb.utils catIf
+#' @export
 #' @examples
 #' \dontrun{
 #' ## Get Q time series from table "tbl_Hyd" in example database
@@ -846,15 +870,20 @@ hsSqlQuery <- function(
   
   ## Send SQL query
   kwb.utils::catIf(dbg, sprintf("\nRunning SQL: %s\n\n", sql))
-  res <- RODBC::sqlQuery(con, sql, ...)
+  
+  res <- (get_odbc_function("sqlQuery"))(con, sql, ...)
   
   # Did an error occur?
   if ((class(res) == "character") && (length(res) > 0)) {
+    
     msg <- paste(res, collapse = "\n")
+    
     if (stopOnError) {
+      
       stop(msg)
-    }
-    else {
+      
+    } else {
+      
       warning(msg)
       return (NULL)
     }
@@ -890,6 +919,7 @@ hsSqlQuery <- function(
 #'   = 2
 #'   
 #' @references \url{http://msdn.microsoft.com/en-us/library/office/aa140022\%28v=office.10\%29.aspx}
+#' @importFrom kwb.utils windowsPath
 #' 
 connectionStringAccess <- function(
   mdb, uid = "", pwd = "", globalPartialBulkOps = 0
@@ -909,6 +939,8 @@ connectionStringAccess <- function(
 #' Path to example database
 #' 
 #' Returns full path to MS Access example database
+#' 
+#' @export
 #' 
 xmdb <- function()
 {
@@ -936,6 +968,7 @@ getSqlDialect <- function(db, use2007Driver = NULL)
 #' Set Current SQL Dialect
 #' 
 #' @param dialectName one of "msaccess", "mysql"
+#' @export
 #' 
 setCurrentSqlDialect <- function(dialectName)
 {
@@ -949,6 +982,8 @@ setCurrentSqlDialect <- function(dialectName)
 #' @param warn if TRUE and if no current SQL dialog is stored in the options,
 #'   the program stops with an error message
 #' @param dbg if TRUE, a message about the current SQL dialect is printed
+#' @importFrom kwb.utils catIf
+#' @export
 #' 
 getCurrentSqlDialect <- function(warn = TRUE, dbg = FALSE)
 {

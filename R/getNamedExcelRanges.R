@@ -12,21 +12,22 @@
 #' @return list of data frames each of which represents the content a named cell 
 #'   range in the Excel \code{file} and each of which was read with 
 #'   \code{\link{hsGetTable}}.
-#'   
+#' @importFrom kwb.utils catAndRun
+#' @importFrom stats setNames
 #' @export
 #'   
 getNamedExcelRanges <- function(
   file, pattern = "^range", dbg = TRUE, stringsAsFactors = FALSE, ...
 )
 {
-  table_names <- kwb.db::hsTables(file)
+  table_names <- hsTables(file)
   
   range_names <- table_names[grepl(pattern, table_names)]
   
   ranges <- lapply(range_names, function(range_name) {
     kwb.utils::catAndRun(
       sprintf("Getting range '%s'", range_name),
-      kwb.db::hsGetTable(
+      hsGetTable(
         mdb = file, tbl = range_name, stringsAsFactors = stringsAsFactors, 
         dbg = FALSE, ...
       )

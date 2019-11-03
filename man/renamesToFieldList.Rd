@@ -19,5 +19,5 @@ enclosed in square brackets: \code{<source> AS [target]}}
 }
 \description{
 Convert a list of renamings to a field selection string that can be used as
-\code{fields} argument in a call to \code{kwb.db::hsGetTable}
+\code{fields} argument in a call to \code{\link[kwb.db]{hsGetTable}}
 }

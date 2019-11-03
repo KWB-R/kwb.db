@@ -99,6 +99,8 @@ getDatabaseSchema <- function(db)
 
 # .getFieldSchema --------------------------------------------------------------
 
+#' @importFrom kwb.utils isNullOrEmpty hsQuoteChr
+#' 
 .getFieldSchema <- function(db, tableName, fieldName, sqlDialect)
 {
   sql <- sprintf(
@@ -190,6 +192,7 @@ safeTableName <- function(
 #' 
 #' @return Returns "int", "double", "text", "date_time" or "boolean" depending
 #'   on the data type of \emph{x}
+#' @importFrom utils str
 #' 
 getTypeIdentifier <- function(x)
 {

@@ -1,3 +1,9 @@
+2019-06-07
+- give a warning when using deprecated functions hsOpenMdb(), hsCloseMdb()
+
+2019-06-06
+- support 64 Bit in odbcConnectionAccess()
+
 Changes in kwb.db 0.1.1
 =========================
 * xmdb now points to example database in this package not in kwb.base
