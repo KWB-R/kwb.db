@@ -4,8 +4,14 @@
 \alias{sqlLeftJoinBody}
 \title{Generate (Base Part of) SQL for LEFT JOIN}
 \usage{
-sqlLeftJoinBody(leftSql, rightTable, id, idLeft = id, useAlias = (id !=
-  idLeft), aliasName = "tbase")
+sqlLeftJoinBody(
+  leftSql,
+  rightTable,
+  id,
+  idLeft = id,
+  useAlias = (id != idLeft),
+  aliasName = "tbase"
+)
 }
 \arguments{
 \item{leftSql}{SQL of subquery that provides the "base" table on the left}

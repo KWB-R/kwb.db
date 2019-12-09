@@ -4,8 +4,7 @@
 \alias{hsOpenDb}
 \title{Open Connection to MS Access or Excel}
 \usage{
-hsOpenDb(src, use2007Driver = NULL, dbg = FALSE, DBMSencoding = "",
-  ...)
+hsOpenDb(src, use2007Driver = NULL, dbg = FALSE, DBMSencoding = "", ...)
 }
 \arguments{
 \item{src}{full path to MS Access database file (extension \dQuote{.mdb} or 
@@ -47,7 +46,7 @@ if (.Platform$OS.type == "windows") {
 # RODBC Connection 9
 # Details:
 #   case=nochange
-#   DBQ=C:\\Users\\hsonne\\Documents\\R\\win-library\\2.14\\kwb.base\\...
+#   DBQ=C:\Users\hsonne\Documents\R\win-library\2.14\kwb.base\...
 #   Driver={Microsoft Access Driver (*.mdb)}
 #   DriverId=25
 #   FIL=MS Access

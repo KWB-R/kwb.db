@@ -4,8 +4,7 @@
 \alias{sqlForInsertIgnoreInMsAccess}
 \title{SQL for "INSERT IGNORE" in MS Access}
 \usage{
-sqlForInsertIgnoreInMsAccess(db, table.source, table.target,
-  uniqueFields = NA)
+sqlForInsertIgnoreInMsAccess(db, table.source, table.target, uniqueFields = NA)
 }
 \arguments{
 \item{db}{database name or file}

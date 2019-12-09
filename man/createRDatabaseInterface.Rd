@@ -4,11 +4,18 @@
 \alias{createRDatabaseInterface}
 \title{Create R-Function Interface to Database}
 \usage{
-createRDatabaseInterface(db = NULL, dbSchema = NULL,
-  tableNamePattern = "", functionPrefix = "db_", pattern = "^",
+createRDatabaseInterface(
+  db = NULL,
+  dbSchema = NULL,
+  tableNamePattern = "",
+  functionPrefix = "db_",
+  pattern = "^",
   rfile = file.path(tempdir(), "dbInterface.R"),
   rfile.create = file.path(tempdir(), "dbInterfaceCreate.R"),
-  create.create.functions = FALSE, dbg = TRUE, sql.dbg = TRUE)
+  create.create.functions = FALSE,
+  dbg = TRUE,
+  sql.dbg = TRUE
+)
 }
 \arguments{
 \item{db}{name of ODBC data source or full path to MS Access or Excel file}

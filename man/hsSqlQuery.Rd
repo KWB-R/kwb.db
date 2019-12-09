@@ -4,8 +4,15 @@
 \alias{hsSqlQuery}
 \title{Send SQL Query to Database}
 \usage{
-hsSqlQuery(mdb, sql, use2007Driver = NULL, dbg = TRUE,
-  stopOnError = TRUE, DBMSencoding = "", ...)
+hsSqlQuery(
+  mdb,
+  sql,
+  use2007Driver = NULL,
+  dbg = TRUE,
+  stopOnError = TRUE,
+  DBMSencoding = "",
+  ...
+)
 }
 \arguments{
 \item{mdb}{full path to MS Access database file (extension \dQuote{.mdb} or 

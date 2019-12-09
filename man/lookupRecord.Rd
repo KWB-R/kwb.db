@@ -4,8 +4,14 @@
 \alias{lookupRecord}
 \title{Lookup Record}
 \usage{
-lookupRecord(db, tableName, keyAssignments, idField = hsFields(db,
-  tableName)[1], dbg = FALSE, use2007Driver = NULL)
+lookupRecord(
+  db,
+  tableName,
+  keyAssignments,
+  idField = hsFields(db, tableName)[1],
+  dbg = FALSE,
+  use2007Driver = NULL
+)
 }
 \arguments{
 \item{db}{full path to MS Access/Excel database or name of ODBC data source}
