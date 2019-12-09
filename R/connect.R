@@ -268,7 +268,11 @@ hsCloseMdb <- function(con)
 hsCloseDb <- function(con)
 {
   # Close database connection
-  (get_odbc_function("odbcClose"))(con)
+  result <- try(RODBC::odbcClose(con))
+  
+  if (inherits(result, "try-error")) {
+    odbc32::odbcClose(con)
+  }
   
   # Stop the 32 Bit R server if it is running
   if (is64BitR() && ! is.null(socket <- .GlobalEnv$.r2r_socket)) {

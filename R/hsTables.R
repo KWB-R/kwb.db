@@ -65,8 +65,25 @@ hsTables <- function(
     hsCloseDb(con)
     setCurrentSqlDialect(sqlDialect)
   })
+
+  # Try to use the RODBC-function first
+  tblList <- try(RODBC::sqlTables(con))
   
-  tblList <- (get_odbc_function("sqlTables"))(con)
+  if (inherits(tblList, "try-error")) {
+    
+    error <- as.character(tblList)
+    
+    # Try to use the odbc32-function next
+    tblList <- try(odbc32::sqlTables(con))
+    
+    if (inherits(tlbList, "try-error")) {
+      clean_stop(
+        "Could not fetch a table list.\n", 
+        "RODBC::sqlTables() returned: ", error, "\n",
+        "odbc32::sqlTables() returned: ", as.character(tblList)
+      )
+    }
+  }
   
   if (excludeSystemTables) {
     tblList <- tblList[tblList$TABLE_TYPE != "SYSTEM TABLE", ]

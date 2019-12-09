@@ -111,11 +111,15 @@ hsPutTable <- function(
   }
   
   # Call the function that saves the data to the database table.
-  # Select the appropriate function by means of get_odbc_function()
   result <- kwb.utils::catAndRun(
     dbg = dbg, 
     messageText = sprintf("Writing data to table '%s' in '%s'\n", tblSafe, mdb),
-    expr = do.call(get_odbc_function("sqlSave"), arguments)
+    expr = {
+      result <- try(do.call(RODBC::sqlSave, arguments))
+      if (inherits(result, "try-error")) {
+        result <- do.call(odbc32::sqlSave, arguments)
+      }
+    }
   )
   
   # Did an error occur?
