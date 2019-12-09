@@ -78,12 +78,12 @@ hsOpenDb <- function(
 {
   kwb.utils::catIf(dbg, "in hsOpenDb: use2007Driver =", use2007Driver, "\n")
   
-  if (missing(src) || length(src) == 0) stop(
+  if (missing(src) || length(src) == 0) clean_stop(
     "No source file (*.mdb, *.accdb, *.xls or *.xlsx) or name of ODBC data ", 
     "source given."
   )
   
-  if (mode(src) != "character" || length(src) > 1) stop(
+  if (mode(src) != "character" || length(src) > 1) clean_stop(
     "src must be a character vector of length one."
   )
   
@@ -93,7 +93,7 @@ hsOpenDb <- function(
   )
   
   ## Return if connection failed
-  if (! is64BitR() && con == -1) stop(
+  if (! is64BitR() && con == -1) clean_stop(
     "Could not connect to database: ", src
   )
 
