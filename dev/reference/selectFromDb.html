@@ -118,7 +118,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Select from Database</h1>
-    <small class="dont-index">Source: <a href='https://github.com/KWB-R/kwb.db/blob/master/R/main.R'><code>R/main.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/KWB-R/kwb.db/blob/master/R/selectFromDb.R'><code>R/selectFromDb.R</code></a></small>
     <div class="hidden name"><code>selectFromDb.Rd</code></div>
     </div>
 
@@ -126,8 +126,14 @@
     <p>Select from Database</p>
     </div>
 
-    <pre class="usage"><span class='fu'>selectFromDb</span>(<span class='no'>tableName</span>, <span class='kw'>fields</span> <span class='kw'>=</span> <span class='st'>"*"</span>, <span class='kw'>whereClause</span> <span class='kw'>=</span> <span class='st'>"TRUE"</span>, <span class='no'>odbc</span>,
-  <span class='kw'>dbg</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>selectFromDb</span>(
+  <span class='no'>tableName</span>,
+  <span class='kw'>fields</span> <span class='kw'>=</span> <span class='st'>"*"</span>,
+  <span class='kw'>whereClause</span> <span class='kw'>=</span> <span class='st'>"TRUE"</span>,
+  <span class='no'>odbc</span>,
+  <span class='kw'>dbg</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='no'>...</span>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">

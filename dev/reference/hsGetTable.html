@@ -118,7 +118,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Get Table from MS Access Database</h1>
-    <small class="dont-index">Source: <a href='https://github.com/KWB-R/kwb.db/blob/master/R/base.R'><code>R/base.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/KWB-R/kwb.db/blob/master/R/hsGetTable.R'><code>R/hsGetTable.R</code></a></small>
     <div class="hidden name"><code>hsGetTable.Rd</code></div>
     </div>
 
@@ -126,8 +126,16 @@
     <p>Provides data from an MS Access database table in forms of a data frame.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>hsGetTable</span>(<span class='no'>mdb</span>, <span class='no'>tbl</span>, <span class='kw'>cond</span> <span class='kw'>=</span> <span class='st'>"TRUE"</span>, <span class='kw'>fields</span> <span class='kw'>=</span> <span class='st'>"*"</span>, <span class='kw'>dbg</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>check</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>use2007Driver</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>hsGetTable</span>(
+  <span class='no'>mdb</span>,
+  <span class='no'>tbl</span>,
+  <span class='kw'>cond</span> <span class='kw'>=</span> <span class='st'>"TRUE"</span>,
+  <span class='kw'>fields</span> <span class='kw'>=</span> <span class='st'>"*"</span>,
+  <span class='kw'>dbg</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>check</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>use2007Driver</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='no'>...</span>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">

@@ -126,11 +126,18 @@
     <p>Create R-Function Interface to Database</p>
     </div>
 
-    <pre class="usage"><span class='fu'>createRDatabaseInterface</span>(<span class='kw'>db</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>dbSchema</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>tableNamePattern</span> <span class='kw'>=</span> <span class='st'>""</span>, <span class='kw'>functionPrefix</span> <span class='kw'>=</span> <span class='st'>"db_"</span>, <span class='kw'>pattern</span> <span class='kw'>=</span> <span class='st'>"^"</span>,
+    <pre class="usage"><span class='fu'>createRDatabaseInterface</span>(
+  <span class='kw'>db</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>dbSchema</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>tableNamePattern</span> <span class='kw'>=</span> <span class='st'>""</span>,
+  <span class='kw'>functionPrefix</span> <span class='kw'>=</span> <span class='st'>"db_"</span>,
+  <span class='kw'>pattern</span> <span class='kw'>=</span> <span class='st'>"^"</span>,
   <span class='kw'>rfile</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(), <span class='st'>"dbInterface.R"</span>),
   <span class='kw'>rfile.create</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(), <span class='st'>"dbInterfaceCreate.R"</span>),
-  <span class='kw'>create.create.functions</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>dbg</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>sql.dbg</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+  <span class='kw'>create.create.functions</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>dbg</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>sql.dbg</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">

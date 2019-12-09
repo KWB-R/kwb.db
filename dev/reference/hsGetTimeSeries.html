@@ -154,9 +154,18 @@ day), 10. &lt;ts&gt;_min (minutes within hour), 11. &lt;ts&gt;_s (seconds within
 where in each case &lt;ts&gt; is the name of the timestamp field.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>hsGetTimeSeries</span>(<span class='no'>mdb</span>, <span class='no'>tbl</span>, <span class='kw'>tsField</span> <span class='kw'>=</span> <span class='fu'><a href='hsTsField.html'>hsTsField</a></span>(<span class='no'>mdb</span>, <span class='no'>tbl</span>), <span class='kw'>fields</span> <span class='kw'>=</span> <span class='st'>"*"</span>,
-  <span class='kw'>minDate</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>maxDate</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>xTsFields</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>:<span class='fl'>11</span>),
-  <span class='kw'>inclLast</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>sqlFilter</span> <span class='kw'>=</span> <span class='st'>"TRUE"</span>, <span class='kw'>dbg</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+    <pre class="usage"><span class='fu'>hsGetTimeSeries</span>(
+  <span class='no'>mdb</span>,
+  <span class='no'>tbl</span>,
+  <span class='kw'>tsField</span> <span class='kw'>=</span> <span class='fu'><a href='hsTsField.html'>hsTsField</a></span>(<span class='no'>mdb</span>, <span class='no'>tbl</span>),
+  <span class='kw'>fields</span> <span class='kw'>=</span> <span class='st'>"*"</span>,
+  <span class='kw'>minDate</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>maxDate</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>xTsFields</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>:<span class='fl'>11</span>),
+  <span class='kw'>inclLast</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>sqlFilter</span> <span class='kw'>=</span> <span class='st'>"TRUE"</span>,
+  <span class='kw'>dbg</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">

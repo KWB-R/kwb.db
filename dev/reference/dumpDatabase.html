@@ -119,7 +119,7 @@ csv files." />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Export Database Tables to CSV Files</h1>
-    <small class="dont-index">Source: <a href='https://github.com/KWB-R/kwb.db/blob/master/R/main.R'><code>R/main.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/KWB-R/kwb.db/blob/master/R/dumpDatabase.R'><code>R/dumpDatabase.R</code></a></small>
     <div class="hidden name"><code>dumpDatabase.Rd</code></div>
     </div>
 
@@ -128,9 +128,17 @@ csv files." />
 csv files.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>dumpDatabase</span>(<span class='no'>db</span>, <span class='kw'>pattern</span> <span class='kw'>=</span> <span class='st'>"^tbl"</span>, <span class='kw'>target_dir</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>create_target_dir</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>sep</span> <span class='kw'>=</span> <span class='st'>","</span>, <span class='kw'>dec</span> <span class='kw'>=</span> <span class='st'>"."</span>,
-  <span class='kw'>qmethod</span> <span class='kw'>=</span> <span class='st'>"double"</span>, <span class='kw'>row.names</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>dumpDatabase</span>(
+  <span class='no'>db</span>,
+  <span class='kw'>pattern</span> <span class='kw'>=</span> <span class='st'>"^tbl"</span>,
+  <span class='kw'>target_dir</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>create_target_dir</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>sep</span> <span class='kw'>=</span> <span class='st'>","</span>,
+  <span class='kw'>dec</span> <span class='kw'>=</span> <span class='st'>"."</span>,
+  <span class='kw'>qmethod</span> <span class='kw'>=</span> <span class='st'>"double"</span>,
+  <span class='kw'>row.names</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='no'>...</span>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">

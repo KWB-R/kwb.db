@@ -123,7 +123,7 @@ hsSafeName will be found for the table." />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Save Data Frame to Database Table</h1>
-    <small class="dont-index">Source: <a href='https://github.com/KWB-R/kwb.db/blob/master/R/base.R'><code>R/base.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/KWB-R/kwb.db/blob/master/R/hsPutTable.R'><code>R/hsPutTable.R</code></a></small>
     <div class="hidden name"><code>hsPutTable.Rd</code></div>
     </div>
 
@@ -136,8 +136,15 @@ table is only overwritten if <em>overwrite</em> is TRUE. Otherwise a
 <code><a href='https://rdrr.io/pkg/kwb.utils/man/hsSafeName.html'>hsSafeName</a></code> will be found for the table.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>hsPutTable</span>(<span class='no'>mdb</span>, <span class='no'>myData</span>, <span class='kw'>tbl</span> <span class='kw'>=</span> <span class='st'>"tblTmp"</span>, <span class='kw'>types</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>overwrite</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>DBMSencoding</span> <span class='kw'>=</span> <span class='st'>""</span>, <span class='kw'>dbg</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>hsPutTable</span>(
+  <span class='no'>mdb</span>,
+  <span class='no'>myData</span>,
+  <span class='kw'>tbl</span> <span class='kw'>=</span> <span class='st'>"tblTmp"</span>,
+  <span class='kw'>types</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>overwrite</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>DBMSencoding</span> <span class='kw'>=</span> <span class='st'>""</span>,
+  <span class='kw'>dbg</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">

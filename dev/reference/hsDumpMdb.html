@@ -118,7 +118,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Export Database Tables to CSV Files</h1>
-    <small class="dont-index">Source: <a href='https://github.com/KWB-R/kwb.db/blob/master/R/main.R'><code>R/main.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/KWB-R/kwb.db/blob/master/R/dumpDatabase.R'><code>R/dumpDatabase.R</code></a></small>
     <div class="hidden name"><code>hsDumpMdb.Rd</code></div>
     </div>
 
@@ -126,8 +126,12 @@
     <p>Deprecated. Please use <code><a href='dumpDatabase.html'>dumpDatabase</a></code> instead.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>hsDumpMdb</span>(<span class='no'>mdb</span>, <span class='kw'>ptrn</span> <span class='kw'>=</span> <span class='st'>"^tbl"</span>, <span class='kw'>tdir</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/basename.html'>dirname</a></span>(<span class='no'>mdb</span>),
-  <span class='fu'><a href='https://rdrr.io/r/base/grep.html'>gsub</a></span>(<span class='st'>"\\."</span>, <span class='st'>"_"</span>, <span class='fu'><a href='https://rdrr.io/r/base/basename.html'>basename</a></span>(<span class='no'>mdb</span>))), <span class='kw'>create_target_dir</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+    <pre class="usage"><span class='fu'>hsDumpMdb</span>(
+  <span class='no'>mdb</span>,
+  <span class='kw'>ptrn</span> <span class='kw'>=</span> <span class='st'>"^tbl"</span>,
+  <span class='kw'>tdir</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/basename.html'>dirname</a></span>(<span class='no'>mdb</span>), <span class='fu'><a href='https://rdrr.io/r/base/grep.html'>gsub</a></span>(<span class='st'>"\\."</span>, <span class='st'>"_"</span>, <span class='fu'><a href='https://rdrr.io/r/base/basename.html'>basename</a></span>(<span class='no'>mdb</span>))),
+  <span class='kw'>create_target_dir</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
