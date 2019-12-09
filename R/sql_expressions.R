@@ -200,7 +200,7 @@ hsSqlExTimeGroup <- function(tbl, tsField, interval, cond = "TRUE")
   } else if (interval == "d") {
     groupBy <- "DateSerial(Year(hsTS), Month(hsTS), Day(hsTS))"
   } else {
-    stop("Unknown interval character: ", interval)
+    clean_stop("Unknown interval character: ", interval)
   }
   
   # Create SQL query

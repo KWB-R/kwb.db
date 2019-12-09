@@ -242,7 +242,7 @@ argumentsToSqlParts <- function(
 
   if (! (argumentMode %in% c("character", "numeric"))) {
     
-    stop(variableName, " must be of mode character or numeric")
+    clean_stop(variableName, " must be of mode character or numeric")
   }
 
   argumentMode
@@ -258,7 +258,7 @@ argumentsToSqlParts <- function(
 
   if (! all(kwb.utils::inRange(abs(indices), 1, maxIndex))) {
     
-    stop(
+    clean_stop(
       "All elements of ", argumentPrefix, " must be numbers with ",
       "absolute values between 1 and ", maxIndex, " when used in numeric mode"
     )

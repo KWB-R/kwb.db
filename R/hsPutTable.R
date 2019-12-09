@@ -120,7 +120,7 @@ hsPutTable <- function(
   
   # Did an error occur?
   if (result != 1) {
-    stop("sqlSave returned with error.\n")
+    clean_stop("sqlSave returned with error.\n")
   }
   
   tblSafe

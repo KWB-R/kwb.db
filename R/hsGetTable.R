@@ -109,24 +109,20 @@ hsGetTable <- function(
   }
   
   # Help the user by showing a list of available table names
-  if (missing(tbl)) {
-    
-    stop("No table name given. ",.message_availableTables(availableTableNames))
-  }
+  if (missing(tbl)) clean_stop(
+    "No table name given. ", .message_availableTables(availableTableNames)
+  )
   
   if (check) {
     
     # remove possible quotes embracing the table name
     availableTableNames <- gsub("^'(.*)'$", "\\1", availableTableNames)
     
-    if (! (tbl %in% availableTableNames)) {
-      
-      stop(
-        "Table ", kwb.utils::hsQuoteChr(tbl), " does not exist in ", 
-        kwb.utils::hsQuoteChr(mdb), ".\n", 
-        .message_availableTables(availableTableNames)
-      )
-    }
+    if (! tbl %in% availableTableNames) clean_stop(
+      "Table ", kwb.utils::hsQuoteChr(tbl), " does not exist in ", 
+      kwb.utils::hsQuoteChr(mdb), ".\n", 
+      .message_availableTables(availableTableNames)
+    )
   }
   
   # Return result of SQL query

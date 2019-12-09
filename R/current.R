@@ -27,7 +27,10 @@ currentDb <- function(dbg = TRUE)
   
   if (is.null(db)) {
     
-    stop("Please specify the database or use 'setCurrentDb' to set the current database!")
+    clean_stop(
+      "Please specify the database or use 'setCurrentDb' to set the current ", 
+      "database!"
+    )
   }
   
   kwb.utils::catIf(dbg, "\n*** Current database: ", db, "...\n\n")
@@ -63,7 +66,9 @@ getCurrentSqlDialect <- function(warn = TRUE, dbg = FALSE)
   
   if (is.null(sqlDialect) && warn) {
     
-    stop("Please use setCurrentSqlDialect to set the current SQL dialect first!")
+    clean_stop(
+      "Please use setCurrentSqlDialect to set the current SQL dialect first!"
+    )
   }
   
   kwb.utils::catIf(dbg, "Current SQL dialect:", sqlDialect, "\n")

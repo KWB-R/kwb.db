@@ -33,7 +33,7 @@ selectFromDb <- function(
     
     if (n == 0) {
       
-      stop(sprintf(
+      clean_stop(sprintf(
         "There is no table with a name matching '%s' in database '%s'.\n%s",
         pattern, db, .message_availableTables(tableNames)
       ))

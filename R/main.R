@@ -37,7 +37,9 @@ lookupRecord <- function(
 
   if (numberOfRecords > 1) {
     
-    stop(sprintf("More than one record in %s with %s", tableName, whereClause))
+    clean_stop(sprintf(
+      "More than one record in %s with %s", tableName, whereClause
+    ))
   }
 
   if (numberOfRecords == 1) {
@@ -394,11 +396,10 @@ hsMdbTimeSeries <- function(
 )
 {
   ## Return if resolution is neither "min" nor "s"
-  if (! resolution %in% c("min", "s")) {
-    
-    stop("Time resolution must be \"min\" (minutes) or \"s\" (seconds).\n")
-  }
-  
+  if (! resolution %in% c("min", "s")) clean_stop(
+    "Time resolution must be \"min\" (minutes) or \"s\" (seconds).\n"
+  )
+
   # Get timeseries from database with three time-related extra columns:
   # 1. date only (column id = 2)
   # 2. date as number of days since 1899-12-30 (column id = 3)
@@ -608,7 +609,7 @@ hsSqlQuery <- function(
     
     if (stopOnError) {
       
-      stop(msg)
+      clean_stop(msg)
       
     } else {
       

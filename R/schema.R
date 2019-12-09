@@ -224,6 +224,6 @@ getTypeIdentifier <- function(x)
     
     utils::str(x)
     
-    stop("Unknown type (see output of str() above")
+    clean_stop("Unknown type (see output of str() above")
   }
 }
