@@ -51,6 +51,7 @@ hsDumpMdb <- function(
 #' @importFrom kwb.utils createDirectory safePath
 #' @importFrom utils write.table
 #' @export
+#' 
 dumpDatabase <- function(
   db, pattern = "^tbl", target_dir = NULL, create_target_dir = FALSE,
   sep = ",", dec = ".", qmethod = "double", row.names = FALSE, ...
