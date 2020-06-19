@@ -1,5 +1,5 @@
 Package: kwb.db
-Version: 0.4.0.9000
+Version: 0.5.0
 Title: Functions supporting data base access
 Description: This package contains some useful functions, especially for 
     simplifying data transfer between MS Access databases and R. With the 
