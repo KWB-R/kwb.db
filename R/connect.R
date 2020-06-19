@@ -78,12 +78,12 @@ hsOpenDb <- function(
 {
   kwb.utils::catIf(dbg, "in hsOpenDb: use2007Driver =", use2007Driver, "\n")
   
-  if (missing(src) || length(src) == 0) stop(
+  if (missing(src) || length(src) == 0) clean_stop(
     "No source file (*.mdb, *.accdb, *.xls or *.xlsx) or name of ODBC data ", 
     "source given."
   )
   
-  if (mode(src) != "character" || length(src) > 1) stop(
+  if (mode(src) != "character" || length(src) > 1) clean_stop(
     "src must be a character vector of length one."
   )
   
@@ -93,7 +93,7 @@ hsOpenDb <- function(
   )
   
   ## Return if connection failed
-  if (! is64BitR() && con == -1) stop(
+  if (! is64BitR() && con == -1) clean_stop(
     "Could not connect to database: ", src
   )
 
@@ -135,9 +135,10 @@ openAdequateConnectionOrStop <- function(
   is_mdb <- isAccessFile(db)
   is_xls <- isExcelFile(db)
   
-  if ((is_mdb || is_xls) && ! file.exists(db)) clean_stop(
-    "No such file: '", db, "'! Please check the path!"
-  )
+  # Check the file path if it looks like a MS Access or MS Excel file
+  if (is_mdb || is_xls) {
+    kwb.utils::safePath(db)
+  }
 
   if (is_mdb) return(odbcConnectionAccess(
     db, use2007Driver = use2007Driver, DBMSencoding = DBMSencoding, ...
@@ -167,10 +168,40 @@ odbcConnectionAccess <- function(db, use2007Driver = NULL, ...)
 {
   use2007Driver <- kwb.utils::defaultIfNULL(use2007Driver, isAccess2007File(db))
 
-  if (is64BitR()) {
-    odbcConnectionAccess64(db, use2007Driver)
+  # Try to connect. This may fail due to wrong  if this is 64 bit R and there are no 64 bit
+  # ODBC drivers installed
+  con <- try({
+    
+    if (use2007Driver){
+      RODBC::odbcConnectAccess2007(db, ...)
+    } else {
+      RODBC::odbcConnectAccess(db, ...)
+    }
+  })
+
+  # If the connection was established, return the connection object  
+  if (! inherits(con, "try-error")) {
+    return(con)
+  }
+
+  # If the connection could not be established, try to connect via odbc32
+  msg <- "Connecting with RODBC failed. "
+  
+  if (! is64BitR()) {
+    clean_stop(msg, "This is a 32 Bit R session. Try to run R in 64 Bit mode.")
+  }
+  
+  message(msg, "This is a 64 Bit R session. Trying to connect via odbc32...")
+
+  socket <- kwb.utils::defaultIfNULL(
+    x = .GlobalEnv$.r2r_socket, 
+    default = odbc32::start_server(invisible = TRUE)
+  )
+  
+  if (use2007Driver) {
+    odbc32::odbcConnectAccess2007(db, socket = socket)
   } else {
-    odbcConnectionAccess32(db, use2007Driver, ...)
+    odbc32::odbcConnectAccess(db, socket = socket)
   }
 }
 
@@ -182,60 +213,29 @@ odbcConnectionExcel <- function(db, use2007Driver = NULL, ...)
 {
   use2007Driver <- kwb.utils::defaultIfNULL(use2007Driver, isExcel2007File(db))
 
-  if (is64BitR()) {
-    clean_stop("odbcConnectionExcel() is not implemented for 64 Bit!")
-  } else {
-    odbcConnectionExcel32(db, use2007Driver, ...)
-  }
-}
+  # Try to open the connection with the corresponding RODBC function
+  con <- try({
+    if (use2007Driver) {
+      RODBC::odbcConnectExcel2007(db, ...)
+    } else {
+      RODBC::odbcConnectExcel(db, ...)
+    }
+  })
 
-# odbcConnectionAccess32 -------------------------------------------------------
-
-#' @importFrom RODBC odbcConnectAccess2007 odbcConnectAccess
-#' 
-odbcConnectionAccess32 <- function(db, use2007Driver, ...)
-{
-  FUN <- if (use2007Driver){
-    RODBC::odbcConnectAccess2007
-  } else {
-    RODBC::odbcConnectAccess
-  }
+  if (! inherits(con, "try-error")) {
+    return(con)
+  }  
   
-  FUN(db, ...)
-}
-
-# odbcConnectionExcel32 --------------------------------------------------------
-
-#' @importFrom RODBC odbcConnectExcel2007 odbcConnectExcel
-#' 
-odbcConnectionExcel32 <- function(db, use2007Driver, ...)
-{
-  FUN <- if (use2007Driver) {
-    RODBC::odbcConnectExcel2007
-  } else {
-    RODBC::odbcConnectExcel
-  }
-  
-  FUN(db, ...)  
-}
-
-# odbcConnectionAccess64 -------------------------------------------------------
-
-odbcConnectionAccess64 <- function(db, use2007Driver)
-{
-  socket <- kwb.utils::defaultIfNULL(
-    x = .GlobalEnv$.r2r_socket, 
-    default = odbc32::start_server(invisible = TRUE)
+  msg <- paste(
+    "The connection to", db, "via RODBC failed.", 
+    "This is a", ifelse(is64BitR(), "64", "32"), "Bit R session. "
   )
   
-  if (use2007Driver) {
-    
-    odbc32::odbcConnectAccess2007(db, socket = socket)
-    
+  kwb.db:::clean_stop(msg, if (! is64BitR()) {
+    "You may try to run R in 32 Bit mode." 
   } else {
-    
-    odbc32::odbcConnectAccess(db, socket = socket)
-  }
+    "You need to have 64 Bit ODBC drivers installed."
+  })
 }
 
 # hsCloseMdb -------------------------------------------------------------------
@@ -268,7 +268,11 @@ hsCloseMdb <- function(con)
 hsCloseDb <- function(con)
 {
   # Close database connection
-  (get_odbc_function("odbcClose"))(con)
+  result <- try(RODBC::odbcClose(con))
+  
+  if (inherits(result, "try-error")) {
+    odbc32::odbcClose(con)
+  }
   
   # Stop the 32 Bit R server if it is running
   if (is64BitR() && ! is.null(socket <- .GlobalEnv$.r2r_socket)) {

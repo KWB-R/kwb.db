@@ -4,9 +4,19 @@
 \alias{hsMdbTimeSeries}
 \title{Get Mdb time series in UTC}
 \usage{
-hsMdbTimeSeries(mdb, tbl, tsField = hsTsField(mdb, tbl), fields = "*",
-  minDate = NULL, maxDate = NULL, resolution = "min",
-  inclLast = TRUE, sqlFilter = "TRUE", dbg = FALSE, calcType = 1)
+hsMdbTimeSeries(
+  mdb,
+  tbl,
+  tsField = hsTsField(mdb, tbl),
+  fields = "*",
+  minDate = NULL,
+  maxDate = NULL,
+  resolution = "min",
+  inclLast = TRUE,
+  sqlFilter = "TRUE",
+  dbg = FALSE,
+  calcType = 1
+)
 }
 \arguments{
 \item{mdb}{Full path to MS Access database file (*.mdb)}

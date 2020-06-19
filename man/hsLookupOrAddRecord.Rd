@@ -4,8 +4,14 @@
 \alias{hsLookupOrAddRecord}
 \title{Lookup or Add Record}
 \usage{
-hsLookupOrAddRecord(mdb, tbl, keyAssigns, fieldAssigns = NULL,
-  idField = hsFields(mdb, tbl)[1], dbg = FALSE)
+hsLookupOrAddRecord(
+  mdb,
+  tbl,
+  keyAssigns,
+  fieldAssigns = NULL,
+  idField = hsFields(mdb, tbl)[1],
+  dbg = FALSE
+)
 }
 \arguments{
 \item{mdb}{full path to MS Access database}

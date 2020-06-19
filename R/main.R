@@ -1,174 +1,3 @@
-# setCurrentDb -----------------------------------------------------------------
-
-#' Set Current Database
-#' 
-#' @param db full path to MS Access database or ODBC database name
-#' @export
-#' 
-setCurrentDb <- function(db)
-{
-  options(kwb.db.current.db = db)
-}
-
-# currentDb --------------------------------------------------------------------
-
-#' Get Path to or Name of Current Database
-#' 
-#' Get Path to or name of current database (as set with 
-#' \code{\link{setCurrentDb}})
-#' 
-#' @param dbg if TRUE, a message obout setting the current database is printed
-#' @importFrom kwb.utils catIf
-#' @export
-#' 
-currentDb <- function(dbg = TRUE)
-{
-  db <- getOption("kwb.db.current.db")
-
-  if (is.null(db)) {
-    
-    stop("Please specify the database or use 'setCurrentDb' to set the current database!")
-  }
-
-  kwb.utils::catIf(dbg, "\n*** Current database: ", db, "...\n\n")
-
-  db
-}
-
-# runSqlCommandsFromFile -------------------------------------------------------
-
-#' Run SQL Commands from File
-#' 
-#' @param db Full path to MS Access mdb file or ODBC database name
-#' @param sqlFile full path to file containing Ms Access SQL commands
-#' @param \dots further arguments passed to \code{\link{hsSqlQuery}}
-#' 
-runSqlCommandsFromFile <- function(db, sqlFile, ...)
-{
-  sqlCommands <- readSqlCommandsFromFile(sqlFile)
-
-  for (sqlCommand in sqlCommands) {
-    
-    hsSqlQuery(db, sqlCommand, ...)
-  }
-}
-
-# readSqlCommandsFromFile ------------------------------------------------------
-
-#' Read SQL Commands from File
-#' 
-#' Lines starting with "--" or "#" are ignored. SQL commands must be separated
-#' by semicolon and end of line character (\\n).
-#' 
-#' @param sqlScript full path to file containing SQL commands
-#' 
-readSqlCommandsFromFile <- function(sqlScript)
-{
-  sqlLines <- readLines(sqlScript)
-
-  sqlLines <- grep("^\\s*(#|\\-\\-)", sqlLines, value = TRUE, invert = TRUE)
-
-  sqlCode <- paste(sqlLines, collapse = "\n")
-
-  sqlCommands <- strsplit(sqlCode, split=";\\s*\n")[[1]]
-
-  sqlCommands <- sapply(X = sqlCommands, USE.NAMES = FALSE, FUN = function(x) {
-    gsub("(^(\\n|\\s)+)|((\\n|\\s)+$)", "", x)
-  })
-  
-  sqlCommands[sqlCommands != ""]
-}
-
-# hsDumpMdb --------------------------------------------------------------------
-
-#' Export Database Tables to CSV Files
-#' 
-#' Deprecated. Please use \code{\link{dumpDatabase}} instead.
-#' 
-#' @param mdb full path to database
-#' @param ptrn pattern matching names of tables to be exported. Default: "^tbl",
-#'   i.e. tables starting with "tbl"
-#' @param tdir target directory. By default a new directory is created in the
-#'   same directory as mdb resides in. The new directory has the same name as
-#'   the database file with dots substituted with underscores
-#' @param create_target_dir if \code{TRUE}, the target directory \code{tdir}
-#'   is created if it does not exist.
-#' @importFrom kwb.utils warningDeprecated
-#' 
-hsDumpMdb <- function(
-  mdb, ptrn = "^tbl", 
-  tdir = file.path(dirname(mdb), gsub("\\.", "_", basename(mdb))),
-  create_target_dir = FALSE
-)
-{
-  kwb.utils::warningDeprecated("hsDumpMdb", "dumpDatabase")
-  
-  dumpDatabase(
-    db = mdb, pattern = ptrn, target_dir = tdir, 
-    create_target_dir = create_target_dir
-  )
-}
-
-# dumpDatabase -----------------------------------------------------------------
-
-#' Export Database Tables to CSV Files
-#' 
-#' Exports all tables of a database of which the names match a given pattern to
-#' csv files.
-#' 
-#' @param db full path to database or name of ODBC data source
-#' @param pattern pattern matching names of tables to be exported. Default:
-#'   "^tbl", i.e. tables starting with "tbl"
-#' @param target_dir target directory. By default a new directory is created in
-#'   the same directory as mdb resides in. The new directory has the same name
-#'   as the database file with dots substituted with underscores
-#' @param create_target_dir if \code{TRUE}, the target directory \code{tdir} is
-#'   created if it does not exist.
-#' @param sep passed to \code{\link[utils]{write.table}}
-#' @param dec passed to \code{\link[utils]{write.table}}
-#' @param qmethod passed to \code{\link[utils]{write.table}}
-#' @param row.names passed to \code{\link[utils]{write.table}}
-#' @param \dots further arguments passed to \code{\link[utils]{write.table}}
-#' @importFrom kwb.utils createDirectory safePath
-#' @importFrom utils write.table
-#' 
-dumpDatabase <- function(
-  db, pattern = "^tbl", target_dir = NULL, create_target_dir = FALSE,
-  sep = ",", dec = ".", qmethod = "double", row.names = FALSE, ...
-)
-{
-  if (is.null(target_dir)) {
-    
-    target_dir <- file.path(
-      dirname(db), gsub("\\.", "_", basename(db))
-    )
-  }
-  
-  # Create target directory if it does not exist or check its existence
-  if (create_target_dir) {
-    
-    kwb.utils::createDirectory(target_dir)
-    
-  } else {
-    
-    kwb.utils::safePath(target_dir)
-  }
-
-  tables <- grep(pattern, hsTables(db, namesOnly = TRUE), value = TRUE)
-  
-  for (table in tables) {
-    
-    table_data <- hsGetTable(db, table)
-    
-    file <- file.path(target_dir, paste0(table, ".csv"))
-    
-    utils::write.table(
-      table_data, file = file, sep = sep, dec = dec, qmethod = qmethod, 
-      row.names = row.names, ...
-    )
-  }
-}
-
 # lookupRecord -----------------------------------------------------------------
 
 #' Lookup Record
@@ -208,7 +37,9 @@ lookupRecord <- function(
 
   if (numberOfRecords > 1) {
     
-    stop(sprintf("More than one record in %s with %s", tableName, whereClause))
+    clean_stop(sprintf(
+      "More than one record in %s with %s", tableName, whereClause
+    ))
   }
 
   if (numberOfRecords == 1) {
@@ -347,51 +178,6 @@ hsSetPrimaryKey <- function(mdb, tbl, keyFields, dbg = FALSE)
   )
   
   hsSqlQuery(mdb, sql, dbg = dbg)
-}
-
-# .getForeignKeyName -----------------------------------------------------------
-
-.getForeignKeyName <- function(tbl, field, ref.tbl, ref.field)
-{
-  paste("fk", tbl, field, ref.tbl, ref.field, sep="_")
-}
-
-# .sqlForeignKey ---------------------------------------------------------------
-
-.sqlForeignKey <- function(tbl, constraint.name, field, ref.tbl, ref.field)
-{
-  sql <- "ALTER TABLE %s ADD CONSTRAINT %s FOREIGN KEY (%s) REFERENCES %s(%s)"
-  
-  sprintf(sql, tbl, constraint.name, field, ref.tbl, ref.field)
-}
-
-# hsSetForeignKey --------------------------------------------------------------
-
-#' Set Foreign Key for Table Field
-#' 
-#' Set foreign key constraint for a table field
-#' 
-#' @param mdb full path to MS Access database file (*.mdb)
-#' @param tbl name of table containing the field for which the foreign key
-#'   constraint is to be defined
-#' @param field name of table field for which the foreign key constraint is to
-#'   be defined
-#' @param ref.tbl name of table containing the referenced foreign key field
-#' @param ref.field name of foreign key field in ref.tbl
-#' @param key.name optional. Name to be given to the foreign key
-#' @param dbg passed to \code{\link{hsSqlQuery}}
-#' @export
-#' 
-hsSetForeignKey <- function(
-  mdb, tbl, field, ref.tbl, ref.field, 
-  key.name = .getForeignKeyName(tbl, field, ref.tbl, ref.field), dbg = FALSE
-)
-{
-  hsSqlQuery(
-    mdb = mdb,
-    sql = .sqlForeignKey(tbl, key.name, field, ref.tbl, ref.field),
-    dbg = dbg
-  )
 }
 
 # hsGetTimeSeries --------------------------------------------------------------
@@ -610,11 +396,10 @@ hsMdbTimeSeries <- function(
 )
 {
   ## Return if resolution is neither "min" nor "s"
-  if (! resolution %in% c("min", "s")) {
-    
-    stop("Time resolution must be \"min\" (minutes) or \"s\" (seconds).\n")
-  }
-  
+  if (! resolution %in% c("min", "s")) clean_stop(
+    "Time resolution must be \"min\" (minutes) or \"s\" (seconds).\n"
+  )
+
   # Get timeseries from database with three time-related extra columns:
   # 1. date only (column id = 2)
   # 2. date as number of days since 1899-12-30 (column id = 3)
@@ -703,9 +488,14 @@ hsDropTable <- function(mdb, tbl, isPtrn = FALSE, dbg = TRUE)
 
     if (tbl %in% existingTables) {
       
-      kwb.utils::catAndRun(dbg = dbg, sprintf("Dropping table '%s'", tbl), {
+      kwb.utils::catAndRun(
+        dbg = dbg, sprintf("Dropping table '%s'", tbl), expr = {
 
-        (get_odbc_function("sqlDrop"))(con, tbl)
+        result <- try(RODBC::sqlDrop(con, tbl))
+        
+        if (inherits(result, "try-error")) {
+          odbc32::sqlDrop(con, tbl)
+        }
       })
 
     } else {
@@ -738,165 +528,6 @@ hsClearTable <- function(mdb, tbl, cond = TRUE, ...)
   # Run SQL DELETE query
   sql <- sprintf("DELETE FROM %s WHERE %s", tbl, cond)
   hsSqlQuery(mdb, sql, ...)
-}
-
-# selectFromDb -----------------------------------------------------------------
-
-#' Select from Database
-#' 
-#' @param tableName name of database table from which to load data
-#' @param fields names of fields to be selected
-#' @param whereClause SQL WHERE condition string
-#' @param odbc database name or file
-#' @param dbg if \code{TRUE}, debug messages are shown
-#' @param \dots additonal arguments passed to \code{\link{hsSqlQuery}}
-#' 
-selectFromDb <- function(
-  tableName, fields = "*", whereClause = "TRUE", odbc, dbg = TRUE, ...
-)
-{
-  tableName <- .toExistingTableName(tableName, db = odbc)
-  hsSqlQuery(odbc, sqlForSelect(tableName, fields, whereClause), dbg = dbg, ...)
-}
-
-# .toExistingTableName ---------------------------------------------------------
-
-.toExistingTableName <- function(tableName, db)
-{
-  # check if the table name exists in the database and, if not, try to find
-  # a table with matching name
-  tableNames <- hsTables(db, namesOnly = TRUE)
-
-  if (!(tableName %in% tableNames)) {
-
-    pattern <- sprintf("^%s$", tableName)
-    matching <- grep(pattern, tableNames, ignore.case = TRUE)
-
-    n <- length(matching)
-
-    if (n == 0) {
-      
-      stop(sprintf(
-        "There is no table with a name matching '%s' in database '%s'.\n%s",
-        pattern, db, .message_availableTables(tableNames)))
-      
-    } else {
-
-      tableName <- tableNames[matching[1]]
-
-      if (n > 1) {
-        
-        warning(sprintf(
-          "There is more than one table name matching '%s'. I chose '%s'.",
-          pattern, tableName))
-      }
-    }
-  }
-
-  tableName
-}
-
-# hsSqlQuery -------------------------------------------------------------------
-
-#' Send SQL Query to Database
-#' 
-#' Get data from database requested via an SQL query. This function performs
-#' opening of the connection, data retieval via SQL and closing of the
-#' connection.  If an error occurs the program stops and an error description is
-#' shown.
-#' 
-#' @param mdb full path to MS Access database file (extension \dQuote{.mdb} or 
-#'   \dQuote{.accdb}) or MS Excel file (extension \dQuote{.xls} or 
-#'   \dQuote{.xlsx}).
-#' @param sql SQL query
-#' @param use2007Driver if TRUE the functions odbcConnectAccess2007 and
-#'   odbcConnectExcel2007 are used instead of odbcConnectAccess and
-#'   odbcConnectExcel, respectively
-#' @param dbg if TRUE (default), debug messages are shown.
-#' @param stopOnError if TRUE (default), the program stops in case of an error,
-#'   otherwise a warning is shown and NULL is returned.
-#' @param DBMSencoding finally passed to \code{odbcDriverConnect}. Default: "",
-#'   You may want to use: "UTF-8"
-#' @param \dots additional arguments to be passed to \code{sqlQuery}
-#'   
-#' @return On success, a data.frame containing the data that is internally
-#'   requested by calling the RODBC function sqlQuery and that is provided by
-#'   the database is returned.  On error R stops execution and does not return
-#'   anything.
-#'   
-#' @seealso \code{\link{hsPutTable}, \link{hsGetTable}}
-#' @importFrom kwb.utils catIf
-#' @export
-#' @examples
-#' \dontrun{
-#' ## Get Q time series from table "tbl_Hyd" in example database
-#' 
-#' if (.Platform$OS.type == "windows") {
-#' 
-#'   tsQ <- hsSqlQuery(
-#'     xmdb(), "SELECT Zeitst AS t, Q FROM tbl_Hyd WHERE Q > 1.0"
-#'   )
-#'    
-#'   ## Show the first lines of the resulting data.frame
-#'   head(tsQ)
-#' }
-#'    
-#' ## Output
-#' # t     Q
-#' # 1 2011-08-24 22:27:00 1.061
-#' # 2 2011-08-24 22:28:00 1.091
-#' # 3 2011-08-24 22:29:00 1.115
-#' # 4 2011-08-24 22:30:00 1.092
-#' # 5 2011-08-24 22:31:00 1.086
-#' # 6 2011-08-24 22:32:00 1.074
-#' }
-#' 
-hsSqlQuery <- function(
-  mdb, sql, use2007Driver = NULL, dbg = TRUE, stopOnError = TRUE, 
-  DBMSencoding = "", ...
-)
-{
-  # Store current sql dialect
-  sqlDialect <- getCurrentSqlDialect(warn = FALSE)
-  
-  ## Open database connection, on exit close it and reset the sql dialect
-  con <- hsOpenDb(
-    mdb, use2007Driver = use2007Driver, DBMSencoding = DBMSencoding)
-  
-  on.exit({
-    hsCloseDb(con)
-    setCurrentSqlDialect(sqlDialect)
-  })
-  
-  ## Send SQL query
-  kwb.utils::catIf(dbg, sprintf("\nRunning SQL: %s\n\n", sql))
-  
-  res <- (get_odbc_function("sqlQuery"))(con, sql, ...)
-  
-  # Did an error occur?
-  if ((class(res) == "character") && (length(res) > 0)) {
-    
-    msg <- paste(res, collapse = "\n")
-    
-    if (stopOnError) {
-      
-      stop(msg)
-      
-    } else {
-      
-      warning(msg)
-      return (NULL)
-    }
-  }
-  
-  # Did we get data?
-  kwb.utils::catIf(dbg, sprintf(
-    "The query returned %d records with %d fields: %s\n",
-    nrow(res), ncol(res), paste(names(res), collapse = ",")
-  ))
-  
-  ## Return result data.frame and suppress character results
-  if (class(res) == "data.frame") res
 }
 
 # connectionStringAccess -------------------------------------------------------
@@ -963,38 +594,3 @@ getSqlDialect <- function(db, use2007Driver = NULL)
   ifelse(is.MySql, "mysql", "msaccess")
 }
 
-# setCurrentSqlDialect ---------------------------------------------------------
-
-#' Set Current SQL Dialect
-#' 
-#' @param dialectName one of "msaccess", "mysql"
-#' @export
-#' 
-setCurrentSqlDialect <- function(dialectName)
-{
-  options(kwb.db.current.sql.dialect = dialectName)
-}
-
-# getCurrentSqlDialect ---------------------------------------------------------
-
-#' Get Current SQL Dialect
-#' 
-#' @param warn if TRUE and if no current SQL dialog is stored in the options,
-#'   the program stops with an error message
-#' @param dbg if TRUE, a message about the current SQL dialect is printed
-#' @importFrom kwb.utils catIf
-#' @export
-#' 
-getCurrentSqlDialect <- function(warn = TRUE, dbg = FALSE)
-{
-  sqlDialect <- getOption("kwb.db.current.sql.dialect")
-
-  if (is.null(sqlDialect) && warn) {
-    
-    stop("Please use setCurrentSqlDialect to set the current SQL dialect first!")
-  }
-
-  kwb.utils::catIf(dbg, "Current SQL dialect:", sqlDialect, "\n")
-
-  sqlDialect
-}

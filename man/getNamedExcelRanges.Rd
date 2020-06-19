@@ -4,8 +4,13 @@
 \alias{getNamedExcelRanges}
 \title{Get Named Ranges from Excel File}
 \usage{
-getNamedExcelRanges(file, pattern = "^range", dbg = TRUE,
-  stringsAsFactors = FALSE, ...)
+getNamedExcelRanges(
+  file,
+  pattern = "^range",
+  dbg = TRUE,
+  stringsAsFactors = FALSE,
+  ...
+)
 }
 \arguments{
 \item{file}{path to Excel file}

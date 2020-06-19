@@ -4,8 +4,7 @@
 \alias{connectionStringAccess}
 \title{Connection String Access}
 \usage{
-connectionStringAccess(mdb, uid = "", pwd = "",
-  globalPartialBulkOps = 0)
+connectionStringAccess(mdb, uid = "", pwd = "", globalPartialBulkOps = 0)
 }
 \arguments{
 \item{mdb}{full path to MS Access file}

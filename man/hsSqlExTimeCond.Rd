@@ -4,8 +4,14 @@
 \alias{hsSqlExTimeCond}
 \title{SQL Expression: Time Period}
 \usage{
-hsSqlExTimeCond(tsField, dateFirst = NULL, dateLast = NULL,
-  inclLast = TRUE, sqlDialect = getCurrentSqlDialect(), dbg = FALSE)
+hsSqlExTimeCond(
+  tsField,
+  dateFirst = NULL,
+  dateLast = NULL,
+  inclLast = TRUE,
+  sqlDialect = getCurrentSqlDialect(),
+  dbg = FALSE
+)
 }
 \arguments{
 \item{tsField}{name of timestamp field}

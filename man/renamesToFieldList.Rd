@@ -4,8 +4,11 @@
 \alias{renamesToFieldList}
 \title{List of Renamings to Field Selection String}
 \usage{
-renamesToFieldList(renames, source.in.brackets = TRUE,
-  target.in.brackets = TRUE)
+renamesToFieldList(
+  renames,
+  source.in.brackets = TRUE,
+  target.in.brackets = TRUE
+)
 }
 \arguments{
 \item{renames}{list of key = value pairs defining renamings from the keys to

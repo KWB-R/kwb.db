@@ -4,9 +4,16 @@
 \alias{rcode_DatabaseInterface}
 \title{R-code for Functions to Access Database Tables}
 \usage{
-rcode_DatabaseInterface(db = NULL, dbSchema = NULL,
-  tableNamePattern = "", functionPrefix = "db_", pattern = "^",
-  dbg = TRUE, sql.dbg = TRUE, create.create.functions = FALSE)
+rcode_DatabaseInterface(
+  db = NULL,
+  dbSchema = NULL,
+  tableNamePattern = "",
+  functionPrefix = "db_",
+  pattern = "^",
+  dbg = TRUE,
+  sql.dbg = TRUE,
+  create.create.functions = FALSE
+)
 }
 \arguments{
 \item{db}{database name or file}

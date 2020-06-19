@@ -118,7 +118,11 @@ isMySQL <- function(db, ..., con = NULL)
 #' 
 isOdbcDataSource <- function(db)
 {
-  data_sources <- (get_odbc_function("odbcDataSources"))()
+  result <- try(RODBC::odbcDataSources())
   
-  db %in% names(data_sources)
+  if (inherits(result, "try-error")) {
+    result <- odbc32::odbcDataSources()
+  }
+  
+  db %in% names(result)
 }

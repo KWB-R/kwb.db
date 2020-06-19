@@ -4,8 +4,13 @@
 \alias{openAdequateConnectionOrStop}
 \title{Open Adequate Connection or Stop}
 \usage{
-openAdequateConnectionOrStop(db, use2007Driver = NULL, dbg = FALSE,
-  DBMSencoding = "", ...)
+openAdequateConnectionOrStop(
+  db,
+  use2007Driver = NULL,
+  dbg = FALSE,
+  DBMSencoding = "",
+  ...
+)
 }
 \arguments{
 \item{db}{database name or file}
