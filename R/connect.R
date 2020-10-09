@@ -231,7 +231,7 @@ odbcConnectionExcel <- function(db, use2007Driver = NULL, ...)
     "This is a", ifelse(is64BitR(), "64", "32"), "Bit R session. "
   )
   
-  kwb.db:::clean_stop(msg, if (! is64BitR()) {
+  clean_stop(msg, if (! is64BitR()) {
     "You may try to run R in 32 Bit mode." 
   } else {
     "You need to have 64 Bit ODBC drivers installed."
