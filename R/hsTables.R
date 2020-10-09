@@ -67,31 +67,34 @@ hsTables <- function(
   })
 
   # Try to use the RODBC-function first
-  tblList <- try(RODBC::sqlTables(con))
+  tables <- try(RODBC::sqlTables(con))
   
-  if (inherits(tblList, "try-error")) {
+  if (inherits(tables, "try-error")) {
     
-    error <- as.character(tblList)
+    error <- as.character(tables)
     
     # Try to use the odbc32-function next
-    tblList <- try(odbc32::sqlTables(con))
+    tables <- try(odbc32::sqlTables(con))
     
-    if (inherits(tlbList, "try-error")) {
+    if (inherits(tables, "try-error")) {
       clean_stop(
         "Could not fetch a table list.\n", 
         "RODBC::sqlTables() returned: ", error, "\n",
-        "odbc32::sqlTables() returned: ", as.character(tblList)
+        "odbc32::sqlTables() returned: ", as.character(tables)
       )
     }
   }
   
   if (excludeSystemTables) {
-    tblList <- tblList[tblList$TABLE_TYPE != "SYSTEM TABLE", ]
+    tables <- tables[tables$TABLE_TYPE != "SYSTEM TABLE", ]
   }
   
   if (namesOnly) {
-    tblList$TABLE_NAME
+    
+    tables$TABLE_NAME
+    
   } else {
-    tblList
+    
+    tables
   }
 }
