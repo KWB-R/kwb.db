@@ -43,19 +43,31 @@ getDatabaseSchema <- function(
 {
   sqlDialect <- ifelse(isMySQL(db), "mysql", "msaccess")
 
-  if (is.null(tableNames)) {
+  tableInfo <- hsTables(db, namesOnly = FALSE)
+  
+  if (! is.null(tableTypes)) {
     
-    tableInfo <- hsTables(db, namesOnly = FALSE)
     types <- kwb.utils::selectColumns(tableInfo, "TABLE_TYPE")
+    
     tableInfo <- tableInfo[types %in% tableTypes, ]
-    tableNames <- sort(kwb.utils::selectColumns(tableInfo, "TABLE_NAME"))
+  }
+  
+  tNames <- kwb.utils::selectColumns(tableInfo, "TABLE_NAME")
+  
+  tableNames <- if (is.null(tableNames)) {
+
+    tNames
+    
+  } else {
+    
+    intersect(tableNames, tNames)
   }
 
   databaseSchema <- list(tables = list())
 
-  for (tableName in tableNames) {
+  for (tableName in sort(tableNames)) {
 
-    cat("Analysing schema of table", tableName, "...\n")
+    cat("Analysing schema of table/view", tableName, "...\n")
 
     tableSchema <- .getTableSchema(
       db = db,
