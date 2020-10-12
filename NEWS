@@ -2,6 +2,7 @@ Latest changes
 ==============
 
 * getDatabaseSchema(): add arguments "tableNames", "tableTypes"
+* dumpDatabase(): add argument "as.is"
 
 Changes in kwb.db 0.5.0 (2020-06-19)
 ====================================

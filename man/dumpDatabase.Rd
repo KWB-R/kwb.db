@@ -11,6 +11,7 @@ dumpDatabase(
   create_target_dir = FALSE,
   sep = ",",
   dec = ".",
+  as.is = FALSE,
   qmethod = "double",
   row.names = FALSE,
   ...
@@ -32,6 +33,11 @@ created if it does not exist.}
 \item{sep}{passed to \code{\link[utils]{write.table}}}
 
 \item{dec}{passed to \code{\link[utils]{write.table}}}
+
+\item{as.is}{passed to \code{\link[RODBC]{sqlGetResults}}. If \code{TRUE}
+(the default is \code{FALSE}), original data types are kept when the table
+is read into R. By default the types are converted to appropriate R data 
+types (e.g. dates are converted from strings to date objects).}
 
 \item{qmethod}{passed to \code{\link[utils]{write.table}}}
 

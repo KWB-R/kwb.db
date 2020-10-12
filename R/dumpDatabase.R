@@ -48,13 +48,18 @@ hsDumpMdb <- function(
 #' @param qmethod passed to \code{\link[utils]{write.table}}
 #' @param row.names passed to \code{\link[utils]{write.table}}
 #' @param \dots further arguments passed to \code{\link[utils]{write.table}}
+#' @param as.is passed to \code{\link[RODBC]{sqlGetResults}}. If \code{TRUE}
+#'   (the default is \code{FALSE}), original data types are kept when the table
+#'   is read into R. By default the types are converted to appropriate R data 
+#'   types (e.g. dates are converted from strings to date objects).
 #' @importFrom kwb.utils createDirectory safePath
 #' @importFrom utils write.table
 #' @export
 #' 
 dumpDatabase <- function(
   db, pattern = "^tbl", target_dir = NULL, create_target_dir = FALSE,
-  sep = ",", dec = ".", qmethod = "double", row.names = FALSE, ...
+  sep = ",", dec = ".", as.is = FALSE, qmethod = "double", row.names = FALSE, 
+  ...
 )
 {
   if (is.null(target_dir)) {
@@ -78,7 +83,7 @@ dumpDatabase <- function(
   
   for (table in tables) {
     
-    table_data <- hsGetTable(db, table)
+    table_data <- hsGetTable(db, table, as.is = as.is)
     
     file <- file.path(target_dir, paste0(table, ".csv"))
     
