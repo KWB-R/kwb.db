@@ -3,6 +3,7 @@ Latest changes
 
 * getDatabaseSchema(): add arguments "tableNames", "tableTypes"
 * dumpDatabase(): add argument "as.is"
+* hsFields(): Try RODBC::sqlColumns() before raising an error
 
 Changes in kwb.db 0.5.0 (2020-06-19)
 ====================================

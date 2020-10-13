@@ -80,10 +80,22 @@ hsFields <- function(
     tbl <- sub("\\$$", "", tbl)
   }
   
-  fieldInfo <- if (is64BitR()) {
-    clean_stop("Sorry. There is no equivalent to sqlColumns() in odbc32!")
-  } else {
-    RODBC::sqlColumns(con, tbl)
+  fieldInfo <- try(RODBC::sqlColumns(con, tbl))
+  
+  if (inherits(fieldInfo, "try-error")) {
+    
+    msg <- paste("Error when calling RODBC::sqlColumns():", fieldInfo)
+    
+    if (is64BitR()) {
+      
+      msg <- paste0(
+        msg, "\nYou are using the 64 bit version of R. You may try to run the ", 
+        "32 bit version of R. Unfortunately there is no equivalent to ", 
+        "sqlColumns() in odbc32."
+      )
+    }
+
+    clean_stop(msg)
   }
   
   if (namesOnly) {
