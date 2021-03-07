@@ -135,7 +135,7 @@ openAdequateConnectionOrStop <- function(
   is_mdb <- isAccessFile(db)
   is_xls <- isExcelFile(db)
   
-  # Extend and check the path if it looks like a MS Access or MS Excel file
+  # Expand and check the path if it looks like a MS Access or MS Excel file
   if (is_mdb || is_xls) {
     db <- kwb.utils::safePath(path.expand(db))
   }
