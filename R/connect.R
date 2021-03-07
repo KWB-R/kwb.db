@@ -86,7 +86,7 @@ hsOpenDb <- function(
   if (mode(src) != "character" || length(src) > 1) clean_stop(
     "src must be a character vector of length one."
   )
-  
+
   ## Open database connection
   con <- openAdequateConnectionOrStop(
     src, use2007Driver = use2007Driver, DBMSencoding = DBMSencoding, ...
@@ -135,9 +135,9 @@ openAdequateConnectionOrStop <- function(
   is_mdb <- isAccessFile(db)
   is_xls <- isExcelFile(db)
   
-  # Check the file path if it looks like a MS Access or MS Excel file
+  # Extend and check the path if it looks like a MS Access or MS Excel file
   if (is_mdb || is_xls) {
-    kwb.utils::safePath(db)
+    db <- kwb.utils::safePath(path.expand(db))
   }
 
   if (is_mdb) return(odbcConnectionAccess(
