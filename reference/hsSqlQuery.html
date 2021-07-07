@@ -81,7 +81,7 @@ shown." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">kwb.db</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6.0</span>
       </span>
     </div>
 
@@ -89,18 +89,21 @@ shown." />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
+<li>
+  <a href="../news/index.html">Changelog</a>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/KWB-R/kwb.db/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -135,15 +138,15 @@ connection.  If an error occurs the program stops and an error description is
 shown.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>hsSqlQuery</span>(
-  <span class='no'>mdb</span>,
-  <span class='no'>sql</span>,
-  <span class='kw'>use2007Driver</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>dbg</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>stopOnError</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>DBMSencoding</span> <span class='kw'>=</span> <span class='st'>""</span>,
-  <span class='no'>...</span>
-)</pre>
+    <pre class="usage"><span class='fu'>hsSqlQuery</span><span class='op'>(</span>
+  <span class='va'>mdb</span>,
+  <span class='va'>sql</span>,
+  use2007Driver <span class='op'>=</span> <span class='cn'>NULL</span>,
+  dbg <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  stopOnError <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  DBMSencoding <span class='op'>=</span> <span class='st'>""</span>,
+  <span class='va'>...</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -195,19 +198,19 @@ You may want to use: "UTF-8"</p></td>
     <div class='dont-index'><p><code><a href='hsPutTable.html'>hsPutTable</a>, <a href='hsGetTable.html'>hsGetTable</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
+    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
 <span class='co'>## Get Q time series from table "tbl_Hyd" in example database</span>
 
-<span class='kw'>if</span> (<span class='no'>.Platform</span>$<span class='no'>OS.type</span> <span class='kw'>==</span> <span class='st'>"windows"</span>) {
+<span class='kw'>if</span> <span class='op'>(</span><span class='va'>.Platform</span><span class='op'>$</span><span class='va'>OS.type</span> <span class='op'>==</span> <span class='st'>"windows"</span><span class='op'>)</span> <span class='op'>{</span>
 
-  <span class='no'>tsQ</span> <span class='kw'>&lt;-</span> <span class='fu'>hsSqlQuery</span>(
-    <span class='fu'><a href='xmdb.html'>xmdb</a></span>(), <span class='st'>"SELECT Zeitst AS t, Q FROM tbl_Hyd WHERE Q &gt; 1.0"</span>
-  )
-
+  <span class='va'>tsQ</span> <span class='op'>&lt;-</span> <span class='fu'>hsSqlQuery</span><span class='op'>(</span>
+    <span class='fu'><a href='xmdb.html'>xmdb</a></span><span class='op'>(</span><span class='op'>)</span>, <span class='st'>"SELECT Zeitst AS t, Q FROM tbl_Hyd WHERE Q &gt; 1.0"</span>
+  <span class='op'>)</span>
+   
   <span class='co'>## Show the first lines of the resulting data.frame</span>
-  <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='no'>tsQ</span>)
-}
-
+  <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>tsQ</span><span class='op'>)</span>
+<span class='op'>}</span>
+   
 <span class='co'>## Output</span>
 <span class='co'># t     Q</span>
 <span class='co'># 1 2011-08-24 22:27:00 1.061</span>
@@ -216,7 +219,9 @@ You may want to use: "UTF-8"</p></td>
 <span class='co'># 4 2011-08-24 22:30:00 1.092</span>
 <span class='co'># 5 2011-08-24 22:31:00 1.086</span>
 <span class='co'># 6 2011-08-24 22:32:00 1.074</span>
-}</div></pre>
+<span class='op'>}</span>
+
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -228,11 +233,11 @@ You may want to use: "UTF-8"</p></td>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Hauke Sonnenberg.</p>
+  <p>Developed by <a href='http://github.com/hsonne'>Hauke Sonnenberg</a>.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

@@ -78,7 +78,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">kwb.db</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6.0</span>
       </span>
     </div>
 
@@ -86,18 +86,21 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
+<li>
+  <a href="../news/index.html">Changelog</a>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/KWB-R/kwb.db/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -129,7 +132,7 @@
     <p>Merge SQL Queries to One Query That Performs a Full Left Join</p>
     </div>
 
-    <pre class="usage"><span class='fu'>sqlFullLeftJoin</span>(<span class='no'>sqls</span>, <span class='no'>key</span>)</pre>
+    <pre class="usage"><span class='fu'>sqlFullLeftJoin</span><span class='op'>(</span><span class='va'>sqls</span>, <span class='va'>key</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -152,13 +155,14 @@ contained in <code>sqls</code></p></td>
   join"-ing all sub-queries given in <code>sqls</code></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>sql</span> <span class='kw'>&lt;-</span> <span class='fu'>sqlFullLeftJoin</span>(<span class='kw'>key</span> <span class='kw'>=</span> <span class='st'>"id"</span>, <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(
-  <span class='fu'><a href='https://rdrr.io/r/base/structure.html'>structure</a></span>(<span class='st'>"SELECT id, field_1 from table_1"</span>, <span class='kw'>alias</span> <span class='kw'>=</span> <span class='st'>"t1"</span>),
-  <span class='fu'><a href='https://rdrr.io/r/base/structure.html'>structure</a></span>(<span class='st'>"SELECT id, field_2, field_3 from table_2"</span>, <span class='kw'>alias</span> <span class='kw'>=</span> <span class='st'>"t2"</span>),
-  <span class='fu'><a href='https://rdrr.io/r/base/structure.html'>structure</a></span>(<span class='st'>"SELECT id, field_4 from table_3"</span>, <span class='kw'>alias</span> <span class='kw'>=</span> <span class='st'>"t3"</span>)
-))
+    <pre class="examples"><div class='input'><span class='va'>sql</span> <span class='op'>&lt;-</span> <span class='fu'>sqlFullLeftJoin</span><span class='op'>(</span>key <span class='op'>=</span> <span class='st'>"id"</span>, <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>
+  <span class='fu'><a href='https://rdrr.io/r/base/structure.html'>structure</a></span><span class='op'>(</span><span class='st'>"SELECT id, field_1 from table_1"</span>, alias <span class='op'>=</span> <span class='st'>"t1"</span><span class='op'>)</span>,
+  <span class='fu'><a href='https://rdrr.io/r/base/structure.html'>structure</a></span><span class='op'>(</span><span class='st'>"SELECT id, field_2, field_3 from table_2"</span>, alias <span class='op'>=</span> <span class='st'>"t2"</span><span class='op'>)</span>,
+  <span class='fu'><a href='https://rdrr.io/r/base/structure.html'>structure</a></span><span class='op'>(</span><span class='st'>"SELECT id, field_4 from table_3"</span>, alias <span class='op'>=</span> <span class='st'>"t3"</span><span class='op'>)</span>
+<span class='op'>)</span><span class='op'>)</span>
 
-<span class='fu'><a href='https://rdrr.io/r/base/cat.html'>cat</a></span>(<span class='no'>sql</span>)</div><div class='output co'>#&gt; ( SELECT id, field_1 from table_1 AS t1 
+<span class='fu'><a href='https://rdrr.io/r/base/cat.html'>cat</a></span><span class='op'>(</span><span class='va'>sql</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; ( SELECT id, field_1 from table_1 AS t1 
 #&gt;  LEFT JOIN SELECT id, field_2, field_3 from table_2 AS t2 
 #&gt;  ON ( t1.id = t2.id ) )  
 #&gt;  LEFT JOIN SELECT id, field_4 from table_3 AS t3 
@@ -175,11 +179,11 @@ contained in <code>sqls</code></p></td>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Hauke Sonnenberg.</p>
+  <p>Developed by <a href='http://github.com/hsonne'>Hauke Sonnenberg</a>.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

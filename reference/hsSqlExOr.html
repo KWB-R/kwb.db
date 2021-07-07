@@ -81,7 +81,7 @@ example)." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">kwb.db</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6.0</span>
       </span>
     </div>
 
@@ -89,18 +89,21 @@ example)." />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
+<li>
+  <a href="../news/index.html">Changelog</a>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/KWB-R/kwb.db/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -135,7 +138,7 @@ table fields have to be checked in the same way for some criterion (see
 example).</p>
     </div>
 
-    <pre class="usage"><span class='fu'>hsSqlExOr</span>(<span class='no'>x</span>, <span class='kw'>bFunc</span> <span class='kw'>=</span> <span class='st'>""</span>)</pre>
+    <pre class="usage"><span class='fu'>hsSqlExOr</span><span class='op'>(</span><span class='va'>x</span>, bFunc <span class='op'>=</span> <span class='st'>""</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -158,14 +161,15 @@ element of <em>x</em>.</p></td>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'>## Build SQL query finding records in table t in which at least</span>
 <span class='co'>## one of the table fields f1 to f100 is NULL.</span>
-<span class='no'>sql</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/sprintf.html'>sprintf</a></span>(<span class='st'>"SELECT * FROM t WHERE %s"</span>,
-               <span class='fu'>hsSqlExOr</span>(<span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span>(<span class='st'>"f"</span>, <span class='fl'>1</span>:<span class='fl'>100</span>, <span class='kw'>sep</span> <span class='kw'>=</span> <span class='st'>""</span>), <span class='st'>"isNull"</span>))
-
+<span class='va'>sql</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/sprintf.html'>sprintf</a></span><span class='op'>(</span><span class='st'>"SELECT * FROM t WHERE %s"</span>, 
+               <span class='fu'>hsSqlExOr</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span><span class='op'>(</span><span class='st'>"f"</span>, <span class='fl'>1</span><span class='op'>:</span><span class='fl'>100</span>, sep <span class='op'>=</span> <span class='st'>""</span><span class='op'>)</span>, <span class='st'>"isNull"</span><span class='op'>)</span><span class='op'>)</span>
+  
 <span class='co'>## Show the SQL string</span>
-<span class='no'>sql</span></div><div class='output co'>#&gt; [1] "SELECT * FROM t WHERE (FALSE) OR isNull(f1) OR isNull(f2) OR isNull(f3) OR isNull(f4) OR isNull(f5) OR isNull(f6) OR isNull(f7) OR isNull(f8) OR isNull(f9) OR isNull(f10) OR isNull(f11) OR isNull(f12) OR isNull(f13) OR isNull(f14) OR isNull(f15) OR isNull(f16) OR isNull(f17) OR isNull(f18) OR isNull(f19) OR isNull(f20) OR isNull(f21) OR isNull(f22) OR isNull(f23) OR isNull(f24) OR isNull(f25) OR isNull(f26) OR isNull(f27) OR isNull(f28) OR isNull(f29) OR isNull(f30) OR isNull(f31) OR isNull(f32) OR isNull(f33) OR isNull(f34) OR isNull(f35) OR isNull(f36) OR isNull(f37) OR isNull(f38) OR isNull(f39) OR isNull(f40) OR isNull(f41) OR isNull(f42) OR isNull(f43) OR isNull(f44) OR isNull(f45) OR isNull(f46) OR isNull(f47) OR isNull(f48) OR isNull(f49) OR isNull(f50) OR isNull(f51) OR isNull(f52) OR isNull(f53) OR isNull(f54) OR isNull(f55) OR isNull(f56) OR isNull(f57) OR isNull(f58) OR isNull(f59) OR isNull(f60) OR isNull(f61) OR isNull(f62) OR isNull(f63) OR isNull(f64) OR isNull(f65) OR isNull(f66) OR isNull(f67) OR isNull(f68) OR isNull(f69) OR isNull(f70) OR isNull(f71) OR isNull(f72) OR isNull(f73) OR isNull(f74) OR isNull(f75) OR isNull(f76) OR isNull(f77) OR isNull(f78) OR isNull(f79) OR isNull(f80) OR isNull(f81) OR isNull(f82) OR isNull(f83) OR isNull(f84) OR isNull(f85) OR isNull(f86) OR isNull(f87) OR isNull(f88) OR isNull(f89) OR isNull(f90) OR isNull(f91) OR isNull(f92) OR isNull(f93) OR isNull(f94) OR isNull(f95) OR isNull(f96) OR isNull(f97) OR isNull(f98) OR isNull(f99) OR isNull(f100)"</div><div class='input'>  
-## Output (middle part omitted):
-# SELECT * FROM t WHERE (FALSE) OR isNull(f1) OR 
-# isNull(f2) OR isNull(f3) OR ... OR isNull(f100)
+<span class='va'>sql</span>
+</div><div class='output co'>#&gt; [1] "SELECT * FROM t WHERE (FALSE) OR isNull(f1) OR isNull(f2) OR isNull(f3) OR isNull(f4) OR isNull(f5) OR isNull(f6) OR isNull(f7) OR isNull(f8) OR isNull(f9) OR isNull(f10) OR isNull(f11) OR isNull(f12) OR isNull(f13) OR isNull(f14) OR isNull(f15) OR isNull(f16) OR isNull(f17) OR isNull(f18) OR isNull(f19) OR isNull(f20) OR isNull(f21) OR isNull(f22) OR isNull(f23) OR isNull(f24) OR isNull(f25) OR isNull(f26) OR isNull(f27) OR isNull(f28) OR isNull(f29) OR isNull(f30) OR isNull(f31) OR isNull(f32) OR isNull(f33) OR isNull(f34) OR isNull(f35) OR isNull(f36) OR isNull(f37) OR isNull(f38) OR isNull(f39) OR isNull(f40) OR isNull(f41) OR isNull(f42) OR isNull(f43) OR isNull(f44) OR isNull(f45) OR isNull(f46) OR isNull(f47) OR isNull(f48) OR isNull(f49) OR isNull(f50) OR isNull(f51) OR isNull(f52) OR isNull(f53) OR isNull(f54) OR isNull(f55) OR isNull(f56) OR isNull(f57) OR isNull(f58) OR isNull(f59) OR isNull(f60) OR isNull(f61) OR isNull(f62) OR isNull(f63) OR isNull(f64) OR isNull(f65) OR isNull(f66) OR isNull(f67) OR isNull(f68) OR isNull(f69) OR isNull(f70) OR isNull(f71) OR isNull(f72) OR isNull(f73) OR isNull(f74) OR isNull(f75) OR isNull(f76) OR isNull(f77) OR isNull(f78) OR isNull(f79) OR isNull(f80) OR isNull(f81) OR isNull(f82) OR isNull(f83) OR isNull(f84) OR isNull(f85) OR isNull(f86) OR isNull(f87) OR isNull(f88) OR isNull(f89) OR isNull(f90) OR isNull(f91) OR isNull(f92) OR isNull(f93) OR isNull(f94) OR isNull(f95) OR isNull(f96) OR isNull(f97) OR isNull(f98) OR isNull(f99) OR isNull(f100)"</div><div class='input'>  
+<span class='co'>## Output (middle part omitted):</span>
+<span class='co'># SELECT * FROM t WHERE (FALSE) OR isNull(f1) OR </span>
+<span class='co'># isNull(f2) OR isNull(f3) OR ... OR isNull(f100)</span>
 
 </div></pre>
   </div>
@@ -179,11 +183,11 @@ element of <em>x</em>.</p></td>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Hauke Sonnenberg.</p>
+  <p>Developed by <a href='http://github.com/hsonne'>Hauke Sonnenberg</a>.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

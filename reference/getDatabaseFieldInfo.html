@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Lookup or Add Record — hsLookupOrAddRecord • kwb.db</title>
+<title>Get Information on Table Field Names and Types — getDatabaseFieldInfo • kwb.db</title>
 
 
 <!-- jquery -->
@@ -45,10 +45,8 @@
 
 
 
-<meta property="og:title" content="Lookup or Add Record — hsLookupOrAddRecord" />
-<meta property="og:description" content="Looks up a record in a database table and returns the ID of the record. If
-the record is not found it is inserted to the table and the ID of the new
-record is returned." />
+<meta property="og:title" content="Get Information on Table Field Names and Types — getDatabaseFieldInfo" />
+<meta property="og:description" content="Get Information on Table Field Names and Types" />
 
 
 
@@ -125,59 +123,30 @@ record is returned." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Lookup or Add Record</h1>
-    <small class="dont-index">Source: <a href='https://github.com/KWB-R/kwb.db/blob/master/R/main.R'><code>R/main.R</code></a></small>
-    <div class="hidden name"><code>hsLookupOrAddRecord.Rd</code></div>
+    <h1>Get Information on Table Field Names and Types</h1>
+    <small class="dont-index">Source: <a href='https://github.com/KWB-R/kwb.db/blob/master/R/getDatabaseFieldInfo.R'><code>R/getDatabaseFieldInfo.R</code></a></small>
+    <div class="hidden name"><code>getDatabaseFieldInfo.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Looks up a record in a database table and returns the ID of the record. If
-the record is not found it is inserted to the table and the ID of the new
-record is returned.</p>
+    <p>Get Information on Table Field Names and Types</p>
     </div>
 
-    <pre class="usage"><span class='fu'>hsLookupOrAddRecord</span><span class='op'>(</span>
-  <span class='va'>mdb</span>,
-  <span class='va'>tbl</span>,
-  <span class='va'>keyAssigns</span>,
-  fieldAssigns <span class='op'>=</span> <span class='cn'>NULL</span>,
-  idField <span class='op'>=</span> <span class='fu'><a href='hsFields.html'>hsFields</a></span><span class='op'>(</span><span class='va'>mdb</span>, <span class='va'>tbl</span><span class='op'>)</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>]</span>,
-  dbg <span class='op'>=</span> <span class='cn'>FALSE</span>
-<span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>getDatabaseFieldInfo</span><span class='op'>(</span><span class='va'>db</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>mdb</th>
-      <td><p>full path to MS Access database</p></td>
-    </tr>
-    <tr>
-      <th>tbl</th>
-      <td><p>name of table in which record is to be looked up</p></td>
-    </tr>
-    <tr>
-      <th>keyAssigns</th>
-      <td><p>key-value-assignements used to identify the record to be
-looked up. The assignments are defined in forms of a list, e.g. list(key1 =
-"value1", key2 = "value2").</p></td>
-    </tr>
-    <tr>
-      <th>fieldAssigns</th>
-      <td><p>further field-value-assignements used when a new record
-needs to be inserted. The assignments are defined in forms of a list, e.g.
-list(field1 = "value1", field2 = "value2").</p></td>
-    </tr>
-    <tr>
-      <th>idField</th>
-      <td><p>name of ID field, default: name of first table field</p></td>
-    </tr>
-    <tr>
-      <th>dbg</th>
-      <td><p>if TRUE, debug messages are shown</p></td>
+      <th>db</th>
+      <td><p>path to MS Access or MS Excel file or name of ODBC data source</p></td>
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>data frame with columns <code>TABLE_NAME</code>, <code>COLUMN_NAME</code>, 
+  <code>TYPE_NAME</code>, <code>DECIMAL_DIGITS</code></p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

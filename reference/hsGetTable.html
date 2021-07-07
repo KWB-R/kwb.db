@@ -78,7 +78,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">kwb.db</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6.0</span>
       </span>
     </div>
 
@@ -86,18 +86,21 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
+<li>
+  <a href="../news/index.html">Changelog</a>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/KWB-R/kwb.db/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -129,16 +132,16 @@
     <p>Provides data from an MS Access database table in forms of a data frame.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>hsGetTable</span>(
-  <span class='no'>mdb</span>,
-  <span class='no'>tbl</span>,
-  <span class='kw'>cond</span> <span class='kw'>=</span> <span class='st'>"TRUE"</span>,
-  <span class='kw'>fields</span> <span class='kw'>=</span> <span class='st'>"*"</span>,
-  <span class='kw'>dbg</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>check</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>use2007Driver</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='no'>...</span>
-)</pre>
+    <pre class="usage"><span class='fu'>hsGetTable</span><span class='op'>(</span>
+  <span class='va'>mdb</span>,
+  <span class='va'>tbl</span>,
+  cond <span class='op'>=</span> <span class='st'>"TRUE"</span>,
+  fields <span class='op'>=</span> <span class='st'>"*"</span>,
+  dbg <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  check <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  use2007Driver <span class='op'>=</span> <span class='cn'>NULL</span>,
+  <span class='va'>...</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -196,16 +199,16 @@ timestamp field. Use <code>hsMdbTimeSeries</code> instead.</p>
   hsMdbTimeSeries</code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
+    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span> 
 <span class='co'>## Get all datasets from tbl_Hyd in example database where</span>
 <span class='co'>## Q &gt; 1.0 m3/s and temperature &gt; 20 degree Celsius</span>
 <span class='co'>## (only on Windows!)</span>
 
-<span class='kw'>if</span> (<span class='no'>.Platform</span>$<span class='no'>OS.type</span> <span class='kw'>==</span> <span class='st'>"windows"</span>) {
-  <span class='no'>ts</span> <span class='kw'>&lt;-</span> <span class='fu'>hsGetTable</span>(<span class='fu'><a href='xmdb.html'>xmdb</a></span>(), <span class='st'>"tbl_Hyd"</span>, <span class='st'>"Q &gt; 1.0 AND T_Kanal &gt; 20"</span>)
-  <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='no'>ts</span>)
-}
-
+<span class='kw'>if</span> <span class='op'>(</span><span class='va'>.Platform</span><span class='op'>$</span><span class='va'>OS.type</span> <span class='op'>==</span> <span class='st'>"windows"</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='va'>ts</span> <span class='op'>&lt;-</span> <span class='fu'>hsGetTable</span><span class='op'>(</span><span class='fu'><a href='xmdb.html'>xmdb</a></span><span class='op'>(</span><span class='op'>)</span>, <span class='st'>"tbl_Hyd"</span>, <span class='st'>"Q &gt; 1.0 AND T_Kanal &gt; 20"</span><span class='op'>)</span>
+  <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>ts</span><span class='op'>)</span>
+<span class='op'>}</span> 
+ 
 <span class='co'>## Output:</span>
 <span class='co'># Zeitst     Q     v     H T_Kanal</span>
 <span class='co'># 1 2011-08-24 22:33:00 1.075 0.459 1.366    20.1</span>
@@ -214,12 +217,12 @@ timestamp field. Use <code>hsMdbTimeSeries</code> instead.</p>
 <span class='co'># 4 2011-08-24 22:36:00 1.042 0.446 1.361    20.3</span>
 <span class='co'># 5 2011-08-24 22:37:00 1.032 0.443 1.354    20.3</span>
 <span class='co'># 6 2011-08-24 22:38:00 1.010 0.436 1.348    20.4</span>
-
+  
 <span class='co'>## TAKE CARE when getting time-series data:</span>
-<span class='kw'>if</span> (<span class='no'>.Platform</span>$<span class='no'>OS.type</span> <span class='kw'>==</span> <span class='st'>"windows"</span>) {
-  <span class='fu'>hsGetTable</span>(<span class='fu'><a href='xmdb.html'>xmdb</a></span>(), <span class='st'>"tblTimestampTest_DST"</span>)
-}
-
+<span class='kw'>if</span> <span class='op'>(</span><span class='va'>.Platform</span><span class='op'>$</span><span class='va'>OS.type</span> <span class='op'>==</span> <span class='st'>"windows"</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='fu'>hsGetTable</span><span class='op'>(</span><span class='fu'><a href='xmdb.html'>xmdb</a></span><span class='op'>(</span><span class='op'>)</span>, <span class='st'>"tblTimestampTest_DST"</span><span class='op'>)</span>
+<span class='op'>}</span>
+   
 <span class='co'>## Output:</span>
 <span class='co'>#                tstamp</span>
 <span class='co'># 1 2011-03-27 01:00:00</span>
@@ -228,7 +231,7 @@ timestamp field. Use <code>hsMdbTimeSeries</code> instead.</p>
 <span class='co'># 4                &lt;NA&gt;</span>
 <span class='co'># 5 2011-03-27 03:00:00</span>
 <span class='co'># 6 2011-03-27 03:30:00</span>
-
+  
 <span class='co'>## As the output shows the timestamps between 02:00:00 and</span>
 <span class='co'>## 02:59:59 have been set to &lt;NA&gt;. Reason: When retrieving</span>
 <span class='co'>## date/time data from MS Access, R converts the timestamps</span>
@@ -237,19 +240,19 @@ timestamp field. Use <code>hsMdbTimeSeries</code> instead.</p>
 <span class='co'>## R tries to convert to Central European Time (CET) which</span>
 <span class='co'>## does not exist for the hour in which time is switched to</span>
 <span class='co'>## daylight-saving time (as in the example).</span>
-
+  
 <span class='co'>## This standard behaviour can be changed by setting the</span>
 <span class='co'>## standard time zone:</span>
-<span class='no'>tz</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv</a></span>(<span class='st'>"tz"</span>) <span class='co'># save current standard time zone</span>
-<span class='fu'><a href='https://rdrr.io/r/base/Sys.setenv.html'>Sys.setenv</a></span>(<span class='kw'>tz</span> <span class='kw'>=</span> <span class='st'>"UTC"</span>) <span class='co'># set standard time zone to UTC</span>
-
+<span class='va'>tz</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/Sys.getenv.html'>Sys.getenv</a></span><span class='op'>(</span><span class='st'>"tz"</span><span class='op'>)</span> <span class='co'># save current standard time zone</span>
+<span class='fu'><a href='https://rdrr.io/r/base/Sys.setenv.html'>Sys.setenv</a></span><span class='op'>(</span>tz <span class='op'>=</span> <span class='st'>"UTC"</span><span class='op'>)</span> <span class='co'># set standard time zone to UTC</span>
+  
 <span class='co'>## The same command as above now delivers all timestamps</span>
 <span class='co'>## (in Coordinated Universal Time, UTC):</span>
 
-<span class='kw'>if</span> (<span class='no'>.Platform</span>$<span class='no'>OS.type</span> <span class='kw'>==</span> <span class='st'>"windows"</span>) {
-  <span class='fu'>hsGetTable</span>(<span class='fu'><a href='xmdb.html'>xmdb</a></span>(), <span class='st'>"tblTimestampTest_DST"</span>)
-}
-
+<span class='kw'>if</span> <span class='op'>(</span><span class='va'>.Platform</span><span class='op'>$</span><span class='va'>OS.type</span> <span class='op'>==</span> <span class='st'>"windows"</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='fu'>hsGetTable</span><span class='op'>(</span><span class='fu'><a href='xmdb.html'>xmdb</a></span><span class='op'>(</span><span class='op'>)</span>, <span class='st'>"tblTimestampTest_DST"</span><span class='op'>)</span>
+<span class='op'>}</span>
+   
 <span class='co'>## Output:</span>
 <span class='co'>#                tstamp</span>
 <span class='co'># 1 2011-03-27 01:00:00</span>
@@ -260,8 +263,10 @@ timestamp field. Use <code>hsMdbTimeSeries</code> instead.</p>
 <span class='co'># 6 2011-03-27 03:30:00</span>
 
 <span class='co'>## Reset standard time zone</span>
-<span class='fu'><a href='https://rdrr.io/r/base/Sys.setenv.html'>Sys.setenv</a></span>(<span class='kw'>tz</span> <span class='kw'>=</span> <span class='no'>tz</span>)
-}</div></pre>
+<span class='fu'><a href='https://rdrr.io/r/base/Sys.setenv.html'>Sys.setenv</a></span><span class='op'>(</span>tz <span class='op'>=</span> <span class='va'>tz</span><span class='op'>)</span>
+<span class='op'>}</span>
+
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -273,11 +278,11 @@ timestamp field. Use <code>hsMdbTimeSeries</code> instead.</p>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Hauke Sonnenberg.</p>
+  <p>Developed by <a href='http://github.com/hsonne'>Hauke Sonnenberg</a>.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

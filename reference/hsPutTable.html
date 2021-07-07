@@ -83,7 +83,7 @@ hsSafeName will be found for the table." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">kwb.db</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6.0</span>
       </span>
     </div>
 
@@ -91,18 +91,21 @@ hsSafeName will be found for the table." />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
+<li>
+  <a href="../news/index.html">Changelog</a>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/KWB-R/kwb.db/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -139,15 +142,15 @@ table is only overwritten if <em>overwrite</em> is TRUE. Otherwise a
 <code><a href='https://rdrr.io/pkg/kwb.utils/man/hsSafeName.html'>hsSafeName</a></code> will be found for the table.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>hsPutTable</span>(
-  <span class='no'>mdb</span>,
-  <span class='no'>myData</span>,
-  <span class='kw'>tbl</span> <span class='kw'>=</span> <span class='st'>"tblTmp"</span>,
-  <span class='kw'>types</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>overwrite</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>DBMSencoding</span> <span class='kw'>=</span> <span class='st'>""</span>,
-  <span class='kw'>dbg</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
-)</pre>
+    <pre class="usage"><span class='fu'>hsPutTable</span><span class='op'>(</span>
+  <span class='va'>mdb</span>,
+  <span class='va'>myData</span>,
+  tbl <span class='op'>=</span> <span class='st'>"tblTmp"</span>,
+  types <span class='op'>=</span> <span class='cn'>NULL</span>,
+  overwrite <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  DBMSencoding <span class='op'>=</span> <span class='st'>""</span>,
+  dbg <span class='op'>=</span> <span class='cn'>TRUE</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -192,35 +195,37 @@ You may want to use: "UTF-8"</p></td>
     <div class='dont-index'><p><code><a href='hsSqlQuery.html'>hsSqlQuery</a>, <a href='hsGetTable.html'>hsGetTable</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
+    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
 <span class='co'>## Create a data.frame</span>
-<span class='no'>df1</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span>(<span class='kw'>id</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>4</span>, <span class='kw'>rnd</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span>(<span class='fl'>1</span>:<span class='fl'>100</span>)[<span class='fl'>1</span>:<span class='fl'>4</span>])
-
+<span class='va'>df1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>id <span class='op'>=</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>4</span>, rnd <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sample.html'>sample</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>100</span><span class='op'>)</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>4</span><span class='op'>]</span><span class='op'>)</span>
+  
 <span class='co'>## Write data.frame into a table in the example database; as no</span>
 <span class='co'>## table name is specified, a table name is generated. The name</span>
 <span class='co'>## of the table is returned.</span>
 <span class='co'>## (only on Windows!)</span>
 
-<span class='kw'>if</span> (<span class='no'>.Platform</span>$<span class='no'>OS.type</span> <span class='kw'>==</span> <span class='st'>"windows"</span>) {
+<span class='kw'>if</span> <span class='op'>(</span><span class='va'>.Platform</span><span class='op'>$</span><span class='va'>OS.type</span> <span class='op'>==</span> <span class='st'>"windows"</span><span class='op'>)</span> <span class='op'>{</span>
 
-  <span class='no'>tbl</span> <span class='kw'>&lt;-</span> <span class='fu'>hsPutTable</span>(<span class='fu'><a href='xmdb.html'>xmdb</a></span>(), <span class='no'>df1</span>)
-  <span class='no'>tbl</span> <span class='co'># table name here: [1] "tblTmp"</span>
+  <span class='va'>tbl</span> <span class='op'>&lt;-</span> <span class='fu'>hsPutTable</span><span class='op'>(</span><span class='fu'><a href='xmdb.html'>xmdb</a></span><span class='op'>(</span><span class='op'>)</span>, <span class='va'>df1</span><span class='op'>)</span>
+  <span class='va'>tbl</span> <span class='co'># table name here: [1] "tblTmp"</span>
 
-
+   
   <span class='co'>## Get the data from the created table back again and print the</span>
   <span class='co'>## data. As we see, a table containing four different random</span>
   <span class='co'>## numbers between one and 100 has been created.</span>
-  <span class='no'>df2</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='hsGetTable.html'>hsGetTable</a></span>(<span class='fu'><a href='xmdb.html'>xmdb</a></span>(), <span class='no'>tbl</span>)
-  <span class='no'>df2</span>
-}
-
+  <span class='va'>df2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='hsGetTable.html'>hsGetTable</a></span><span class='op'>(</span><span class='fu'><a href='xmdb.html'>xmdb</a></span><span class='op'>(</span><span class='op'>)</span>, <span class='va'>tbl</span><span class='op'>)</span>
+  <span class='va'>df2</span>
+<span class='op'>}</span>
+   
 <span class='co'>## Output:</span>
 <span class='co'>#   id rnd</span>
 <span class='co'># 1  1  82</span>
 <span class='co'># 2  2  14</span>
 <span class='co'># 3  3  99</span>
 <span class='co'># 4  4   6</span>
-}</div></pre>
+<span class='op'>}</span>
+
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -232,11 +237,11 @@ You may want to use: "UTF-8"</p></td>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Hauke Sonnenberg.</p>
+  <p>Developed by <a href='http://github.com/hsonne'>Hauke Sonnenberg</a>.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

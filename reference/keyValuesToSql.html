@@ -78,7 +78,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">kwb.db</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6.0</span>
       </span>
     </div>
 
@@ -86,18 +86,21 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
+<li>
+  <a href="../news/index.html">Changelog</a>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/KWB-R/kwb.db/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -129,7 +132,7 @@
     <p>List of Key = Value Pairs to SQL Expressions</p>
     </div>
 
-    <pre class="usage"><span class='fu'>keyValuesToSql</span>(<span class='no'>keyValues</span>, <span class='no'>filter</span>, <span class='kw'>like</span> <span class='kw'>=</span> <span class='no'>filter</span>)</pre>
+    <pre class="usage"><span class='fu'>keyValuesToSql</span><span class='op'>(</span><span class='va'>keyValues</span>, <span class='va'>filter</span>, like <span class='op'>=</span> <span class='va'>filter</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -151,12 +154,18 @@ otherwise an SQL SET expression.</p></td>
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>keyValues</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>name</span> <span class='kw'>=</span> <span class='st'>"Peter"</span>, <span class='kw'>birth</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/as.POSIXlt.html'>as.POSIXct</a></span>(<span class='st'>"1999-09-09"</span>))
+    <pre class="examples"><div class='input'><span class='va'>keyValues</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>name <span class='op'>=</span> <span class='st'>"Peter"</span>, birth <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/as.POSIXlt.html'>as.POSIXct</a></span><span class='op'>(</span><span class='st'>"1999-09-09"</span><span class='op'>)</span><span class='op'>)</span>
 
-<span class='fu'><a href='setCurrentSqlDialect.html'>setCurrentSqlDialect</a></span>(<span class='st'>"msaccess"</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/cat.html'>cat</a></span>(<span class='fu'>keyValuesToSql</span>(<span class='no'>keyValues</span>, <span class='kw'>filter</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>))</div><div class='output co'>#&gt; name  LIKE  'Peter' AND birth  LIKE  #1999-09-09#</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/cat.html'>cat</a></span>(<span class='fu'>keyValuesToSql</span>(<span class='no'>keyValues</span>, <span class='kw'>filter</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>like</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>))</div><div class='output co'>#&gt; name = 'Peter' AND birth = #1999-09-09#</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/cat.html'>cat</a></span>(<span class='fu'>keyValuesToSql</span>(<span class='no'>keyValues</span>, <span class='kw'>filter</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>))</div><div class='output co'>#&gt; name = 'Peter',birth = #1999-09-09#</div><div class='input'>
-<span class='fu'><a href='setCurrentSqlDialect.html'>setCurrentSqlDialect</a></span>(<span class='st'>"mysql"</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/cat.html'>cat</a></span>(<span class='fu'>keyValuesToSql</span>(<span class='no'>keyValues</span>, <span class='kw'>filter</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>))</div><div class='output co'>#&gt; name  LIKE  "Peter" AND birth  LIKE  '1999-09-09'</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/cat.html'>cat</a></span>(<span class='fu'>keyValuesToSql</span>(<span class='no'>keyValues</span>, <span class='kw'>filter</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>like</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>))</div><div class='output co'>#&gt; name = "Peter" AND birth = '1999-09-09'</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/cat.html'>cat</a></span>(<span class='fu'>keyValuesToSql</span>(<span class='no'>keyValues</span>, <span class='kw'>filter</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>))</div><div class='output co'>#&gt; name = "Peter",birth = '1999-09-09'</div><div class='input'>
+<span class='fu'><a href='setCurrentSqlDialect.html'>setCurrentSqlDialect</a></span><span class='op'>(</span><span class='st'>"msaccess"</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/cat.html'>cat</a></span><span class='op'>(</span><span class='fu'>keyValuesToSql</span><span class='op'>(</span><span class='va'>keyValues</span>, filter <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; name  LIKE  'Peter' AND birth  LIKE  #1999-09-09#</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/cat.html'>cat</a></span><span class='op'>(</span><span class='fu'>keyValuesToSql</span><span class='op'>(</span><span class='va'>keyValues</span>, filter <span class='op'>=</span> <span class='cn'>TRUE</span>, like <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; name = 'Peter' AND birth = #1999-09-09#</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/cat.html'>cat</a></span><span class='op'>(</span><span class='fu'>keyValuesToSql</span><span class='op'>(</span><span class='va'>keyValues</span>, filter <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; name = 'Peter',birth = #1999-09-09#</div><div class='input'>
+<span class='fu'><a href='setCurrentSqlDialect.html'>setCurrentSqlDialect</a></span><span class='op'>(</span><span class='st'>"mysql"</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/cat.html'>cat</a></span><span class='op'>(</span><span class='fu'>keyValuesToSql</span><span class='op'>(</span><span class='va'>keyValues</span>, filter <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; name  LIKE  "Peter" AND birth  LIKE  '1999-09-09'</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/cat.html'>cat</a></span><span class='op'>(</span><span class='fu'>keyValuesToSql</span><span class='op'>(</span><span class='va'>keyValues</span>, filter <span class='op'>=</span> <span class='cn'>TRUE</span>, like <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; name = "Peter" AND birth = '1999-09-09'</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/cat.html'>cat</a></span><span class='op'>(</span><span class='fu'>keyValuesToSql</span><span class='op'>(</span><span class='va'>keyValues</span>, filter <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; name = "Peter",birth = '1999-09-09'</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -169,11 +178,11 @@ otherwise an SQL SET expression.</p></td>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Hauke Sonnenberg.</p>
+  <p>Developed by <a href='http://github.com/hsonne'>Hauke Sonnenberg</a>.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

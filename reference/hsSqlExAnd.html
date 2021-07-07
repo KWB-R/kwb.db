@@ -81,7 +81,7 @@ example)." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">kwb.db</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6.0</span>
       </span>
     </div>
 
@@ -89,18 +89,21 @@ example)." />
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
+<li>
+  <a href="../news/index.html">Changelog</a>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/KWB-R/kwb.db/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -135,7 +138,7 @@ many table fields have to be checked in the same way for some criterion (see
 example).</p>
     </div>
 
-    <pre class="usage"><span class='fu'>hsSqlExAnd</span>(<span class='no'>x</span>, <span class='no'>bFunc</span>)</pre>
+    <pre class="usage"><span class='fu'>hsSqlExAnd</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>bFunc</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -158,14 +161,15 @@ element of <em>x</em>.</p></td>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'>## Build SQL query finding records in table t in which all</span>
 <span class='co'>## of the table fields f1 to f100 are NULL.</span>
-<span class='no'>sql</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/sprintf.html'>sprintf</a></span>(<span class='st'>"SELECT * FROM t WHERE %s"</span>,
-               <span class='fu'>hsSqlExAnd</span>(<span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span>(<span class='st'>"f"</span>, <span class='fl'>1</span>:<span class='fl'>100</span>, <span class='kw'>sep</span> <span class='kw'>=</span> <span class='st'>""</span>), <span class='st'>"isNull"</span>))
-
+<span class='va'>sql</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/sprintf.html'>sprintf</a></span><span class='op'>(</span><span class='st'>"SELECT * FROM t WHERE %s"</span>, 
+               <span class='fu'>hsSqlExAnd</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span><span class='op'>(</span><span class='st'>"f"</span>, <span class='fl'>1</span><span class='op'>:</span><span class='fl'>100</span>, sep <span class='op'>=</span> <span class='st'>""</span><span class='op'>)</span>, <span class='st'>"isNull"</span><span class='op'>)</span><span class='op'>)</span>
+  
 <span class='co'>## Show the SQL string</span>
-<span class='no'>sql</span></div><div class='output co'>#&gt; [1] "SELECT * FROM t WHERE (TRUE) AND isNull(f1) AND isNull(f2) AND isNull(f3) AND isNull(f4) AND isNull(f5) AND isNull(f6) AND isNull(f7) AND isNull(f8) AND isNull(f9) AND isNull(f10) AND isNull(f11) AND isNull(f12) AND isNull(f13) AND isNull(f14) AND isNull(f15) AND isNull(f16) AND isNull(f17) AND isNull(f18) AND isNull(f19) AND isNull(f20) AND isNull(f21) AND isNull(f22) AND isNull(f23) AND isNull(f24) AND isNull(f25) AND isNull(f26) AND isNull(f27) AND isNull(f28) AND isNull(f29) AND isNull(f30) AND isNull(f31) AND isNull(f32) AND isNull(f33) AND isNull(f34) AND isNull(f35) AND isNull(f36) AND isNull(f37) AND isNull(f38) AND isNull(f39) AND isNull(f40) AND isNull(f41) AND isNull(f42) AND isNull(f43) AND isNull(f44) AND isNull(f45) AND isNull(f46) AND isNull(f47) AND isNull(f48) AND isNull(f49) AND isNull(f50) AND isNull(f51) AND isNull(f52) AND isNull(f53) AND isNull(f54) AND isNull(f55) AND isNull(f56) AND isNull(f57) AND isNull(f58) AND isNull(f59) AND isNull(f60) AND isNull(f61) AND isNull(f62) AND isNull(f63) AND isNull(f64) AND isNull(f65) AND isNull(f66) AND isNull(f67) AND isNull(f68) AND isNull(f69) AND isNull(f70) AND isNull(f71) AND isNull(f72) AND isNull(f73) AND isNull(f74) AND isNull(f75) AND isNull(f76) AND isNull(f77) AND isNull(f78) AND isNull(f79) AND isNull(f80) AND isNull(f81) AND isNull(f82) AND isNull(f83) AND isNull(f84) AND isNull(f85) AND isNull(f86) AND isNull(f87) AND isNull(f88) AND isNull(f89) AND isNull(f90) AND isNull(f91) AND isNull(f92) AND isNull(f93) AND isNull(f94) AND isNull(f95) AND isNull(f96) AND isNull(f97) AND isNull(f98) AND isNull(f99) AND isNull(f100)"</div><div class='input'>  
-## Output (middle part omitted):
-# SELECT * FROM t WHERE (TRUE) AND isNull(f1) AND 
-# isNull(f2) AND isNull(f3) AND ... AND isNull(f100)
+<span class='va'>sql</span>
+</div><div class='output co'>#&gt; [1] "SELECT * FROM t WHERE (TRUE) AND isNull(f1) AND isNull(f2) AND isNull(f3) AND isNull(f4) AND isNull(f5) AND isNull(f6) AND isNull(f7) AND isNull(f8) AND isNull(f9) AND isNull(f10) AND isNull(f11) AND isNull(f12) AND isNull(f13) AND isNull(f14) AND isNull(f15) AND isNull(f16) AND isNull(f17) AND isNull(f18) AND isNull(f19) AND isNull(f20) AND isNull(f21) AND isNull(f22) AND isNull(f23) AND isNull(f24) AND isNull(f25) AND isNull(f26) AND isNull(f27) AND isNull(f28) AND isNull(f29) AND isNull(f30) AND isNull(f31) AND isNull(f32) AND isNull(f33) AND isNull(f34) AND isNull(f35) AND isNull(f36) AND isNull(f37) AND isNull(f38) AND isNull(f39) AND isNull(f40) AND isNull(f41) AND isNull(f42) AND isNull(f43) AND isNull(f44) AND isNull(f45) AND isNull(f46) AND isNull(f47) AND isNull(f48) AND isNull(f49) AND isNull(f50) AND isNull(f51) AND isNull(f52) AND isNull(f53) AND isNull(f54) AND isNull(f55) AND isNull(f56) AND isNull(f57) AND isNull(f58) AND isNull(f59) AND isNull(f60) AND isNull(f61) AND isNull(f62) AND isNull(f63) AND isNull(f64) AND isNull(f65) AND isNull(f66) AND isNull(f67) AND isNull(f68) AND isNull(f69) AND isNull(f70) AND isNull(f71) AND isNull(f72) AND isNull(f73) AND isNull(f74) AND isNull(f75) AND isNull(f76) AND isNull(f77) AND isNull(f78) AND isNull(f79) AND isNull(f80) AND isNull(f81) AND isNull(f82) AND isNull(f83) AND isNull(f84) AND isNull(f85) AND isNull(f86) AND isNull(f87) AND isNull(f88) AND isNull(f89) AND isNull(f90) AND isNull(f91) AND isNull(f92) AND isNull(f93) AND isNull(f94) AND isNull(f95) AND isNull(f96) AND isNull(f97) AND isNull(f98) AND isNull(f99) AND isNull(f100)"</div><div class='input'>  
+<span class='co'>## Output (middle part omitted):</span>
+<span class='co'># SELECT * FROM t WHERE (TRUE) AND isNull(f1) AND </span>
+<span class='co'># isNull(f2) AND isNull(f3) AND ... AND isNull(f100)</span>
 
 </div></pre>
   </div>
@@ -179,11 +183,11 @@ element of <em>x</em>.</p></td>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Hauke Sonnenberg.</p>
+  <p>Developed by <a href='http://github.com/hsonne'>Hauke Sonnenberg</a>.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

@@ -79,7 +79,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">kwb.db</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.6.0</span>
       </span>
     </div>
 
@@ -87,18 +87,21 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
+<li>
+  <a href="../news/index.html">Changelog</a>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/KWB-R/kwb.db/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -131,14 +134,14 @@
   time interval</p>
     </div>
 
-    <pre class="usage"><span class='fu'>hsSqlExTimeCond</span>(
-  <span class='no'>tsField</span>,
-  <span class='kw'>dateFirst</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>dateLast</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>inclLast</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>sqlDialect</span> <span class='kw'>=</span> <span class='fu'><a href='getCurrentSqlDialect.html'>getCurrentSqlDialect</a></span>(),
-  <span class='kw'>dbg</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>
-)</pre>
+    <pre class="usage"><span class='fu'>hsSqlExTimeCond</span><span class='op'>(</span>
+  <span class='va'>tsField</span>,
+  dateFirst <span class='op'>=</span> <span class='cn'>NULL</span>,
+  dateLast <span class='op'>=</span> <span class='cn'>NULL</span>,
+  inclLast <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  sqlDialect <span class='op'>=</span> <span class='fu'><a href='getCurrentSqlDialect.html'>getCurrentSqlDialect</a></span><span class='op'>(</span><span class='op'>)</span>,
+  dbg <span class='op'>=</span> <span class='cn'>FALSE</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -180,28 +183,28 @@ else excluded.</p></td>
     <div class='dont-index'><p><code><a href='hsJetDate.html'>hsJetDate</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
+    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
 <span class='co'>## Condition string to filter field "datetime" for timestamps </span>
 <span class='co'>## between 21 and 22 of July 2010</span>
-<span class='no'>from</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/as.Date.html'>as.Date</a></span>(<span class='st'>"2011-08-23"</span>)
-<span class='no'>to</span>   <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/as.Date.html'>as.Date</a></span>(<span class='st'>"2011-08-24"</span>)
-<span class='no'>cond</span> <span class='kw'>&lt;-</span> <span class='fu'>hsSqlExTimeCond</span>(<span class='st'>"Zeitst"</span>, <span class='no'>from</span>, <span class='no'>to</span>)
-<span class='no'>cond</span>
-
+<span class='va'>from</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/as.Date.html'>as.Date</a></span><span class='op'>(</span><span class='st'>"2011-08-23"</span><span class='op'>)</span>
+<span class='va'>to</span>   <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/as.Date.html'>as.Date</a></span><span class='op'>(</span><span class='st'>"2011-08-24"</span><span class='op'>)</span>
+<span class='va'>cond</span> <span class='op'>&lt;-</span> <span class='fu'>hsSqlExTimeCond</span><span class='op'>(</span><span class='st'>"Zeitst"</span>, <span class='va'>from</span>, <span class='va'>to</span><span class='op'>)</span>
+<span class='va'>cond</span>  
+  
 <span class='co'>## Output:</span>
 <span class='co'># TRUE  AND Zeitst &gt;= #08/23/2011 00:00:00#  </span>
 <span class='co'>#       AND Zeitst &lt;= #08/24/2011 00:00:00#</span>
-
+  
 <span class='co'>## The condition string may now be used in an SQL query </span>
 <span class='co'>## to select data from within the time interval. </span>
-<span class='no'>sql</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/sprintf.html'>sprintf</a></span>(<span class='st'>"SELECT * FROM tbl_Hyd WHERE %s"</span>, <span class='no'>cond</span>)
+<span class='va'>sql</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/sprintf.html'>sprintf</a></span><span class='op'>(</span><span class='st'>"SELECT * FROM tbl_Hyd WHERE %s"</span>, <span class='va'>cond</span><span class='op'>)</span>
 
-<span class='kw'>if</span> (<span class='no'>.Platform</span>$<span class='no'>OS.type</span> <span class='kw'>==</span> <span class='st'>"windows"</span>) {
+<span class='kw'>if</span> <span class='op'>(</span><span class='va'>.Platform</span><span class='op'>$</span><span class='va'>OS.type</span> <span class='op'>==</span> <span class='st'>"windows"</span><span class='op'>)</span> <span class='op'>{</span>
 
-  <span class='no'>res</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='hsSqlQuery.html'>hsSqlQuery</a></span>(<span class='fu'><a href='xmdb.html'>xmdb</a></span>(), <span class='no'>sql</span>)
-  <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='no'>res</span>)
-}
-
+  <span class='va'>res</span> <span class='op'>&lt;-</span> <span class='fu'><a href='hsSqlQuery.html'>hsSqlQuery</a></span><span class='op'>(</span><span class='fu'><a href='xmdb.html'>xmdb</a></span><span class='op'>(</span><span class='op'>)</span>, <span class='va'>sql</span><span class='op'>)</span>
+  <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>res</span><span class='op'>)</span>
+<span class='op'>}</span>
+   
 <span class='co'>## Output:</span>
 <span class='co'># Zeitst Q v     H T_Kanal</span>
 <span class='co'># 1 2011-08-23 00:00:00 0 0 1.260    19.5</span>
@@ -210,7 +213,9 @@ else excluded.</p></td>
 <span class='co'># 4 2011-08-23 00:03:00 0 0 1.259    19.5</span>
 <span class='co'># 5 2011-08-23 00:04:00 0 0 1.260    19.5</span>
 <span class='co'># 6 2011-08-23 00:05:00 0 0 1.260    19.5</span>
-}</div></pre>
+<span class='op'>}</span>
+
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -222,11 +227,11 @@ else excluded.</p></td>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Hauke Sonnenberg.</p>
+  <p>Developed by <a href='http://github.com/hsonne'>Hauke Sonnenberg</a>.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>
