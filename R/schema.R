@@ -30,32 +30,44 @@ printDatabaseSchema <- function(dbSchema)
 #' Get Database Schema
 #' 
 #' @param db full path to database (*.mdb, *.xls) or name of ODBC database
-#' 
+#' @param tableNames optional. Vector of table names of tables to be included
+#' @param tableTypes types of database objects to be included. Default: 
+#'   \code{c("TABLE", "VIEW")}
 #' @return list with elements \emph{tables} and \emph{relationships}. Element
 #'   \emph{tables} is a list o named elements with the name representing the
 #'   table names and the elements being lists describing the table...
 #'
-getDatabaseSchema <- function(db)
+getDatabaseSchema <- function(
+  db, tableNames = NULL, tableTypes = c("TABLE", "VIEW")
+)
 {
   sqlDialect <- ifelse(isMySQL(db), "mysql", "msaccess")
 
   tableInfo <- hsTables(db, namesOnly = FALSE)
+  
+  if (! is.null(tableTypes)) {
+    
+    types <- kwb.utils::selectColumns(tableInfo, "TABLE_TYPE")
+    
+    tableInfo <- tableInfo[types %in% tableTypes, ]
+  }
+  
+  tNames <- kwb.utils::selectColumns(tableInfo, "TABLE_NAME")
+  
+  tableNames <- if (is.null(tableNames)) {
 
-  roworder <- order(
-    tableInfo$TABLE_TYPE, tableInfo$TABLE_NAME
-  )
-
-  tableInfo <- tableInfo[roworder, ]
-
-  selected <- tableInfo$TABLE_TYPE %in% c("TABLE", "VIEW")
-
-  tableNames <- sort(tableInfo$TABLE_NAME[selected])
+    tNames
+    
+  } else {
+    
+    intersect(tableNames, tNames)
+  }
 
   databaseSchema <- list(tables = list())
 
-  for (tableName in tableNames) {
+  for (tableName in sort(tableNames)) {
 
-    cat("Analysing schema of table", tableName, "...\n")
+    cat("Analysing schema of table/view", tableName, "...\n")
 
     tableSchema <- .getTableSchema(
       db = db,

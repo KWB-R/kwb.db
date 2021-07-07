@@ -1,5 +1,6 @@
-[![Appveyor build status](https://ci.appveyor.com/api/projects/status/m70gtm2010x6hnqi/branch/master?svg=true)](https://ci.appveyor.com/project/KWB-R/kwb-db/branch/master) 
-[![Build Status](https://travis-ci.org/KWB-R/kwb.db.svg?branch=master)](https://travis-ci.org/KWB-R/kwb.db) [![codecov](https://codecov.io/github/KWB-R/kwb.db/branch/master/graphs/badge.svg)](https://codecov.io/github/KWB-R/kwb.db)  [![lifecycle](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://www.tidyverse.org/lifecycle/#stable)
+[![R-CMD-check](https://github.com/KWB-R/kwb.db/workflows/R-CMD-check/badge.svg)](https://github.com/KWB-R/kwb.db/actions?query=workflow%3AR-CMD-check)
+[![pkgdown](https://github.com/KWB-R/kwb.db/workflows/pkgdown/badge.svg)](https://github.com/KWB-R/kwb.db/actions?query=workflow%3Apkgdown)
+[![codecov](https://codecov.io/github/KWB-R/kwb.db/branch/master/graphs/badge.svg)](https://codecov.io/github/KWB-R/kwb.db)  [![lifecycle](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://www.tidyverse.org/lifecycle/#stable)
 
 # kwb.db
 
