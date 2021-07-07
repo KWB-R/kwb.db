@@ -10,3 +10,4 @@ LICENSE\.md$
 .gitlab-ci.yml
 ^index\.md$
 ^\.travis\.yml$
+^\.github$

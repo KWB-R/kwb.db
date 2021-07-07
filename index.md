@@ -1,5 +1,6 @@
-[![Appveyor build status](https://ci.appveyor.com/api/projects/status/m70gtm2010x6hnqi/branch/master?svg=true)](https://ci.appveyor.com/project/KWB-R/kwb-db/branch/master) 
-[![Build Status](https://travis-ci.org/KWB-R/kwb.db.svg?branch=master)](https://travis-ci.org/KWB-R/kwb.db) [![codecov](https://codecov.io/github/KWB-R/kwb.db/branch/master/graphs/badge.svg)](https://codecov.io/github/KWB-R/kwb.db)  [![lifecycle](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://www.tidyverse.org/lifecycle/#stable)
+[![R-CMD-check](https://github.com/KWB-R/kwb.db/workflows/R-CMD-check/badge.svg)](https://github.com/KWB-R/kwb.db/actions?query=workflow%3AR-CMD-check)
+[![pkgdown](https://github.com/KWB-R/kwb.db/workflows/pkgdown/badge.svg)](https://github.com/KWB-R/kwb.db/actions?query=workflow%3Apkgdown)
+[![codecov](https://codecov.io/github/KWB-R/kwb.db/branch/master/graphs/badge.svg)](https://codecov.io/github/KWB-R/kwb.db)  [![lifecycle](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://www.tidyverse.org/lifecycle/#stable)
 
 This repository contains the R package kwb.db. The package provides functions that aim at simplifying the data transfer between databases and R. It is based on the [RODBC](https://cran.r-project.org/web/packages/RODBC/) package that gives access to databases that provide an [ODBC](https://docs.microsoft.com/en-us/sql/odbc/reference/what-is-odbc) interface. Databases may be Microsoft Access files, Microsoft Excel files or any other database that is registered as an ODBC data source on your local machine. See e.g. [here](https://docs.microsoft.com/en-us/sql/odbc/admin/odbc-data-source-administrator) for how to setup ODBC data sources in Windows.
 
