@@ -19,16 +19,16 @@ devtools::install_github("kwb-r/kwb.db", dependencies = TRUE)
 ## Database Access in RODBC
 
 
-With the RODBC package, you need to open a database connection, send one or more requests to the database and finally close the dabase connection.
+With the RODBC package, you need to open a database connection, send one or more requests to the database and finally close the database connection.
 
 ## Database Access with this package
 
 
 With the functions of this package it is not needed to open and close a database connection explicitly; this is done behind the scenes in the functions. Instead of a database connection the path to the database file needs to be passed to the functions as an argument.
 
-The main functions are [`hsGetTable()`](https://kwb-r.github.io/kwb.db/reference/hsGetTable.html) and [`hsPutTable()`](https://kwb-r.github.io/kwb.db/reference/hsPutTable.html). They transfer data from a database to a data frame in R and save data from a data frame in R into a new table in a database, respectively.
+The main functions are `hsGetTable()` and `hsPutTable()`. They transfer data from a database to a data frame in R and save data from a data frame in R into a new table in a database, respectively.
 
-Use [`hsTables()`](https://kwb-r.github.io/kwb.db/reference/hsTables.html) to get a list of tables that are available in a database and [`hsFields()`](https://kwb-r.github.io/kwb.db/reference/hsFields.html) to get a list of table fields that are contained in a database table.
+Use `hsTables()` to get a list of tables that are available in a database and `hsFields()` to get a list of table fields that are contained in a database table.
 
 A general workflow could look like this:
 
@@ -54,4 +54,4 @@ kwb.db::hsPutTable(mdb, data_new, "fancy_table")
 
 In each of the `kwb.db::`-function calls above a database connection is opened, a request to the database is sent and the connection is closed again. Thus, the user does not have to care about open database connections.
 
-Take care when getting time series data from an MS Access database, see therefore [`hsMdbTimeSeries()`](https://kwb-r.github.io/kwb.db/reference/hsMdbTimeSeries.html).
+Take care when getting time series data from an MS Access database, see therefore `hsMdbTimeSeries()`.
