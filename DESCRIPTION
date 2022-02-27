@@ -36,11 +36,12 @@ Imports:
     odbc32 (>= 0.2.7),
     RODBC (>= 1.3.16)
 Suggests: 
-    testthat (>= 2.2.1)
+    testthat (>= 2.2.1),
+    xml2
 Remotes: 
     github::cran/RODBC@1.3-16,
     github::hsonne/odbc32@r3.0.0,
     github::kwb-r/kwb.datetime,
     github::kwb-r/kwb.utils
 Encoding: UTF-8
-RoxygenNote: 7.1.1
+RoxygenNote: 7.1.2
