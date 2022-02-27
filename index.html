@@ -33,6 +33,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-home">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -52,12 +54,6 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
-  <a href="index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
   <a href="reference/index.html">Reference</a>
 </li>
 <li>
@@ -66,7 +62,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/KWB-R/kwb.db/">
+  <a href="https://github.com/KWB-R/kwb.db/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -91,10 +87,10 @@
   <div class="contents col-md-9">
 
 
-<p>This repository contains the R package kwb.db. The package provides functions that aim at simplifying the data transfer between databases and R. It is based on the <a href="https://cran.r-project.org/web/packages/RODBC/">RODBC</a> package that gives access to databases that provide an <a href="https://docs.microsoft.com/en-us/sql/odbc/reference/what-is-odbc">ODBC</a> interface. Databases may be Microsoft Access files, Microsoft Excel files or any other database that is registered as an ODBC data source on your local machine. See e.g. <a href="https://docs.microsoft.com/en-us/sql/odbc/admin/odbc-data-source-administrator">here</a> for how to setup ODBC data sources in Windows.</p>
-<div id="installation" class="section level1">
-<div class="page-header"><h1 class="hasAnchor">
-<a href="#installation" class="anchor"></a>Installation</h1></div>
+<p>This repository contains the R package kwb.db. The package provides functions that aim at simplifying the data transfer between databases and R. It is based on the <a href="https://cran.r-project.org/web/packages/RODBC/" class="external-link">RODBC</a> package that gives access to databases that provide an <a href="https://docs.microsoft.com/en-us/sql/odbc/reference/what-is-odbc" class="external-link">ODBC</a> interface. Databases may be Microsoft Access files, Microsoft Excel files or any other database that is registered as an ODBC data source on your local machine. See e.g. <a href="https://docs.microsoft.com/en-us/sql/odbc/admin/odbc-data-source-administrator" class="external-link">here</a> for how to setup ODBC data sources in Windows.</p>
+<div class="section level1">
+<div class="page-header"><h1 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
+</h1></div>
 <p>Once you have the devtools package installed, you can install the package kwb.db like this:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># If required, install the devtools package...</span>
@@ -102,14 +98,14 @@
 
 <span class="co"># Install kwb.db (and dependent packages) from this GitHub repository</span>
 <span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"kwb-r/kwb.db"</span>, dependencies <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
-<div id="database-access-in-rodbc" class="section level2">
-<h2 class="hasAnchor">
-<a href="#database-access-in-rodbc" class="anchor"></a>Database Access in RODBC</h2>
+<div class="section level2">
+<h2 id="database-access-in-rodbc">Database Access in RODBC<a class="anchor" aria-label="anchor" href="#database-access-in-rodbc"></a>
+</h2>
 <p>With the RODBC package, you need to open a database connection, send one or more requests to the database and finally close the database connection.</p>
 </div>
-<div id="database-access-with-this-package" class="section level2">
-<h2 class="hasAnchor">
-<a href="#database-access-with-this-package" class="anchor"></a>Database Access with this package</h2>
+<div class="section level2">
+<h2 id="database-access-with-this-package">Database Access with this package<a class="anchor" aria-label="anchor" href="#database-access-with-this-package"></a>
+</h2>
 <p>With the functions of this package it is not needed to open and close a database connection explicitly; this is done behind the scenes in the functions. Instead of a database connection the path to the database file needs to be passed to the functions as an argument.</p>
 <p>The main functions are <code><a href="reference/hsGetTable.html">hsGetTable()</a></code> and <code><a href="reference/hsPutTable.html">hsPutTable()</a></code>. They transfer data from a database to a data frame in R and save data from a data frame in R into a new table in a database, respectively.</p>
 <p>Use <code><a href="reference/hsTables.html">hsTables()</a></code> to get a list of tables that are available in a database and <code><a href="reference/hsFields.html">hsFields()</a></code> to get a list of table fields that are contained in a database table.</p>
@@ -122,7 +118,7 @@
 <span class="op">(</span><span class="va">tables</span> <span class="op">&lt;-</span> <span class="fu">kwb.db</span><span class="fu">::</span><span class="fu"><a href="reference/hsTables.html">hsTables</a></span><span class="op">(</span><span class="va">mdb</span><span class="op">)</span><span class="op">)</span>
 
 <span class="co"># For each table, get the vector of available fields (= columns)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/lapply.html">lapply</a></span><span class="op">(</span><span class="va">tables</span>, <span class="fu">kwb.db</span><span class="fu">::</span><span class="va"><a href="reference/hsFields.html">hsFields</a></span>, mdb <span class="op">=</span> <span class="va">mdb</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">tables</span>, <span class="fu">kwb.db</span><span class="fu">::</span><span class="va"><a href="reference/hsFields.html">hsFields</a></span>, mdb <span class="op">=</span> <span class="va">mdb</span><span class="op">)</span>
 
 <span class="co"># Get the content of the first table</span>
 <span class="va">data</span> <span class="op">&lt;-</span> <span class="fu">kwb.db</span><span class="fu">::</span><span class="fu"><a href="reference/hsGetTable.html">hsGetTable</a></span><span class="op">(</span><span class="va">mdb</span>, <span class="va">tables</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span>
@@ -141,49 +137,60 @@
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <div class="links">
-<h2>Links</h2>
+<h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
-<li>Browse source code at <br><a href="https://github.com/KWB-R/kwb.db/">https://​github.com/​KWB-R/​kwb.db/​</a>
-</li>
-<li>Report a bug at <br><a href="https://github.com/KWB-R/kwb.db/issues">https://​github.com/​KWB-R/​kwb.db/​issues</a>
-</li>
-</ul>
-</div>
-<div class="license">
-<h2>License</h2>
-<ul class="list-unstyled">
-<li><a href="LICENSE.html">Full license</a></li>
-<li><small><a href="https://opensource.org/licenses/mit-license.php">MIT</a> + file <a href="LICENSE-text.html">LICENSE</a></small></li>
-</ul>
-</div>
-<div class="developers">
-<h2>Developers</h2>
-<ul class="list-unstyled">
-<li>
-<a href="http://github.com/hsonne">Hauke Sonnenberg</a> <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0001-9134-2871" target="orcid.widget" aria-label="ORCID"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
-<li><a href="authors.html">All authors...</a></li>
+<li><a href="https://github.com/KWB-R/kwb.db/" class="external-link">Browse source code</a></li>
+<li><a href="https://github.com/KWB-R/kwb.db/issues" class="external-link">Report a bug</a></li>
 </ul>
 </div>
 
-  <div class="dev-status">
-<h2>Dev status</h2>
+<div class="license">
+<h2 data-toc-skip>License</h2>
 <ul class="list-unstyled">
-<li><a href="https://github.com/KWB-R/kwb.db/actions?query=workflow%3AR-CMD-check"><img src="https://github.com/KWB-R/kwb.db/workflows/R-CMD-check/badge.svg" alt="R-CMD-check"></a></li>
-<li><a href="https://github.com/KWB-R/kwb.db/actions?query=workflow%3Apkgdown"><img src="https://github.com/KWB-R/kwb.db/workflows/pkgdown/badge.svg" alt="pkgdown"></a></li>
-<li><a href="https://codecov.io/github/KWB-R/kwb.db"><img src="https://codecov.io/github/KWB-R/kwb.db/branch/master/graphs/badge.svg" alt="codecov"></a></li>
-<li><a href="https://www.tidyverse.org/lifecycle/#stable"><img src="https://img.shields.io/badge/lifecycle-stable-brightgreen.svg" alt="lifecycle"></a></li>
+<li><a href="LICENSE.html">Full license</a></li>
+<li><small><a href="https://opensource.org/licenses/mit-license.php" class="external-link">MIT</a> + file <a href="LICENSE-text.html">LICENSE</a></small></li>
 </ul>
 </div>
+
+
+<div class="citation">
+<h2 data-toc-skip>Citation</h2>
+<ul class="list-unstyled">
+<li><a href="authors.html#citation">Citing kwb.db</a></li>
+</ul>
 </div>
+
+<div class="developers">
+<h2 data-toc-skip>Developers</h2>
+<ul class="list-unstyled">
+<li>
+<a href="http://github.com/hsonne" class="external-link">Hauke Sonnenberg</a> <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0000-0001-9134-2871" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
+<li><a href="authors.html">More about authors...</a></li>
+</ul>
+</div>
+
+<div class="dev-status">
+<h2 data-toc-skip>Dev status</h2>
+<ul class="list-unstyled">
+<li><a href="https://github.com/KWB-R/kwb.db/actions?query=workflow%3AR-CMD-check" class="external-link"><img src="https://github.com/KWB-R/kwb.db/workflows/R-CMD-check/badge.svg" alt="R-CMD-check"></a></li>
+<li><a href="https://github.com/KWB-R/kwb.db/actions?query=workflow%3Apkgdown" class="external-link"><img src="https://github.com/KWB-R/kwb.db/workflows/pkgdown/badge.svg" alt="pkgdown"></a></li>
+<li><a href="https://codecov.io/github/KWB-R/kwb.db" class="external-link"><img src="https://codecov.io/github/KWB-R/kwb.db/branch/master/graphs/badge.svg" alt="codecov"></a></li>
+<li><a href="https://www.tidyverse.org/lifecycle/#stable" class="external-link"><img src="https://img.shields.io/badge/lifecycle-stable-brightgreen.svg" alt="lifecycle"></a></li>
+</ul>
+</div>
+
+  </div>
 </div>
 
 
       <footer><div class="copyright">
-  <p>Developed by <a href="http://github.com/hsonne">Hauke Sonnenberg</a>.</p>
+  <p></p>
+<p>Developed by <a href="http://github.com/hsonne" class="external-link">Hauke Sonnenberg</a>.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
 </div>
 
       </footer>
