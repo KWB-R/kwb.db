@@ -121,7 +121,7 @@ argumentsToSqlParts <- function(
       
       conditions <- character()
       
-      for (i in seq_len(length(arguments))) {
+      for (i in seq_along(arguments)) {
         
         argument <- arguments[[i]]
         
@@ -163,8 +163,7 @@ argumentsToSqlParts <- function(
 {
   conditions <- character()
 
-  for (i in seq_len(length(values))) {
-    
+  for (i in seq_along(values)) {
     conditions <- c(conditions, .toCondition(fieldNames[i], values[i]))
   }
 
