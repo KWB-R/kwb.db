@@ -1,249 +1,249 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>/404.html</loc>
+    <loc>https://kwb-r.github.io/kwb.db/404.html</loc>
   </url>
   <url>
-    <loc>/LICENSE-text.html</loc>
+    <loc>https://kwb-r.github.io/kwb.db/LICENSE-text.html</loc>
   </url>
   <url>
-    <loc>/LICENSE.html</loc>
+    <loc>https://kwb-r.github.io/kwb.db/LICENSE.html</loc>
   </url>
   <url>
-    <loc>/authors.html</loc>
+    <loc>https://kwb-r.github.io/kwb.db/authors.html</loc>
   </url>
   <url>
-    <loc>/index.html</loc>
+    <loc>https://kwb-r.github.io/kwb.db/index.html</loc>
   </url>
   <url>
-    <loc>/news/index.html</loc>
+    <loc>https://kwb-r.github.io/kwb.db/news/index.html</loc>
   </url>
   <url>
-    <loc>/reference/connectionStringAccess.html</loc>
+    <loc>https://kwb-r.github.io/kwb.db/reference/connectionStringAccess.html</loc>
   </url>
   <url>
-    <loc>/reference/createRDatabaseInterface.html</loc>
+    <loc>https://kwb-r.github.io/kwb.db/reference/createRDatabaseInterface.html</loc>
   </url>
   <url>
-    <loc>/reference/currentDb.html</loc>
+    <loc>https://kwb-r.github.io/kwb.db/reference/currentDb.html</loc>
   </url>
   <url>
-    <loc>/reference/dataFrameToSqlTuples.html</loc>
+    <loc>https://kwb-r.github.io/kwb.db/reference/dataFrameToSqlTuples.html</loc>
   </url>
   <url>
-    <loc>/reference/dumpDatabase.html</loc>
+    <loc>https://kwb-r.github.io/kwb.db/reference/dumpDatabase.html</loc>
   </url>
   <url>
-    <loc>/reference/getCurrentSqlDialect.html</loc>
+    <loc>https://kwb-r.github.io/kwb.db/reference/getCurrentSqlDialect.html</loc>
   </url>
   <url>
-    <loc>/reference/getDatabaseFieldInfo.html</loc>
+    <loc>https://kwb-r.github.io/kwb.db/reference/getDatabaseFieldInfo.html</loc>
   </url>
   <url>
-    <loc>/reference/getDatabaseSchema.html</loc>
+    <loc>https://kwb-r.github.io/kwb.db/reference/getDatabaseSchema.html</loc>
   </url>
   <url>
-    <loc>/reference/getFilteredRecords.html</loc>
+    <loc>https://kwb-r.github.io/kwb.db/reference/getFilteredRecords.html</loc>
   </url>
   <url>
-    <loc>/reference/getNamedExcelRanges.html</loc>
+    <loc>https://kwb-r.github.io/kwb.db/reference/getNamedExcelRanges.html</loc>
   </url>
   <url>
-    <loc>/reference/getSqlDialect.html</loc>
+    <loc>https://kwb-r.github.io/kwb.db/reference/getSqlDialect.html</loc>
   </url>
   <url>
-    <loc>/reference/getTypeIdentifier.html</loc>
+    <loc>https://kwb-r.github.io/kwb.db/reference/getTypeIdentifier.html</loc>
   </url>
   <url>
-    <loc>/reference/hsClearTable.html</loc>
+    <loc>https://kwb-r.github.io/kwb.db/reference/hsClearTable.html</loc>
   </url>
   <url>
-    <loc>/reference/hsCloseDb.html</loc>
+    <loc>https://kwb-r.github.io/kwb.db/reference/hsCloseDb.html</loc>
   </url>
   <url>
-    <loc>/reference/hsCloseMdb.html</loc>
+    <loc>https://kwb-r.github.io/kwb.db/reference/hsCloseMdb.html</loc>
   </url>
   <url>
-    <loc>/reference/hsDropTable.html</loc>
+    <loc>https://kwb-r.github.io/kwb.db/reference/hsDropTable.html</loc>
   </url>
   <url>
-    <loc>/reference/hsDumpMdb.html</loc>
+    <loc>https://kwb-r.github.io/kwb.db/reference/hsDumpMdb.html</loc>
   </url>
   <url>
-    <loc>/reference/hsFields.html</loc>
+    <loc>https://kwb-r.github.io/kwb.db/reference/hsFields.html</loc>
   </url>
   <url>
-    <loc>/reference/hsGetTable.html</loc>
+    <loc>https://kwb-r.github.io/kwb.db/reference/hsGetTable.html</loc>
   </url>
   <url>
-    <loc>/reference/hsGetTimeSeries.html</loc>
+    <loc>https://kwb-r.github.io/kwb.db/reference/hsGetTimeSeries.html</loc>
   </url>
   <url>
-    <loc>/reference/hsJetDate.html</loc>
+    <loc>https://kwb-r.github.io/kwb.db/reference/hsJetDate.html</loc>
   </url>
   <url>
-    <loc>/reference/hsLookupOrAddRecord.html</loc>
+    <loc>https://kwb-r.github.io/kwb.db/reference/hsLookupOrAddRecord.html</loc>
   </url>
   <url>
-    <loc>/reference/hsMdbTimeSeries.html</loc>
+    <loc>https://kwb-r.github.io/kwb.db/reference/hsMdbTimeSeries.html</loc>
   </url>
   <url>
-    <loc>/reference/hsOpenDb.html</loc>
+    <loc>https://kwb-r.github.io/kwb.db/reference/hsOpenDb.html</loc>
   </url>
   <url>
-    <loc>/reference/hsOpenMdb.html</loc>
+    <loc>https://kwb-r.github.io/kwb.db/reference/hsOpenMdb.html</loc>
   </url>
   <url>
-    <loc>/reference/hsPutTable.html</loc>
+    <loc>https://kwb-r.github.io/kwb.db/reference/hsPutTable.html</loc>
   </url>
   <url>
-    <loc>/reference/hsSetForeignKey.html</loc>
+    <loc>https://kwb-r.github.io/kwb.db/reference/hsSetForeignKey.html</loc>
   </url>
   <url>
-    <loc>/reference/hsSetPrimaryKey.html</loc>
+    <loc>https://kwb-r.github.io/kwb.db/reference/hsSetPrimaryKey.html</loc>
   </url>
   <url>
-    <loc>/reference/hsSqlExAnd.html</loc>
+    <loc>https://kwb-r.github.io/kwb.db/reference/hsSqlExAnd.html</loc>
   </url>
   <url>
-    <loc>/reference/hsSqlExOr.html</loc>
+    <loc>https://kwb-r.github.io/kwb.db/reference/hsSqlExOr.html</loc>
   </url>
   <url>
-    <loc>/reference/hsSqlExTimeCond.html</loc>
+    <loc>https://kwb-r.github.io/kwb.db/reference/hsSqlExTimeCond.html</loc>
   </url>
   <url>
-    <loc>/reference/hsSqlExTimeGroup.html</loc>
+    <loc>https://kwb-r.github.io/kwb.db/reference/hsSqlExTimeGroup.html</loc>
   </url>
   <url>
-    <loc>/reference/hsSqlExTsFields.html</loc>
+    <loc>https://kwb-r.github.io/kwb.db/reference/hsSqlExTsFields.html</loc>
   </url>
   <url>
-    <loc>/reference/hsSqlQuery.html</loc>
+    <loc>https://kwb-r.github.io/kwb.db/reference/hsSqlQuery.html</loc>
   </url>
   <url>
-    <loc>/reference/hsTables.html</loc>
+    <loc>https://kwb-r.github.io/kwb.db/reference/hsTables.html</loc>
   </url>
   <url>
-    <loc>/reference/hsTsField.html</loc>
+    <loc>https://kwb-r.github.io/kwb.db/reference/hsTsField.html</loc>
   </url>
   <url>
-    <loc>/reference/index.html</loc>
+    <loc>https://kwb-r.github.io/kwb.db/reference/index.html</loc>
   </url>
   <url>
-    <loc>/reference/isExcel2003File.html</loc>
+    <loc>https://kwb-r.github.io/kwb.db/reference/isExcel2003File.html</loc>
   </url>
   <url>
-    <loc>/reference/isExcel2007File.html</loc>
+    <loc>https://kwb-r.github.io/kwb.db/reference/isExcel2007File.html</loc>
   </url>
   <url>
-    <loc>/reference/isExcelFile.html</loc>
+    <loc>https://kwb-r.github.io/kwb.db/reference/isExcelFile.html</loc>
   </url>
   <url>
-    <loc>/reference/isMySQL.html</loc>
+    <loc>https://kwb-r.github.io/kwb.db/reference/isMySQL.html</loc>
   </url>
   <url>
-    <loc>/reference/keyValueToSql.html</loc>
+    <loc>https://kwb-r.github.io/kwb.db/reference/keyValueToSql.html</loc>
   </url>
   <url>
-    <loc>/reference/keyValuesToSql.html</loc>
+    <loc>https://kwb-r.github.io/kwb.db/reference/keyValuesToSql.html</loc>
   </url>
   <url>
-    <loc>/reference/keyValuesToSqlAssignment.html</loc>
+    <loc>https://kwb-r.github.io/kwb.db/reference/keyValuesToSqlAssignment.html</loc>
   </url>
   <url>
-    <loc>/reference/keyValuesToSqlAssignment2.html</loc>
+    <loc>https://kwb-r.github.io/kwb.db/reference/keyValuesToSqlAssignment2.html</loc>
   </url>
   <url>
-    <loc>/reference/keyValuesToSqlFilter.html</loc>
+    <loc>https://kwb-r.github.io/kwb.db/reference/keyValuesToSqlFilter.html</loc>
   </url>
   <url>
-    <loc>/reference/listValuesToSql.html</loc>
+    <loc>https://kwb-r.github.io/kwb.db/reference/listValuesToSql.html</loc>
   </url>
   <url>
-    <loc>/reference/lookupRecord.html</loc>
+    <loc>https://kwb-r.github.io/kwb.db/reference/lookupRecord.html</loc>
   </url>
   <url>
-    <loc>/reference/merge_relations.html</loc>
+    <loc>https://kwb-r.github.io/kwb.db/reference/merge_relations.html</loc>
   </url>
   <url>
-    <loc>/reference/openAdequateConnectionOrStop.html</loc>
+    <loc>https://kwb-r.github.io/kwb.db/reference/openAdequateConnectionOrStop.html</loc>
   </url>
   <url>
-    <loc>/reference/printDatabaseSchema.html</loc>
+    <loc>https://kwb-r.github.io/kwb.db/reference/printDatabaseSchema.html</loc>
   </url>
   <url>
-    <loc>/reference/rcode_DatabaseInterface.html</loc>
+    <loc>https://kwb-r.github.io/kwb.db/reference/rcode_DatabaseInterface.html</loc>
   </url>
   <url>
-    <loc>/reference/readSqlCommandsFromFile.html</loc>
+    <loc>https://kwb-r.github.io/kwb.db/reference/readSqlCommandsFromFile.html</loc>
   </url>
   <url>
-    <loc>/reference/read_relations.html</loc>
+    <loc>https://kwb-r.github.io/kwb.db/reference/read_relations.html</loc>
   </url>
   <url>
-    <loc>/reference/read_schemata.html</loc>
+    <loc>https://kwb-r.github.io/kwb.db/reference/read_schemata.html</loc>
   </url>
   <url>
-    <loc>/reference/renamesToFieldList.html</loc>
+    <loc>https://kwb-r.github.io/kwb.db/reference/renamesToFieldList.html</loc>
   </url>
   <url>
-    <loc>/reference/renamesToQueries.html</loc>
+    <loc>https://kwb-r.github.io/kwb.db/reference/renamesToQueries.html</loc>
   </url>
   <url>
-    <loc>/reference/runSqlCommandsFromFile.html</loc>
+    <loc>https://kwb-r.github.io/kwb.db/reference/runSqlCommandsFromFile.html</loc>
   </url>
   <url>
-    <loc>/reference/safeTableName.html</loc>
+    <loc>https://kwb-r.github.io/kwb.db/reference/safeTableName.html</loc>
   </url>
   <url>
-    <loc>/reference/selectFromDb.html</loc>
+    <loc>https://kwb-r.github.io/kwb.db/reference/selectFromDb.html</loc>
   </url>
   <url>
-    <loc>/reference/selectFromTable.html</loc>
+    <loc>https://kwb-r.github.io/kwb.db/reference/selectFromTable.html</loc>
   </url>
   <url>
-    <loc>/reference/setCurrentDb.html</loc>
+    <loc>https://kwb-r.github.io/kwb.db/reference/setCurrentDb.html</loc>
   </url>
   <url>
-    <loc>/reference/setCurrentSqlDialect.html</loc>
+    <loc>https://kwb-r.github.io/kwb.db/reference/setCurrentSqlDialect.html</loc>
   </url>
   <url>
-    <loc>/reference/sqlForInsert.html</loc>
+    <loc>https://kwb-r.github.io/kwb.db/reference/sqlForInsert.html</loc>
   </url>
   <url>
-    <loc>/reference/sqlForInsertDataFrame.html</loc>
+    <loc>https://kwb-r.github.io/kwb.db/reference/sqlForInsertDataFrame.html</loc>
   </url>
   <url>
-    <loc>/reference/sqlForInsertFromSelect.html</loc>
+    <loc>https://kwb-r.github.io/kwb.db/reference/sqlForInsertFromSelect.html</loc>
   </url>
   <url>
-    <loc>/reference/sqlForInsertIgnoreInMsAccess.html</loc>
+    <loc>https://kwb-r.github.io/kwb.db/reference/sqlForInsertIgnoreInMsAccess.html</loc>
   </url>
   <url>
-    <loc>/reference/sqlForSelect.html</loc>
+    <loc>https://kwb-r.github.io/kwb.db/reference/sqlForSelect.html</loc>
   </url>
   <url>
-    <loc>/reference/sqlForSelectByKey.html</loc>
+    <loc>https://kwb-r.github.io/kwb.db/reference/sqlForSelectByKey.html</loc>
   </url>
   <url>
-    <loc>/reference/sqlForUpdate.html</loc>
+    <loc>https://kwb-r.github.io/kwb.db/reference/sqlForUpdate.html</loc>
   </url>
   <url>
-    <loc>/reference/sqlFullLeftJoin.html</loc>
+    <loc>https://kwb-r.github.io/kwb.db/reference/sqlFullLeftJoin.html</loc>
   </url>
   <url>
-    <loc>/reference/sqlJoinExpression.html</loc>
+    <loc>https://kwb-r.github.io/kwb.db/reference/sqlJoinExpression.html</loc>
   </url>
   <url>
-    <loc>/reference/sqlLeftJoin.html</loc>
+    <loc>https://kwb-r.github.io/kwb.db/reference/sqlLeftJoin.html</loc>
   </url>
   <url>
-    <loc>/reference/sqlLeftJoinBody.html</loc>
+    <loc>https://kwb-r.github.io/kwb.db/reference/sqlLeftJoinBody.html</loc>
   </url>
   <url>
-    <loc>/reference/sqlLeftJoinExpression.html</loc>
+    <loc>https://kwb-r.github.io/kwb.db/reference/sqlLeftJoinExpression.html</loc>
   </url>
   <url>
-    <loc>/reference/xmdb.html</loc>
+    <loc>https://kwb-r.github.io/kwb.db/reference/xmdb.html</loc>
   </url>
 </urlset>
