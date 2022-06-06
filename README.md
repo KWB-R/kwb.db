@@ -1,24 +1,30 @@
 [![R-CMD-check](https://github.com/KWB-R/kwb.db/workflows/R-CMD-check/badge.svg)](https://github.com/KWB-R/kwb.db/actions?query=workflow%3AR-CMD-check)
 [![pkgdown](https://github.com/KWB-R/kwb.db/workflows/pkgdown/badge.svg)](https://github.com/KWB-R/kwb.db/actions?query=workflow%3Apkgdown)
 [![codecov](https://codecov.io/github/KWB-R/kwb.db/branch/master/graphs/badge.svg)](https://codecov.io/github/KWB-R/kwb.db)  [![lifecycle](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://www.tidyverse.org/lifecycle/#stable)
+[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/KWB-R/kwb.db)](http://www.r-pkg.org/pkg/KWB-R/kwb.db)
+[![R-Universe_Status_Badge](https://kwb-r.r-universe.dev/badges/kwb.db)](https://kwb-r.r-universe.dev/)
 
 # kwb.db
 
 This repository contains the R package kwb.db. The package provides functions that aim at simplifying the data transfer between databases and R. It is based on the [RODBC](https://cran.r-project.org/web/packages/RODBC/) package that gives access to databases that provide an [ODBC](https://docs.microsoft.com/en-us/sql/odbc/reference/what-is-odbc) interface. Databases may be Microsoft Access files, Microsoft Excel files or any other database that is registered as an ODBC data source on your local machine. See e.g. [here](https://docs.microsoft.com/en-us/sql/odbc/admin/odbc-data-source-administrator) for how to setup ODBC data sources in Windows.
 
-# Installation
-
-Once you have the devtools package installed, you can install the package kwb.db like this:
+For installing the latest release of this R package run the following code below:
 
 ```r
-# If required, install the devtools package...
-# install.packages("devtools")
+# Enable repository from kwb-r
+options(repos = c(
+  kwbr = 'https://kwb-r.r-universe.dev',
+  CRAN = 'https://cloud.r-project.org'))
+  
+# Download and install kwb.db in R
+install.packages('kwb.db')
 
-# Install kwb.db (and dependent packages) from this GitHub repository
-devtools::install_github("kwb-r/kwb.db", dependencies = TRUE)
+# Browse the kwb.swmm manual pages
+help(package = 'kwb.db')
 ```
 
 ## Database Access in RODBC
+
 
 
 With the RODBC package, you need to open a database connection, send one or more requests to the database and finally close the dabase connection.
