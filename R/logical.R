@@ -34,6 +34,7 @@ isAccessFile <- function(filepath)
 #'   extension
 #' 
 #' @return (vector of) logical. 
+#' @export
 #' 
 isExcel2007File <- function(filepath)
 {
@@ -48,6 +49,7 @@ isExcel2007File <- function(filepath)
 #'   extension
 #' 
 #' @return (vector of) logical. 
+#' @export
 #' 
 isExcel2003File <- function(filepath)
 {
