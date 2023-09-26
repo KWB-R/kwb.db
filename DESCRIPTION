@@ -1,6 +1,6 @@
 Package: kwb.db
 Title: Functions supporting data base access
-Version: 0.6.0
+Version: 0.7.0
 Authors@R: 
     c(person(given = "Hauke",
              family = "Sonnenberg",
