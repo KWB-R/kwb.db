@@ -4,7 +4,7 @@ connection, saving of the data to a table and closing of the connection.  If
 an error occurs the program stops and an error description is shown. If a
 table named tbl already exists in the database mdb the existing
 table is only overwritten if overwrite is TRUE. Otherwise a
-hsSafeName will be found for the table."><title>Save Data Frame to Database Table — hsPutTable • kwb.db</title><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.1.0/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.1.0/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous"><!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Save Data Frame to Database Table — hsPutTable"><meta property="og:description" content="Writes data to a database table. This function performs opening of the
+hsSafeName will be found for the table."><title>Save Data Frame to Database Table — hsPutTable • kwb.db</title><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.2.2/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.2.2/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous"><!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Save Data Frame to Database Table — hsPutTable"><meta property="og:description" content="Writes data to a database table. This function performs opening of the
 connection, saving of the data to a table and closing of the connection.  If
 an error occurs the program stops and an error description is shown. If a
 table named tbl already exists in the database mdb the existing
@@ -66,39 +66,54 @@ table is only overwritten if <em>overwrite</em> is TRUE. Otherwise a
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">hsPutTable</span><span class="op">(</span>
-  <span class="va">mdb</span>,
-  <span class="va">myData</span>,
-  tbl <span class="op">=</span> <span class="st">"tblTmp"</span>,
-  types <span class="op">=</span> <span class="cn">NULL</span>,
-  overwrite <span class="op">=</span> <span class="cn">FALSE</span>,
-  DBMSencoding <span class="op">=</span> <span class="st">""</span>,
-  dbg <span class="op">=</span> <span class="cn">TRUE</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">hsPutTable</span><span class="op">(</span></span>
+<span>  <span class="va">mdb</span>,</span>
+<span>  <span class="va">myData</span>,</span>
+<span>  tbl <span class="op">=</span> <span class="st">"tblTmp"</span>,</span>
+<span>  types <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  overwrite <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  DBMSencoding <span class="op">=</span> <span class="st">""</span>,</span>
+<span>  dbg <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>mdb</dt>
 <dd><p>full path to MS Access database file (*.mdb)</p></dd>
+
+
 <dt>myData</dt>
 <dd><p>data.frame containing data to be written to database table</p></dd>
+
+
 <dt>tbl</dt>
 <dd><p>Name of table to be created in the database</p></dd>
+
+
 <dt>types</dt>
 <dd><p>field types to be passed to sqlSave as argument <em>varTypes</em>,
 see ?sqlSave for details.</p></dd>
+
+
 <dt>overwrite</dt>
 <dd><p>shall existing table be overwritten?</p></dd>
+
+
 <dt>DBMSencoding</dt>
 <dd><p>finally passed to <code>odbcDriverConnect</code>. Default: "",
 You may want to use: "UTF-8"</p></dd>
+
+
 <dt>dbg</dt>
 <dd><p>if TRUE, debug messages are shown</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>In case of success the name of the created table is returned.</p>
+    
+
+<p>In case of success the name of the created table is returned.</p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
@@ -107,36 +122,36 @@ You may want to use: "UTF-8"</p></dd>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in"><span class="co">## Create a data.frame</span></span>
-<span class="r-in"><span class="va">df1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>id <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">4</span>, rnd <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">100</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span><span class="op">)</span></span>
-<span class="r-in">  </span>
-<span class="r-in"><span class="co">## Write data.frame into a table in the example database; as no</span></span>
-<span class="r-in"><span class="co">## table name is specified, a table name is generated. The name</span></span>
-<span class="r-in"><span class="co">## of the table is returned.</span></span>
-<span class="r-in"><span class="co">## (only on Windows!)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="va">.Platform</span><span class="op">$</span><span class="va">OS.type</span> <span class="op">==</span> <span class="st">"windows"</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in"></span>
-<span class="r-in">  <span class="va">tbl</span> <span class="op">&lt;-</span> <span class="fu">hsPutTable</span><span class="op">(</span><span class="fu"><a href="xmdb.html">xmdb</a></span><span class="op">(</span><span class="op">)</span>, <span class="va">df1</span><span class="op">)</span></span>
-<span class="r-in">  <span class="va">tbl</span> <span class="co"># table name here: [1] "tblTmp"</span></span>
-<span class="r-in"></span>
-<span class="r-in">   </span>
-<span class="r-in">  <span class="co">## Get the data from the created table back again and print the</span></span>
-<span class="r-in">  <span class="co">## data. As we see, a table containing four different random</span></span>
-<span class="r-in">  <span class="co">## numbers between one and 100 has been created.</span></span>
-<span class="r-in">  <span class="va">df2</span> <span class="op">&lt;-</span> <span class="fu"><a href="hsGetTable.html">hsGetTable</a></span><span class="op">(</span><span class="fu"><a href="xmdb.html">xmdb</a></span><span class="op">(</span><span class="op">)</span>, <span class="va">tbl</span><span class="op">)</span></span>
-<span class="r-in">  <span class="va">df2</span></span>
-<span class="r-in"><span class="op">}</span></span>
-<span class="r-in">   </span>
-<span class="r-in"><span class="co">## Output:</span></span>
-<span class="r-in"><span class="co">#   id rnd</span></span>
-<span class="r-in"><span class="co"># 1  1  82</span></span>
-<span class="r-in"><span class="co"># 2  2  14</span></span>
-<span class="r-in"><span class="co"># 3  3  99</span></span>
-<span class="r-in"><span class="co"># 4  4   6</span></span>
-<span class="r-in"><span class="op">}</span></span>
-<span class="r-in"></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span><span class="co">## Create a data.frame</span></span></span>
+<span class="r-in"><span><span class="va">df1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span>id <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">4</span>, rnd <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">100</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  </span></span>
+<span class="r-in"><span><span class="co">## Write data.frame into a table in the example database; as no</span></span></span>
+<span class="r-in"><span><span class="co">## table name is specified, a table name is generated. The name</span></span></span>
+<span class="r-in"><span><span class="co">## of the table is returned.</span></span></span>
+<span class="r-in"><span><span class="co">## (only on Windows!)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="va">.Platform</span><span class="op">$</span><span class="va">OS.type</span> <span class="op">==</span> <span class="st">"windows"</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>  <span class="va">tbl</span> <span class="op">&lt;-</span> <span class="fu">hsPutTable</span><span class="op">(</span><span class="fu"><a href="xmdb.html">xmdb</a></span><span class="op">(</span><span class="op">)</span>, <span class="va">df1</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">tbl</span> <span class="co"># table name here: [1] "tblTmp"</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span>   </span></span>
+<span class="r-in"><span>  <span class="co">## Get the data from the created table back again and print the</span></span></span>
+<span class="r-in"><span>  <span class="co">## data. As we see, a table containing four different random</span></span></span>
+<span class="r-in"><span>  <span class="co">## numbers between one and 100 has been created.</span></span></span>
+<span class="r-in"><span>  <span class="va">df2</span> <span class="op">&lt;-</span> <span class="fu"><a href="hsGetTable.html">hsGetTable</a></span><span class="op">(</span><span class="fu"><a href="xmdb.html">xmdb</a></span><span class="op">(</span><span class="op">)</span>, <span class="va">tbl</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">df2</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
+<span class="r-in"><span>   </span></span>
+<span class="r-in"><span><span class="co">## Output:</span></span></span>
+<span class="r-in"><span><span class="co">#   id rnd</span></span></span>
+<span class="r-in"><span><span class="co"># 1  1  82</span></span></span>
+<span class="r-in"><span><span class="co"># 2  2  14</span></span></span>
+<span class="r-in"><span><span class="co"># 3  3  99</span></span></span>
+<span class="r-in"><span><span class="co"># 4  4   6</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
@@ -148,7 +163,7 @@ You may want to use: "UTF-8"</p></dd>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
     </footer></div>

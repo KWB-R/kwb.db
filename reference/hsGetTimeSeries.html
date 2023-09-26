@@ -13,7 +13,7 @@ only), 3. &amp;lt;ts&amp;gt;_dSince18991230 (number of days since 1899-12-30), 4
 minutes within the day), 6. &amp;lt;ts&amp;gt;_year (year), 7. &amp;lt;ts&amp;gt;_month (number of
 month), 8. &amp;lt;ts&amp;gt;_day (number of day within the month), 9. &amp;lt;ts&amp;gt;_h (hours within
 day), 10. &amp;lt;ts&amp;gt;_min (minutes within hour), 11. &amp;lt;ts&amp;gt;_s (seconds within minute) 
-where in each case &amp;lt;ts&amp;gt; is the name of the timestamp field."><title>Get Time Series With Timestamp Info — hsGetTimeSeries • kwb.db</title><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.1.0/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.1.0/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous"><!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Get Time Series With Timestamp Info — hsGetTimeSeries"><meta property="og:description" content="Reads time-series data from an MS Access database table and returns a data
+where in each case &amp;lt;ts&amp;gt; is the name of the timestamp field."><title>Get Time Series With Timestamp Info — hsGetTimeSeries • kwb.db</title><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><link href="../deps/bootstrap-5.2.2/bootstrap.min.css" rel="stylesheet"><script src="../deps/bootstrap-5.2.2/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous"><!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Get Time Series With Timestamp Info — hsGetTimeSeries"><meta property="og:description" content="Reads time-series data from an MS Access database table and returns a data
 frame containing the data. In the data frame the timestamp column contains
 the timestamps as they are converted to by R from (text versions of) the
 original timestamps read from MS ACCESS. As this conversion may fail (e.g.
@@ -93,53 +93,74 @@ where in each case &lt;ts&gt; is the name of the timestamp field.</p>
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">hsGetTimeSeries</span><span class="op">(</span>
-  <span class="va">mdb</span>,
-  <span class="va">tbl</span>,
-  tsField <span class="op">=</span> <span class="fu"><a href="hsTsField.html">hsTsField</a></span><span class="op">(</span><span class="va">mdb</span>, <span class="va">tbl</span><span class="op">)</span>,
-  fields <span class="op">=</span> <span class="st">"*"</span>,
-  minDate <span class="op">=</span> <span class="cn">NULL</span>,
-  maxDate <span class="op">=</span> <span class="cn">NULL</span>,
-  xTsFields <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">11</span><span class="op">)</span>,
-  inclLast <span class="op">=</span> <span class="cn">TRUE</span>,
-  sqlFilter <span class="op">=</span> <span class="st">"TRUE"</span>,
-  dbg <span class="op">=</span> <span class="cn">FALSE</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">hsGetTimeSeries</span><span class="op">(</span></span>
+<span>  <span class="va">mdb</span>,</span>
+<span>  <span class="va">tbl</span>,</span>
+<span>  tsField <span class="op">=</span> <span class="fu"><a href="hsTsField.html">hsTsField</a></span><span class="op">(</span><span class="va">mdb</span>, <span class="va">tbl</span><span class="op">)</span>,</span>
+<span>  fields <span class="op">=</span> <span class="st">"*"</span>,</span>
+<span>  minDate <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  maxDate <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  xTsFields <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">11</span><span class="op">)</span>,</span>
+<span>  inclLast <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  sqlFilter <span class="op">=</span> <span class="st">"TRUE"</span>,</span>
+<span>  dbg <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>mdb</dt>
 <dd><p>Full path to MS Access database file (*.mdb)</p></dd>
+
+
 <dt>tbl</dt>
 <dd><p>Name of table containing the time-series data.</p></dd>
+
+
 <dt>tsField</dt>
 <dd><p>Name of table field containing the timestamps.</p></dd>
+
+
 <dt>fields</dt>
 <dd><p>Vector containing names of value fields to be selected from the
 table. This vector may or may not contain the name of the timetamp field.</p></dd>
+
+
 <dt>minDate</dt>
 <dd><p>Minimum date (and time) of time interval to be selected in
 ISO-Syntax: yyyy-mm-dd [HH:MM:SS], where the part in brackets in optional.</p></dd>
+
+
 <dt>maxDate</dt>
 <dd><p>Day following the maximum date of the time interval to be
 selected, in ISO-Syntax: yyyy-mm-dd [HH:MM:SS], where the part in brackets
 in optional.</p></dd>
+
+
 <dt>xTsFields</dt>
 <dd><p>Extra timestamp fields to be selected. Vector containing
 numbers between 1 and 11, where each number represents a type of date/time
 information as described for function <code><a href="hsSqlExTsFields.html">hsSqlExTsFields</a></code>.</p></dd>
+
+
 <dt>inclLast</dt>
 <dd><p>If TRUE, <em>maxDate</em> will be included in result data set,
 else excluded.</p></dd>
+
+
 <dt>sqlFilter</dt>
 <dd><p>additional SQL filter criterion</p></dd>
+
+
 <dt>dbg</dt>
 <dd><p>if TRUE, debug messages are shown</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>data frame containing the requested data (timestamp and value
+    
+
+<p>data frame containing the requested data (timestamp and value
   columns) and additional columns preceding the timestamp column containing
   different pieces of information on the timestamp.</p>
     </div>
@@ -160,40 +181,40 @@ any timestamp conversion problems!</p>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in"><span class="co">## Get flow time series of 24 of July 2011 from tbl_Hyd in example database</span></span>
-<span class="r-in"><span class="co">## Additionally to the timestamp that is created by R, return the date only</span></span>
-<span class="r-in"><span class="co">## (timestamp info id = 2) and the number of minutes within the day</span></span>
-<span class="r-in"><span class="co">## (timestamp info id = 5).</span></span>
-<span class="r-in">  </span>
-<span class="r-in"><span class="fu"><a href="setCurrentSqlDialect.html">setCurrentSqlDialect</a></span><span class="op">(</span><span class="st">"msaccess"</span><span class="op">)</span></span>
-<span class="r-in"> </span>
-<span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="va">.Platform</span><span class="op">$</span><span class="va">OS.type</span> <span class="op">==</span> <span class="st">"windows"</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in">  <span class="va">ts</span> <span class="op">&lt;-</span> <span class="fu">hsGetTimeSeries</span><span class="op">(</span></span>
-<span class="r-in">    mdb <span class="op">=</span> <span class="fu"><a href="xmdb.html">xmdb</a></span><span class="op">(</span><span class="op">)</span>,</span>
-<span class="r-in">    tbl <span class="op">=</span> <span class="st">"tbl_Hyd"</span>,</span>
-<span class="r-in">    tsField <span class="op">=</span> <span class="st">"Zeitst"</span>,</span>
-<span class="r-in">    fields <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Q"</span>, <span class="st">"v"</span><span class="op">)</span>,</span>
-<span class="r-in">    minDate <span class="op">=</span> <span class="st">"2011-08-24"</span>,</span>
-<span class="r-in">    maxDate <span class="op">=</span> <span class="st">"2011-08-25"</span>,</span>
-<span class="r-in">    xTsFields <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">5</span><span class="op">)</span>,</span>
-<span class="r-in">    dbg <span class="op">=</span> <span class="cn">TRUE</span></span>
-<span class="r-in">  <span class="op">)</span></span>
-<span class="r-in">   </span>
-<span class="r-in">  <span class="co">## Show the last records of the returned dataset.</span></span>
-<span class="r-in">  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">tail</a></span><span class="op">(</span><span class="va">ts</span><span class="op">)</span></span>
-<span class="r-in"><span class="op">}</span></span>
-<span class="r-in">   </span>
-<span class="r-in"><span class="co">## Output:</span></span>
-<span class="r-in"><span class="co">#      Zeitst_Date Zeitst_minInDay              Zeitst     Q     v</span></span>
-<span class="r-in"><span class="co"># 1435  2011-08-24            1435 2011-08-24 23:55:00 0.638 0.281</span></span>
-<span class="r-in"><span class="co"># 1436  2011-08-24            1436 2011-08-24 23:56:00 0.601 0.265</span></span>
-<span class="r-in"><span class="co"># 1437  2011-08-24            1437 2011-08-24 23:57:00 0.564 0.249</span></span>
-<span class="r-in"><span class="co"># 1438  2011-08-24            1438 2011-08-24 23:58:00 0.536 0.237</span></span>
-<span class="r-in"><span class="co"># 1439  2011-08-24            1439 2011-08-24 23:59:00 0.504 0.223</span></span>
-<span class="r-in"><span class="co"># 1440  2011-08-25               0 2011-08-25 00:00:00 0.483 0.214</span></span>
-<span class="r-in"><span class="op">}</span></span>
-<span class="r-in">  </span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span><span class="co">## Get flow time series of 24 of July 2011 from tbl_Hyd in example database</span></span></span>
+<span class="r-in"><span><span class="co">## Additionally to the timestamp that is created by R, return the date only</span></span></span>
+<span class="r-in"><span><span class="co">## (timestamp info id = 2) and the number of minutes within the day</span></span></span>
+<span class="r-in"><span><span class="co">## (timestamp info id = 5).</span></span></span>
+<span class="r-in"><span>  </span></span>
+<span class="r-in"><span><span class="fu"><a href="setCurrentSqlDialect.html">setCurrentSqlDialect</a></span><span class="op">(</span><span class="st">"msaccess"</span><span class="op">)</span></span></span>
+<span class="r-in"><span> </span></span>
+<span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="va">.Platform</span><span class="op">$</span><span class="va">OS.type</span> <span class="op">==</span> <span class="st">"windows"</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span>  <span class="va">ts</span> <span class="op">&lt;-</span> <span class="fu">hsGetTimeSeries</span><span class="op">(</span></span></span>
+<span class="r-in"><span>    mdb <span class="op">=</span> <span class="fu"><a href="xmdb.html">xmdb</a></span><span class="op">(</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    tbl <span class="op">=</span> <span class="st">"tbl_Hyd"</span>,</span></span>
+<span class="r-in"><span>    tsField <span class="op">=</span> <span class="st">"Zeitst"</span>,</span></span>
+<span class="r-in"><span>    fields <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Q"</span>, <span class="st">"v"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    minDate <span class="op">=</span> <span class="st">"2011-08-24"</span>,</span></span>
+<span class="r-in"><span>    maxDate <span class="op">=</span> <span class="st">"2011-08-25"</span>,</span></span>
+<span class="r-in"><span>    xTsFields <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">5</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    dbg <span class="op">=</span> <span class="cn">TRUE</span></span></span>
+<span class="r-in"><span>  <span class="op">)</span></span></span>
+<span class="r-in"><span>   </span></span>
+<span class="r-in"><span>  <span class="co">## Show the last records of the returned dataset.</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">tail</a></span><span class="op">(</span><span class="va">ts</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
+<span class="r-in"><span>   </span></span>
+<span class="r-in"><span><span class="co">## Output:</span></span></span>
+<span class="r-in"><span><span class="co">#      Zeitst_Date Zeitst_minInDay              Zeitst     Q     v</span></span></span>
+<span class="r-in"><span><span class="co"># 1435  2011-08-24            1435 2011-08-24 23:55:00 0.638 0.281</span></span></span>
+<span class="r-in"><span><span class="co"># 1436  2011-08-24            1436 2011-08-24 23:56:00 0.601 0.265</span></span></span>
+<span class="r-in"><span><span class="co"># 1437  2011-08-24            1437 2011-08-24 23:57:00 0.564 0.249</span></span></span>
+<span class="r-in"><span><span class="co"># 1438  2011-08-24            1438 2011-08-24 23:58:00 0.536 0.237</span></span></span>
+<span class="r-in"><span><span class="co"># 1439  2011-08-24            1439 2011-08-24 23:59:00 0.504 0.223</span></span></span>
+<span class="r-in"><span><span class="co"># 1440  2011-08-25               0 2011-08-25 00:00:00 0.483 0.214</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
+<span class="r-in"><span>  </span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
@@ -205,7 +226,7 @@ any timestamp conversion problems!</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
     </footer></div>
