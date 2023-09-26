@@ -1,3 +1,7 @@
+# [kwb.db 0.7.0](https://github.com/KWB-R/kwb.db/releases/tag/v0.7.0) <small>2023-09-25</small>
+
+* Add and export `read_schemata()`, `read_relations()`, `merge_relations()`
+
 # [kwb.db 0.6.0](https://github.com/KWB-R/kwb.db/releases/tag/v0.6.0) <small>2021-07-07</small>
 
 * `getDatabaseSchema()`: add arguments "tableNames", "tableTypes"
