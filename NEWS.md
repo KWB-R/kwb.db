@@ -1,3 +1,9 @@
+# [kwb.db 0.7.1](https://github.com/KWB-R/kwb.db/releases/tag/v0.7.1) <small>2025-06-05</small>
+
+* Use latest RODBC release (2024-12-12) from [https://github.com/cran/RODBC](https://github.com/cran/RODBC) 
+to fix installation problems on Windows (Ubuntu & macOS package installation still 
+fails on GH actions)
+
 # [kwb.db 0.7.0](https://github.com/KWB-R/kwb.db/releases/tag/v0.7.0) <small>2023-09-25</small>
 
 * Add and export `read_schemata()`, `read_relations()`, `merge_relations()`
